@@ -8,6 +8,7 @@
     :root {
       --primary: #a44f30;
       --primary-dark: #a44f30;
+      --primary-light: #fff5ee;
       --bg: #ffffff;
       --text-main: #000000;
     }
@@ -23,7 +24,7 @@
       background: var(--bg);
       color: var(--text-main);
       line-height: 1.7;
-      padding-top: 60px;
+      padding-top: 76px;
     }
 
     /* ヘッダー */
@@ -45,38 +46,114 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px 16px;
+      gap: 18px;
     }
 
-    /* index.html と同じノリでロゴをリンク化 */
     .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .logo-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    .logo-text-main {
       font-weight: 800;
       font-size: 20px;
       letter-spacing: 0.05em;
-      text-decoration: none;
-      color: #fff;
-      display: inline-block;
+      line-height: 1.1;
     }
 
-    .logo span {
+    .logo-text-sub {
       font-size: 12px;
       display: block;
-      opacity: .8;
+      opacity: 0.8;
     }
 
-    nav {
+    .menu-toggle {
+      display: none;
+      border: 1px solid rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .global-nav {
       display: flex;
+      flex-wrap: wrap;
+      align-items: center;
       gap: 18px;
-      font-size: 14px;
+      font-size: 16px;
+      list-style: none;
     }
 
-    nav a {
+    .global-nav > li {
+      position: relative;
+      list-style: none;
+    }
+
+    .global-nav > li > a {
       color: #fff;
       text-decoration: none;
       font-weight: 600;
+      padding: 4px 0;
+      display: inline-block;
     }
 
-    nav a:hover {
+    .global-nav > li > a:hover {
       text-decoration: underline;
+    }
+
+    .nav-sub {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 180px;
+      padding: 6px 0;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      display: none;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 200;
+    }
+
+    .global-nav > li:hover .nav-sub,
+    .global-nav > li:focus-within .nav-sub {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .nav-sub a {
+      display: block;
+      padding: 6px 14px;
+      font-size: 14px;
+      color: #000000;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-sub a:hover {
+      background: #fff5ee;
+      color: #a44f30;
     }
 
     /* 共通レイアウト */
@@ -243,7 +320,6 @@
 
     /* 中煎り・深煎りの図っぽい表示 */
     .roast-compare {
-      /* 背景は他の section と同じ白に統一 */
       background: #fff;
     }
 
@@ -254,7 +330,6 @@
       margin-top: 10px;
     }
 
-    /* 共通カード */
     .roast-card {
       flex: 1 1 260px;
       border-radius: 12px;
@@ -265,7 +340,6 @@
       overflow: hidden;
     }
 
-    /* 上のラベル帯 */
     .roast-label {
       display: inline-block;
       padding: 4px 10px;
@@ -275,7 +349,6 @@
       color: #fff;
     }
 
-    /* 中煎り＝緑、深煎り＝茶色（ここ重要） */
     .roast-card--medium {
       border-top: 6px solid #3aa86b;
     }
@@ -295,7 +368,6 @@
       margin-top: 8px;
     }
 
-    /* 簡易グラフ（酸味／コク） */
     .roast-bars {
       margin-top: 10px;
       font-size: 12px;
@@ -325,17 +397,14 @@
       border-radius: 999px;
     }
 
-    /* 中煎りバーの色 */
     .roast-card--medium .roast-bar-fill {
       background: linear-gradient(90deg, #a8e2c0, #3aa86b);
     }
 
-    /* 深煎りバーの色 */
     .roast-card--dark .roast-bar-fill {
       background: linear-gradient(90deg, #f0c0a4, #a44f30);
     }
 
-    /* ほんのりアイコンっぽい丸 */
     .roast-icon {
       position: absolute;
       right: -18px;
@@ -410,7 +479,6 @@
       content: "← ";
     }
 
-    /* メインボタン（お知らせページ用） */
     .back-link-main {
       padding: 6px 14px;
       border-radius: 999px;
@@ -445,15 +513,83 @@
     }
 
     @media (max-width: 768px) {
+      body {
+        padding-top: 56px;
+      }
+
       .header-inner {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .logo-mark {
+        width: 46px;
+        height: 46px;
+      }
+
+      .logo-text-main {
+        font-size: 17px;
+      }
+
+      .logo-text-sub {
+        font-size: 11px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
       }
 
       nav {
+        width: 100%;
+      }
+
+      .global-nav {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        width: 100%;
+        margin-top: 8px;
         font-size: 13px;
-        gap: 10px;
+      }
+
+      .site-header.is-open .global-nav {
+        display: flex;
+      }
+
+      .global-nav > li {
+        width: 100%;
+      }
+
+      .global-nav > li > a {
+        padding: 4px 0;
+      }
+
+      .nav-sub {
+        position: static;
+        box-shadow: none;
+        background: transparent;
+        border: none;
+        padding: 0;
+        display: block;
+        opacity: 1;
+        transform: none;
+        backdrop-filter: none;
+      }
+
+      .nav-sub a {
+        padding: 2px 0 0;
+        color: #ffe5d6;
+        background: none;
+      }
+
+      .nav-sub a:hover {
+        background: none;
+        text-decoration: underline;
+        color: #ffffff;
       }
 
       .page-title {
@@ -471,18 +607,57 @@
   </style>
 </head>
 <body>
-<header>
+<header class="site-header">
   <div class="header-inner">
-    <!-- ロゴクリックでトップへ -->
     <a href="index.html" class="logo">
-      Smile F LAOS
-      <span>ラオスと日本をつなぐ学生サークル</span>
+      <img src="logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
+      <div>
+        <div class="logo-text-main">Smile F LAOS</div>
+        <span class="logo-text-sub">ラオスと日本をつなぐ学生サークル</span>
+      </div>
     </a>
+
+    <button class="menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">
+      メニュー
+    </button>
+
     <nav>
-      <a href="about.html">団体紹介</a>
-      <a href="index.html#activities">活動内容</a>
-      <a href="gallery.html">写真ギャラリー</a>
-      <a href="index.html#join">参加したい方へ</a>
+      <ul class="global-nav">
+        <li>
+          <a href="about.html">Smile F LAOSとは</a>
+          <div class="nav-sub">
+            <a href="members.html">構成・メンバー紹介</a>
+            <a href="history.html">エフラオの歩み</a>
+            <a href="about.html#about-laos">ラオス概要</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="about.html#activities">活動内容</a>
+          <div class="nav-sub">
+            <a href="coffee.html">コーヒー</a>
+            <a href="education.html">教育支援</a>
+            <a href="studytour.html">スタディツアー</a>
+            <a href="news.html">お知らせ</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="coffee.html">製品紹介</a>
+          <div class="nav-sub">
+            <a href="coffee.html">コーヒー</a>
+            <a href="order.html">注文</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="gallery.html">ギャラリー</a>
+        </li>
+
+        <li>
+          <a href="index.html#contact">お問い合わせ</a>
+        </li>
+      </ul>
     </nav>
   </div>
 </header>
@@ -663,7 +838,7 @@
   <section class="section">
     <h2>どこで販売している？</h2>
 
- <h3>ラオスフェスティバル</h3>
+    <h3>ラオスフェスティバル</h3>
     <p>
       毎年５月に代々木公園で開催されるラオスに関係する団体が出店するラオスフェスティバルでも出店し、
       お客さんとの交流のほか、ラオスに関係する団体との対話を設けることでメンバーの知識を深め、新たな視点からの気づきを得ることができます。
@@ -682,7 +857,6 @@
       また、文京シビックセンターなどの学外イベントにも出店し、
       より多くの人にラオスコーヒーを知ってもらう機会をつくっています。
     </p>
-    
   </section>
 
   <!-- 売上の使い方 -->
@@ -712,5 +886,31 @@
 <footer>
   © 2025 Smile F LAOS
 </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const header = document.querySelector('.site-header');
+    const menuButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelectorAll('.global-nav a');
+
+    if (!header || !menuButton) return;
+
+    menuButton.addEventListener('click', function () {
+      const isOpen = header.classList.toggle('is-open');
+      menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      menuButton.textContent = isOpen ? '閉じる' : 'メニュー';
+    });
+
+    navLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+        header.classList.remove('is-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.textContent = 'メニュー';
+      });
+    });
+  });
+</script>
 </body>
 </html>
