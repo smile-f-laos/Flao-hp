@@ -3,24 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Smile F LAOS｜学生によるラオス支援サークル</title>
-  <meta
-    name="description"
-    content="Smile F LAOS（エフラオ）は、ラオス産フェアトレードコーヒーの販売を通じて、ラオスの子どもたちの教育支援に取り組む東洋大学の学生サークルです。"
-  />
+  <title>Smile F LAOS</title>
 
   <style>
     :root {
       --primary: #a44f30;
-      --primary-dark: #7f3d25;
-      --primary-light: #fff5ee;
-      --accent: #f4c27a;
+      --primary-dark: #8f3f25;
       --bg: #ffffff;
-      --bg-soft: #faf7f5;
-      --text-main: #1f1f1f;
-      --text-sub: #666666;
-      --border: #eeeeee;
+      --text-main: #111111;
+      --text-sub: #555555;
+      --border: #e5e5e5;
     }
 
     * {
@@ -35,156 +27,89 @@
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg-soft);
+      background: var(--bg);
       color: var(--text-main);
       line-height: 1.7;
-      padding-top: 76px;
-    }
-
-    img {
-      max-width: 100%;
+      padding-top: 60px;
     }
 
     a {
       color: inherit;
+      text-decoration: none;
     }
 
-    /* ヘッダー */
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* =====================
+       header
+    ===================== */
+
     header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 100;
+      z-index: 1000;
       background: var(--primary);
       color: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     .header-inner {
-      max-width: 1100px;
+      max-width: 1200px;
+      height: 60px;
       margin: 0 auto;
+      padding: 0 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 16px;
-      gap: 18px;
     }
 
     .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: #fff;
-      flex-shrink: 0;
-    }
-
-    .logo-mark {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      object-fit: contain;
-      background: #fff;
-    }
-
-    .logo-text-main {
-      font-weight: 800;
-      font-size: 20px;
-      letter-spacing: 0.05em;
-      line-height: 1.1;
-    }
-
-    .logo-text-sub {
-      font-size: 12px;
-      display: block;
-      opacity: 0.85;
-    }
-
-    .menu-toggle {
-      display: none;
-      border: 1px solid rgba(255,255,255,0.6);
-      background: rgba(255,255,255,0.12);
-      color: #fff;
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 13px;
       font-weight: 700;
-      cursor: pointer;
+      font-size: 1.15rem;
+      letter-spacing: 0.03em;
     }
 
     .global-nav {
       display: flex;
-      flex-wrap: wrap;
+      gap: 22px;
       align-items: center;
-      gap: 18px;
-      font-size: 15px;
-      list-style: none;
+      font-size: 0.95rem;
     }
 
-    .global-nav > li {
-      position: relative;
-      list-style: none;
+    .global-nav a {
+      opacity: 0.95;
+      transition: opacity 0.2s ease;
     }
 
-    .global-nav > li > a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      padding: 6px 0;
-      display: inline-block;
+    .global-nav a:hover {
+      opacity: 0.7;
     }
 
-    .global-nav > li > a:hover {
-      text-decoration: underline;
-    }
-
-    .nav-sub {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 190px;
-      padding: 6px 0;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.16);
-      border: 1px solid rgba(0, 0, 0, 0.08);
+    .nav-toggle {
       display: none;
-      opacity: 0;
-      transform: translateY(4px);
-      transition: opacity 0.18s ease, transform 0.18s ease;
-      z-index: 200;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: transparent;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
     }
 
-    .global-nav > li:hover .nav-sub,
-    .global-nav > li:focus-within .nav-sub {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* =====================
+       hero
+    ===================== */
 
-    .nav-sub a {
-      display: block;
-      padding: 7px 14px;
-      font-size: 14px;
-      color: #222;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .nav-sub a:hover {
-      background: var(--primary-light);
-      color: var(--primary);
-    }
-
-    /* ヒーロー */
     .hero {
       position: relative;
+      min-height: calc(100vh - 60px);
       overflow: hidden;
-      border-bottom: 4px solid var(--primary);
       color: #fff;
-      min-height: 80vh;
       display: flex;
       align-items: center;
     }
@@ -195,843 +120,533 @@
       z-index: 0;
     }
 
-    .hero-bg .slide {
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(5, 15, 22, 0.82) 0%,
+          rgba(5, 15, 22, 0.62) 42%,
+          rgba(5, 15, 22, 0.35) 100%
+        ),
+        rgba(0, 0, 0, 0.2);
+      z-index: 2;
+    }
+
+    .slide {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-
-    .hero-bg .slide.active {
-      opacity: 1;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
+      transition: opacity 1.2s ease;
       z-index: 1;
-      background: linear-gradient(
-        120deg,
-        rgba(0, 0, 0, 0.68),
-        rgba(0, 0, 0, 0.32)
-      );
+    }
+
+    .slide.active {
+      opacity: 1;
     }
 
     .hero-inner {
       position: relative;
-      z-index: 2;
-      max-width: 1100px;
+      z-index: 3;
       width: 100%;
+      max-width: none;
       margin: 0 auto;
-      padding: 70px 16px 80px;
+      padding: 0 8vw;
     }
 
-    .hero-title {
-      font-size: clamp(28px, 4vw, 46px);
-      font-weight: 900;
-      color: #fff;
-      margin-bottom: 16px;
-      line-height: 1.35;
-      letter-spacing: 0.03em;
-      max-width: 780px;
-    }
-
-    .hero-sub {
-      font-size: 16px;
-      margin-bottom: 22px;
-      color: #f5f5f5;
-      max-width: 700px;
-    }
-
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 24px;
-    }
-
-    .badge {
-      font-size: 12px;
-      padding: 5px 11px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.18);
-      border: 1px solid rgba(255, 255, 255, 0.55);
-      color: #fff;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+    .hero-content {
+      width: 100%;
+      max-width: none;
     }
 
     .hero h1 {
-  white-space: nowrap;
-  max-width: none;
-}
-    /* 共通ボタン */
-    .btn-primary,
-    .btn-secondary {
+      font-size: 4rem;
+      line-height: 1.28;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+
+      /* ここでキャッチコピーを1行に固定 */
+      white-space: nowrap;
+      max-width: none;
+    }
+
+    .hero p {
+      font-size: 1.35rem;
+      line-height: 1.9;
+      margin-bottom: 26px;
+      max-width: 980px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+
+    .hero-tag {
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: 999px;
+      padding: 9px 20px;
+      font-size: 0.95rem;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(3px);
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 42px;
-      padding: 9px 18px;
+      min-width: 190px;
+      padding: 14px 28px;
       border-radius: 999px;
-      font-size: 14px;
-      font-weight: 800;
-      text-decoration: none;
-      transition: 0.22s ease;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
     }
 
     .btn-primary {
       background: var(--primary);
       color: #fff;
-      border: 1px solid var(--primary);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
     }
 
-    .btn-primary:hover {
-      background: var(--primary-dark);
-      border-color: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.9);
-      color: var(--primary);
-      border: 1px solid rgba(255,255,255,0.9);
-    }
-
-    .btn-secondary:hover {
+    .btn-light {
       background: #fff;
-      transform: translateY(-2px);
+      color: var(--primary);
     }
 
-    .btn-line {
-      background: #06c755;
-      color: #fff;
-      border-color: #06c755;
+    /* =====================
+       common sections
+    ===================== */
+
+    main {
+      background: #fff;
     }
 
-    .btn-line:hover {
-      background: #04a847;
-      border-color: #04a847;
+    section {
+      padding: 90px 24px;
     }
 
-    /* メイン */
-    .wrapper {
+    .section-inner {
       max-width: 1100px;
-      margin: 28px auto 44px;
-      padding: 0 16px;
+      margin: 0 auto;
     }
 
-    .section {
-      background: #fff;
-      border-radius: 16px;
-      padding: 26px 22px 24px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .section-title {
-      font-size: 20px;
-      border-left: 5px solid var(--primary);
-      padding-left: 10px;
+    .section-label {
       color: var(--primary);
-      font-weight: 800;
-      line-height: 1.4;
-    }
-
-    .section-sub {
-      font-size: 12px;
-      color: #888;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .lead-text {
-      font-size: 15px;
-      color: #333;
-    }
-
-    .lead-text strong {
-      color: var(--primary);
-    }
-
-    /* 団体理念 */
-    .about-message {
-      margin-top: 18px;
-      padding: 16px;
-      border-left: 4px solid var(--primary);
-      background: var(--primary-light);
-      border-radius: 12px;
-      font-size: 14px;
-      color: #333;
-    }
-
-    .about-message-lead {
-      margin-bottom: 12px;
       font-weight: 700;
-      color: #333;
+      letter-spacing: 0.08em;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
     }
 
-    .philosophy-list {
-      list-style: none;
-      display: grid;
-      gap: 10px;
-      counter-reset: philosophy-counter;
+    h2 {
+      font-size: 2.2rem;
+      line-height: 1.4;
+      margin-bottom: 24px;
     }
 
-    .philosophy-list li {
-      position: relative;
-      padding: 12px 14px 12px 46px;
-      background: #fff;
-      border: 1px solid rgba(164, 79, 48, 0.18);
-      border-radius: 10px;
-      counter-increment: philosophy-counter;
-    }
-
-    .philosophy-list li::before {
-      content: counter(philosophy-counter);
-      position: absolute;
-      left: 14px;
-      top: 13px;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .philosophy-list strong {
-      display: block;
-      color: var(--primary);
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
-
-    .philosophy-list span {
-      display: block;
-      font-size: 13px;
+    .lead {
+      font-size: 1.05rem;
       color: var(--text-sub);
+      max-width: 780px;
+      margin-bottom: 36px;
     }
 
-    /* 活動カード */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .about-card {
+      background: #faf7f5;
+      border-left: 5px solid var(--primary);
+      padding: 28px;
+      border-radius: 18px;
+    }
+
+    .about-card p + p {
+      margin-top: 14px;
+    }
+
     .cards {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      font-size: 14px;
-    }
-
-    .card-link {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      border-radius: 14px;
-      transition: 0.25s ease;
-      height: 100%;
-    }
-
-    .card-link:hover .card {
-      box-shadow: 0 8px 18px rgba(0,0,0,0.14);
-      transform: translateY(-4px);
-      border-color: var(--primary);
-    }
-
-    .card-link:focus-visible .card {
-      outline: 2px solid var(--primary);
-      outline-offset: 3px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 34px;
     }
 
     .card {
-      height: 100%;
-      border-radius: 14px;
       border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
       background: #fff;
-      overflow: hidden;
-      transition: 0.25s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
     }
 
-    .card-img-wrap {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      background: #f3f3f3;
-    }
-
-    .card-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-
-    .card-link:hover .card-img {
-      transform: scale(1.04);
-    }
-
-    .card-body {
-      padding: 15px 14px 16px;
-    }
-
-    .card-badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: #ffecb3;
-      color: #795548;
-      margin-bottom: 7px;
-    }
-
-    .card-title {
-      font-weight: 800;
-      margin-bottom: 6px;
-      font-size: 15px;
-    }
-
-    .card-text {
-      font-size: 13px;
-      color: #555;
-    }
-
-    .card-more {
-      display: inline-block;
-      margin-top: 10px;
-      font-size: 12px;
-      font-weight: 800;
+    .card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 14px;
       color: var(--primary);
     }
 
-    /* お知らせ */
-    .news-list {
-      list-style: none;
-      font-size: 14px;
-    }
-
-    .news-item + .news-item {
-      margin-top: 10px;
-      border-top: 1px dashed #e6e6e6;
-      padding-top: 10px;
-    }
-
-    .news-date {
-      display: inline-block;
-      min-width: 82px;
-      font-weight: 800;
-      margin-right: 6px;
-      color: var(--primary);
-    }
-
-    .cta {
-      text-align: center;
-      font-size: 14px;
-      padding-top: 8px;
-    }
-
-    .cta p {
-      margin-bottom: 12px;
-    }
-
-    .cta-actions {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .contact-note {
-      font-size: 13px;
+    .card p {
       color: var(--text-sub);
-      margin-top: 10px;
+      margin-bottom: 18px;
+    }
+
+    .card a {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .news-list {
+      display: grid;
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .news-item {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 18px;
+    }
+
+    .news-item time {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .news-item h3 {
+      margin: 6px 0 6px;
+      font-size: 1.15rem;
+    }
+
+    .join-section {
+      background: #faf7f5;
+      text-align: center;
+    }
+
+    .join-section .lead {
+      margin-left: auto;
+      margin-right: auto;
     }
 
     footer {
-      background: #212121;
-      color: #eee;
+      background: var(--primary);
+      color: #fff;
       text-align: center;
-      padding: 18px 8px;
-      font-size: 12px;
+      padding: 28px 16px;
+      font-size: 0.9rem;
     }
 
- 
-    /* スマホ対応 */
-    @media (max-width: 768px) {
+    /* =====================
+       responsive
+    ===================== */
+
+    @media (max-width: 1200px) {
+      .hero h1 {
+        font-size: 3.3rem;
+      }
+
+      .hero p {
+        font-size: 1.15rem;
+      }
+    }
+
+    @media (max-width: 900px) {
       body {
-        padding-top: 72px;
+        padding-top: 60px;
       }
 
-       .hero h1 {
-    white-space: normal;
-  }
-}
       .header-inner {
-        flex-wrap: wrap;
-        gap: 8px;
+        padding: 0 18px;
       }
 
-      .logo-mark {
-        width: 46px;
-        height: 46px;
-      }
-
-      .logo-text-main {
-        font-size: 17px;
-      }
-
-      .logo-text-sub {
-        font-size: 11px;
-      }
-
-      .menu-toggle {
+      .nav-toggle {
         display: inline-flex;
       }
 
-      nav {
-        width: 100%;
-      }
-
       .global-nav {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
         display: none;
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
-        width: 100%;
-        padding: 8px 0 4px;
-        font-size: 14px;
+        gap: 0;
+        background: var(--primary);
+        padding: 12px 24px 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
 
-      .site-header.is-open .global-nav {
+      .global-nav a {
+        width: 100%;
+        padding: 10px 0;
+      }
+
+      header.is-open .global-nav {
         display: flex;
       }
 
-      .global-nav > li {
-        width: 100%;
-      }
-
-      .global-nav > li > a {
-        padding: 4px 0;
-      }
-
-      .nav-sub {
-        position: static;
-        display: block;
-        opacity: 1;
-        transform: none;
-        min-width: auto;
-        box-shadow: none;
-        background: transparent;
-        border: none;
-        padding: 0 0 2px 12px;
-        backdrop-filter: none;
-      }
-
-      .nav-sub a {
-        padding: 2px 0;
-        color: #ffe5d6;
-        background: none;
-        font-size: 13px;
-      }
-
-      .nav-sub a:hover {
-        background: none;
-        text-decoration: underline;
-        color: #ffffff;
-      }
-
       .hero {
-        min-height: 56vh;
-      }
-
-      .hero-bg .slide {
-        object-position: center top;
+        min-height: 760px;
       }
 
       .hero-inner {
-        padding: 42px 16px 44px;
+        padding: 0 24px;
       }
 
-      .hero-sub {
-        font-size: 14px;
+      .hero h1 {
+        font-size: 2.5rem;
+        white-space: normal;
       }
 
-      .hero-actions {
-        gap: 9px;
+      .hero p {
+        font-size: 1rem;
       }
 
-      .btn-primary,
-      .btn-secondary {
-        width: 100%;
-      }
-
-      .wrapper {
-        margin-top: 16px;
-      }
-
-      .section {
-        padding: 22px 16px 20px;
-        border-radius: 14px;
-      }
-
-      .section-header {
-        display: block;
-      }
-
-      .section-title {
-        font-size: 18px;
-        margin-bottom: 4px;
+      .about-grid {
+        grid-template-columns: 1fr;
       }
 
       .cards {
         grid-template-columns: 1fr;
       }
 
-      .news-date {
-        display: block;
-        margin-bottom: 2px;
+      section {
+        padding: 70px 20px;
       }
 
-      .cta-actions {
+      h2 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero {
+        min-height: 720px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero-buttons {
         flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- ヘッダー -->
   <header class="site-header">
     <div class="header-inner">
-      <a href="index.html" class="logo" aria-label="Smile F LAOS トップページへ">
-        <img src="logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
-        <div>
-          <div class="logo-text-main">Smile F LAOS</div>
-          <span class="logo-text-sub">ラオスと日本をつなぐ学生サークル</span>
-        </div>
-      </a>
+      <a href="index.html" class="logo">Smile F LAOS</a>
 
-      <button class="menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">
-        メニュー
+      <button class="nav-toggle" type="button" aria-label="メニューを開く">
+        MENU
       </button>
 
-      <nav aria-label="グローバルナビゲーション">
-        <ul class="global-nav">
-          <li>
-            <a href="about.html">Smile F LAOSとは</a>
-            <div class="nav-sub">
-              <a href="members.html">構成・メンバー紹介</a>
-              <a href="history.html">エフラオの歩み</a>
-              <a href="about.html#about-laos">ラオス概要</a>
-            </div>
-          </li>
-
-          <li>
-            <a href="about.html#activities">活動内容</a>
-            <div class="nav-sub">
-              <a href="coffee.html">コーヒー</a>
-              <a href="education.html">教育支援</a>
-              <a href="studytour.html">スタディツアー</a>
-              <a href="news.html">お知らせ</a>
-            </div>
-          </li>
-
-          <li>
-            <a href="coffee.html">製品紹介</a>
-            <div class="nav-sub">
-              <a href="coffee.html">コーヒー</a>
-              <a href="order.html">注文</a>
-            </div>
-          </li>
-
-          <li>
-            <a href="gallery.html">ギャラリー</a>
-          </li>
-
-          <li>
-            <a href="#contact">お問い合わせ</a>
-          </li>
-        </ul>
+      <nav class="global-nav">
+        <a href="#about">エフラオについて</a>
+        <a href="#activities">活動紹介</a>
+        <a href="coffee.html">コーヒー</a>
+        <a href="education.html">教育支援</a>
+        <a href="studytour.html">スタディツアー</a>
+        <a href="gallery.html">ギャラリー</a>
+        <a href="partners.html">協力団体</a>
+        <a href="news.html">お知らせ</a>
       </nav>
     </div>
   </header>
 
-  <!-- ヒーロー -->
   <section class="hero">
-    <div class="hero-bg" aria-hidden="true">
-      <img src="HP1.jpg.jpg" alt="" class="slide active">
-      <img src="HP2.jpg.jpg" alt="" class="slide">
-      <img src="HP3.jpg.jpg" alt="" class="slide">
-      <img src="HP4.jpg.jpg" alt="" class="slide">
-      <img src="HP5.jpg.jpg" alt="" class="slide">
-      <img src="HP6.jpg.jpg" alt="" class="slide">
+    <div class="hero-bg">
+      <img src="HP1.jpg.jpg" alt="Smile F LAOSの活動写真1" class="slide active">
+      <img src="HP2.jpg.jpg" alt="Smile F LAOSの活動写真2" class="slide">
+      <img src="HP3.jpg.jpg" alt="Smile F LAOSの活動写真3" class="slide">
+      <img src="HP4.jpg.jpg" alt="Smile F LAOSの活動写真4" class="slide">
+      <img src="HP5.jpg.jpg" alt="Smile F LAOSの活動写真5" class="slide">
+      <img src="HP6.jpg.jpg" alt="Smile F LAOSの活動写真6" class="slide">
     </div>
 
-    <div class="hero-overlay"></div>
-
     <div class="hero-inner">
-      <h1 class="hero-title">
-        1杯のコーヒーがつなぐラオスの子どもたちの笑顔
-      </h1>
+      <div class="hero-content">
+        <h1>1杯のコーヒーがつなぐラオスの子どもたちの笑顔</h1>
 
-      <p class="hero-sub">
-        Smile F LAOS（通称エフラオ）は、ラオス産フェアトレードコーヒーの販売を通じて、
-        ラオスの子どもたちの教育支援に取り組む東洋大学の学生サークルです。
-      </p>
+        <p>
+          Smile F LAOS（通称エフラオ）は、ラオス産フェアトレードコーヒーの販売を通じて、
+          ラオスの子どもたちの教育支援に取り組む東洋大学の学生サークルです。
+        </p>
 
-      <div class="hero-badges">
-        <span class="badge">フェアトレードコーヒー</span>
-        <span class="badge">ラオスの教育支援</span>
-        <span class="badge">スタディツアー</span>
-      </div>
+        <div class="hero-tags">
+          <span class="hero-tag">フェアトレードコーヒー</span>
+          <span class="hero-tag">ラオスの教育支援</span>
+          <span class="hero-tag">スタディツアー</span>
+        </div>
 
-      <div class="hero-actions">
-        <a href="about.html" class="btn-primary">エフラオについて知る</a>
-        <a href="coffee.html" class="btn-secondary">コーヒーを見る</a>
+        <div class="hero-buttons">
+          <a href="#about" class="btn btn-primary">エフラオについて知る</a>
+          <a href="coffee.html" class="btn btn-light">コーヒーを見る</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- メイン -->
-  <main class="wrapper">
-    <section class="section" id="about">
-      <div class="section-header">
-        <h2 class="section-title">Smile F LAOSとは？</h2>
-        <div class="section-sub">About us</div>
-      </div>
-
-      <p class="lead-text">
-        Smile F LAOS（エフラオ）は、ラオスのコーヒー農家さんからフェアトレードで仕入れたコーヒーを
-        学生が製品化・販売し、その売上の一部をラオスの子どもたちの教育支援へとつなげている団体です。
-        <br>
-        コーヒーを「売る」だけでなく、現地を訪れ、子どもたちや農家の方々と関わりながら、
-        ラオスと日本をつなぐ活動を続けています。
-      </p>
-
-      <div class="about-message">
-        <p class="about-message-lead">
-          Smile F LAOSは、次の3つの理念に基づいて活動しています。
-        </p>
-
-        <ol class="philosophy-list">
-          <li>
-            <strong>ラオスのフェアトレードコーヒーの魅力を広める</strong>
-            <span>
-              ラオス産コーヒーの背景やおいしさを伝え、フェアトレードへの関心を広げます。
-            </span>
-          </li>
-
-          <li>
-            <strong>学生ならではの知識を活かした自立を促す教育支援</strong>
-            <span>
-              学生だからこそ届けられる知識や視点を活かし、子どもたちが自分の将来を考えるきっかけをつくります。
-            </span>
-          </li>
-
-          <li>
-            <strong>ラオスで得た学びをもとにニーズに合った支援を探求し続ける</strong>
-            <span>
-              現地での交流や調査を通して得た学びをもとに、本当に必要とされる支援の形を考え続けます。
-            </span>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section" id="activities">
-      <div class="section-header">
-        <h2 class="section-title">主な活動</h2>
-        <div class="section-sub">Activities</div>
-      </div>
-
-      <div class="cards">
-        <a href="coffee.html" class="card-link">
-          <article class="card">
-            <div class="card-img-wrap">
-              <img src="pillar-coffee.jpg.JPG" alt="ラオス産コーヒーの販売の様子" class="card-img">
-            </div>
-            <div class="card-body">
-              <div class="card-badge">Coffee</div>
-              <h3 class="card-title">ラオス産コーヒーの販売</h3>
-              <p class="card-text">
-                ラオス産フェアトレードコーヒーを学生が製品化・販売し、売上の一部を教育支援に活用しています。
-              </p>
-              <span class="card-more">詳しく見る →</span>
-            </div>
-          </article>
-        </a>
-
-        <a href="education.html" class="card-link">
-          <article class="card">
-            <div class="card-img-wrap">
-              <img src="pillar-education.jpg.JPG" alt="ラオスの小学校での教育支援の様子" class="card-img">
-            </div>
-            <div class="card-body">
-              <div class="card-badge">Education</div>
-              <h3 class="card-title">教育支援</h3>
-              <p class="card-text">
-                小学校訪問や職業図鑑、ワークショップなどを通じて、子どもたちの学びにつながる活動を行っています。
-              </p>
-              <span class="card-more">詳しく見る →</span>
-            </div>
-          </article>
-        </a>
-
-        <a href="studytour.html" class="card-link">
-          <article class="card">
-            <div class="card-img-wrap">
-              <img src="pillar-studytour.jpg.JPG" alt="スタディツアーで現地を訪問している様子" class="card-img">
-            </div>
-            <div class="card-body">
-              <div class="card-badge">Study Tour</div>
-              <h3 class="card-title">スタディツアー</h3>
-              <p class="card-text">
-                毎年ラオスを訪問し、学校での交流や農家さんへの聞き取りを通じて、活動の意味を学び直します。
-              </p>
-              <span class="card-more">詳しく見る →</span>
-            </div>
-          </article>
-        </a>
-      </div>
-    </section>
-
-    <section class="section" id="news">
-      <div class="section-header">
-        <h2 class="section-title">お知らせ</h2>
-        <div class="section-sub">News</div>
-      </div>
-
-      <ul class="news-list">
-        <li class="news-item">
-          <span class="news-date">2026.05</span>
-          ラオスフェスティバル出展に向けて準備を進めています。
-        </li>
-        <li class="news-item">
-          <span class="news-date">2025.12</span>
-          スタディツアーを実施し、ラオスの小学校訪問や現地での聞き取りを行いました。
-        </li>
-        <li class="news-item">
-          <span class="news-date">2025.11</span>
-          白山祭でのコーヒー販売と活動紹介ブースは無事終了しました。
-        </li>
-      </ul>
-
-      <div class="cta">
-        <p>販売会やイベント情報、活動報告はお知らせページにまとめていきます。</p>
-        <p><a href="news.html" class="btn-primary">お知らせページへ</a></p>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="section-header">
-        <h2 class="section-title">お問い合わせ・参加してみたい方へ</h2>
-        <div class="section-sub">Contact / Join us</div>
-      </div>
-
-      <div class="cta">
-        <p>
-          「ラオスに興味がある」「国際協力に関わってみたい」「コーヒーが好き」
-          「子どもたちの教育支援に関心がある」そんな方は、ぜひエフラオの活動をのぞいてみてください。
-        </p>
-
-        <p>
-          新歓情報、販売会のお知らせ、日々の活動の様子は公式SNSで発信しています。
-          参加希望やご相談も、公式LINE・Instagramからお気軽にご連絡ください。
-        </p>
-
-        <div class="cta-actions">
-          <a
-            href="https://www.instagram.com/smile_f_laos?igsh=MWttajM1NHFvYXE2eQ=="
-            class="btn-primary"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            公式Instagramを見る
-          </a>
-
-          <a
-            href="https://lin.ee/xcI0PXX"
-            class="btn-primary btn-line"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            公式LINEで連絡する
-          </a>
+  <main>
+    <section id="about">
+      <div class="section-inner about-grid">
+        <div>
+          <p class="section-label">ABOUT</p>
+          <h2>Smile F LAOSとは</h2>
+          <p class="lead">
+            Smile F LAOSは、ラオスのフェアトレードコーヒーの魅力を広めながら、
+            その売上の一部をラオスの子どもたちへの教育支援につなげている学生団体です。
+          </p>
+          <p>
+            私たちは、ただ支援を届けるだけでなく、現地での学びや対話を大切にしながら、
+            ラオスの人々と日本をつなぐ架け橋になることを目指しています。
+          </p>
         </div>
 
-        <p class="contact-note">
-          外部団体・企業の皆さまからのコラボレーションや販売依頼のご相談も歓迎しています。
+        <div class="about-card">
+          <p>
+            <strong>Smile F LAOSの「F」には、</strong><br>
+            ラオスの人々のために行動する「FOR」と、ラオスから学ぶ「FROM」という意味が込められています。
+          </p>
+          <p>
+            一方的な支援ではなく、現地から学び続けながら、必要とされる支援を探求し続けます。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="activities">
+      <div class="section-inner">
+        <p class="section-label">ACTIVITIES</p>
+        <h2>主な活動</h2>
+        <p class="lead">
+          Smile F LAOSでは、コーヒー販売、教育支援、スタディツアーを中心に活動しています。
         </p>
+
+        <div class="cards">
+          <article class="card">
+            <h3>コーヒー販売</h3>
+            <p>
+              ラオス産フェアトレードコーヒーを販売し、その魅力を日本で広めています。
+            </p>
+            <a href="coffee.html">詳しく見る</a>
+          </article>
+
+          <article class="card">
+            <h3>教育支援</h3>
+            <p>
+              ラオスの子どもたちが将来の可能性を広げられるよう、教育支援に取り組んでいます。
+            </p>
+            <a href="education.html">詳しく見る</a>
+          </article>
+
+          <article class="card">
+            <h3>スタディツアー</h3>
+            <p>
+              ラオスを訪問し、学校やコーヒー農家さんとの交流を通して現地のニーズを学びます。
+            </p>
+            <a href="studytour.html">詳しく見る</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="news">
+      <div class="section-inner">
+        <p class="section-label">NEWS</p>
+        <h2>お知らせ</h2>
+        <p class="lead">
+          販売会やイベント出展、活動報告などの最新情報を掲載しています。
+        </p>
+
+        <div class="news-list">
+          <article class="news-item">
+            <time>2026.05</time>
+            <h3>ラオスフェスティバル出展に向けて準備中です</h3>
+            <p>
+              ラオスコーヒーの販売を通して、フェアトレードの魅力をお届けします。
+            </p>
+          </article>
+
+          <article class="news-item">
+            <time>2026.04</time>
+            <h3>新歓活動を実施しています</h3>
+            <p>
+              Smile F LAOSの活動に興味がある方は、ぜひ説明会やSNSをご確認ください。
+            </p>
+          </article>
+        </div>
+
+        <div style="margin-top: 32px;">
+          <a href="news.html" class="btn btn-primary">お知らせ一覧を見る</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="join" class="join-section">
+      <div class="section-inner">
+        <p class="section-label">CONTACT</p>
+        <h2>参加・お問い合わせ</h2>
+        <p class="lead">
+          Smile F LAOSの活動に興味がある方、コーヒー販売や協力に関するお問い合わせは、
+          Instagramなどからご連絡ください。
+        </p>
+        <a href="news.html" class="btn btn-primary">最新情報を見る</a>
       </div>
     </section>
   </main>
 
   <footer>
-    © 2026 Smile F LAOS
+    <p>© 2026 Smile F LAOS</p>
   </footer>
 
   <script>
-    // スマホ用：メニュー開閉
-    document.addEventListener('DOMContentLoaded', function () {
-      const header = document.querySelector('.site-header');
-      const menuButton = document.querySelector('.menu-toggle');
-      const navLinks = document.querySelectorAll('.global-nav a');
+    const header = document.querySelector(".site-header");
+    const navToggle = document.querySelector(".nav-toggle");
 
-      if (!header || !menuButton) return;
-
-      menuButton.addEventListener('click', function () {
-        const isOpen = header.classList.toggle('is-open');
-        menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        menuButton.textContent = isOpen ? '閉じる' : 'メニュー';
-      });
-
-      navLinks.forEach(function (link) {
-        link.addEventListener('click', function () {
-          if (!window.matchMedia('(max-width: 768px)').matches) return;
-
-          header.classList.remove('is-open');
-          menuButton.setAttribute('aria-expanded', 'false');
-          menuButton.textContent = 'メニュー';
-        });
-      });
+    navToggle.addEventListener("click", () => {
+      header.classList.toggle("is-open");
     });
 
-    // スライドショー
-    const slides = document.querySelectorAll('.slide');
-    let current = 0;
-
-    function showSlide(next) {
-      if (slides.length === 0) return;
-
-      slides[current].classList.remove('active');
-      current = (next + slides.length) % slides.length;
-      slides[current].classList.add('active');
-    }
+    const slides = document.querySelectorAll(".slide");
+    let currentSlide = 0;
 
     if (slides.length > 0) {
-      slides[0].classList.add('active');
-      setInterval(function () {
-        showSlide(current + 1);
+      setInterval(() => {
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add("active");
       }, 5000);
     }
   </script>
