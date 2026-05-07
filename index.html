@@ -268,6 +268,10 @@
       gap: 12px;
     }
 
+    .hero h1 {
+  white-space: nowrap;
+  max-width: none;
+}
     /* 共通ボタン */
     .btn-primary,
     .btn-secondary {
@@ -571,12 +575,17 @@
       font-size: 12px;
     }
 
+ 
     /* スマホ対応 */
     @media (max-width: 768px) {
       body {
         padding-top: 72px;
       }
 
+       .hero h1 {
+    white-space: normal;
+  }
+}
       .header-inner {
         flex-wrap: wrap;
         gap: 8px;
