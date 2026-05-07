@@ -4,55 +4,373 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>スタディツアー｜Smile F LAOS</title>
+
   <style>
-    :root { --primary:#a44f30; --primary-dark:#a44f30; --bg:#ffffff; --text-main:#000; }
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background:var(--bg);color:var(--text-main);line-height:1.7;padding-top:60px;
+    :root {
+      --primary: #a44f30;
+      --primary-dark: #a44f30;
+      --primary-light: #fff5ee;
+      --bg: #ffffff;
+      --text-main: #000;
     }
-    header{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--primary);color:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2);}
-    .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;}
-    .logo{font-weight:800;font-size:20px;letter-spacing:.05em;}
-    .logo span{font-size:12px;display:block;opacity:.8;}
-    nav{display:flex;gap:18px;font-size:14px;}
-    nav a{color:#fff;text-decoration:none;font-weight:600;}
-    nav a:hover{text-decoration:underline;}
 
-    .wrapper{max-width:1100px;margin:24px auto 40px;padding:0 16px;}
-    .page-hero{background:#fff5ee;border-radius:12px;padding:20px 18px 18px;margin-bottom:20px;border-left:5px solid var(--primary);}
-    .page-title{font-size:22px;font-weight:800;margin-bottom:6px;}
-    .page-sub{font-size:13px;color:#777;}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    .section{background:#fff;border-radius:12px;padding:20px 18px 18px;margin-bottom:18px;box-shadow:0 2px 6px rgba(0,0,0,.05);font-size:14px;}
-    .section h2{font-size:17px;margin-bottom:8px;color:var(--primary-dark);}
-    .section h3{font-size:15px;margin:14px 0 6px;color:var(--primary-dark);}
-    ul{padding-left:1.2em;} li{margin-bottom:4px;}
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.7;
+      padding-top: 76px;
+    }
 
-    .back-link{display:inline-block;margin-top:12px;font-size:13px;text-decoration:none;color:var(--primary-dark);}
-    .back-link::before{content:"← ";}
+    /* ヘッダー */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    }
 
-    footer{background:#212121;color:#eee;text-align:center;padding:14px 8px;font-size:12px;margin-top:24px;}
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      gap: 18px;
+    }
 
-    @media(max-width:768px){
-      .header-inner{flex-direction:column;align-items:flex-start;gap:6px;}
-      nav{font-size:13px;gap:10px;}
-      .page-title{font-size:19px;}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .logo-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    .logo-text-main {
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: .05em;
+      line-height: 1.1;
+    }
+
+    .logo-text-sub {
+      font-size: 12px;
+      display: block;
+      opacity: .8;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .global-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+      font-size: 16px;
+      list-style: none;
+    }
+
+    .global-nav > li {
+      position: relative;
+      list-style: none;
+    }
+
+    .global-nav > li > a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 4px 0;
+      display: inline-block;
+    }
+
+    .global-nav > li > a:hover {
+      text-decoration: underline;
+    }
+
+    .nav-sub {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 180px;
+      padding: 6px 0;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      display: none;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 200;
+    }
+
+    .global-nav > li:hover .nav-sub,
+    .global-nav > li:focus-within .nav-sub {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .nav-sub a {
+      display: block;
+      padding: 6px 14px;
+      font-size: 14px;
+      color: #000000;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-sub a:hover {
+      background: #fff5ee;
+      color: #a44f30;
+    }
+
+    .wrapper {
+      max-width: 1100px;
+      margin: 24px auto 40px;
+      padding: 0 16px;
+    }
+
+    .page-hero {
+      background: #fff5ee;
+      border-radius: 12px;
+      padding: 20px 18px 18px;
+      margin-bottom: 20px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .page-title {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .page-sub {
+      font-size: 13px;
+      color: #777;
+    }
+
+    .section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px 18px 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.05);
+      font-size: 14px;
+    }
+
+    .section h2 {
+      font-size: 17px;
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+    }
+
+    .section h3 {
+      font-size: 15px;
+      margin: 14px 0 6px;
+      color: var(--primary-dark);
+    }
+
+    ul {
+      padding-left: 1.2em;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 13px;
+      text-decoration: none;
+      color: var(--primary-dark);
+    }
+
+    .back-link::before {
+      content: "← ";
+    }
+
+    footer {
+      background: #212121;
+      color: #eee;
+      text-align: center;
+      padding: 14px 8px;
+      font-size: 12px;
+      margin-top: 24px;
+    }
+
+    @media(max-width:768px) {
+      body {
+        padding-top: 56px;
+      }
+
+      .header-inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .logo-mark {
+        width: 46px;
+        height: 46px;
+      }
+
+      .logo-text-main {
+        font-size: 17px;
+      }
+
+      .logo-text-sub {
+        font-size: 11px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      nav {
+        width: 100%;
+      }
+
+      .global-nav {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        width: 100%;
+        margin-top: 8px;
+        font-size: 13px;
+      }
+
+      .site-header.is-open .global-nav {
+        display: flex;
+      }
+
+      .global-nav > li {
+        width: 100%;
+      }
+
+      .global-nav > li > a {
+        padding: 4px 0;
+      }
+
+      .nav-sub {
+        position: static;
+        box-shadow: none;
+        background: transparent;
+        border: none;
+        padding: 0;
+        display: block;
+        opacity: 1;
+        transform: none;
+        backdrop-filter: none;
+      }
+
+      .nav-sub a {
+        padding: 2px 0 0;
+        color: #ffe5d6;
+        background: none;
+      }
+
+      .nav-sub a:hover {
+        background: none;
+        text-decoration: underline;
+        color: #ffffff;
+      }
+
+      .page-title {
+        font-size: 19px;
+      }
     }
   </style>
 </head>
+
 <body>
-<header>
+<header class="site-header">
   <div class="header-inner">
-    <div class="logo">
-      Smile F LAOS
-      <span>ラオスと日本をつなぐ学生サークル</span>
-    </div>
+    <a href="index.html" class="logo">
+      <img src="logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
+      <div>
+        <div class="logo-text-main">Smile F LAOS</div>
+        <span class="logo-text-sub">ラオスと日本をつなぐ学生サークル</span>
+      </div>
+    </a>
+
+    <button class="menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">
+      メニュー
+    </button>
+
     <nav>
-      <a href="about.html">団体紹介</a>
-      <a href="index.html#activities">活動内容</a>
-      <a href="gallery.html">写真ギャラリー</a>
-      <a href="index.html#join">参加したい方へ</a>
+      <ul class="global-nav">
+        <li>
+          <a href="about.html">Smile F LAOSとは</a>
+          <div class="nav-sub">
+            <a href="members.html">構成・メンバー紹介</a>
+            <a href="history.html">エフラオの歩み</a>
+            <a href="about.html#about-laos">ラオス概要</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="about.html#activities">活動内容</a>
+          <div class="nav-sub">
+            <a href="coffee.html">コーヒー</a>
+            <a href="education.html">教育支援</a>
+            <a href="studytour.html">スタディツアー</a>
+            <a href="news.html">お知らせ</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="coffee.html">製品紹介</a>
+          <div class="nav-sub">
+            <a href="coffee.html">コーヒー</a>
+            <a href="order.html">注文</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="gallery.html">ギャラリー</a>
+        </li>
+
+        <li>
+          <a href="index.html#contact">お問い合わせ</a>
+        </li>
+      </ul>
     </nav>
   </div>
 </header>
@@ -114,5 +432,31 @@
 <footer>
   © 2025 Smile F LAOS
 </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const header = document.querySelector('.site-header');
+    const menuButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelectorAll('.global-nav a');
+
+    if (!header || !menuButton) return;
+
+    menuButton.addEventListener('click', function () {
+      const isOpen = header.classList.toggle('is-open');
+      menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      menuButton.textContent = isOpen ? '閉じる' : 'メニュー';
+    });
+
+    navLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+        header.classList.remove('is-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.textContent = 'メニュー';
+      });
+    });
+  });
+</script>
 </body>
 </html>
