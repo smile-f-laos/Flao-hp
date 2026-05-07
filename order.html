@@ -8,6 +8,7 @@
     :root {
       --primary: #a44f30;
       --primary-dark: #a44f30;
+      --primary-light: #fff5ee;
       --accent: #a44f30;
       --bg: #ffffff;
       --text-main: #000000;
@@ -24,10 +25,10 @@
       background: var(--bg);
       color: var(--text-main);
       line-height: 1.7;
-      padding-top: 60px;
+      padding-top: 76px;
     }
 
-    /* ヘッダー & ナビ（indexと同じ） */
+    /* ヘッダー */
     header {
       position: fixed;
       top: 0;
@@ -55,6 +56,7 @@
       gap: 10px;
       text-decoration: none;
       color: #fff;
+      flex-shrink: 0;
     }
 
     .logo-mark {
@@ -76,6 +78,18 @@
       font-size: 12px;
       display: block;
       opacity: 0.8;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
     }
 
     .global-nav {
@@ -337,7 +351,6 @@
 
     /* スマホ対応 */
     @media (max-width: 768px) {
-
       body {
         padding-top: 56px;
       }
@@ -347,6 +360,28 @@
         align-items: center;
         justify-content: space-between;
         gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .logo-mark {
+        width: 46px;
+        height: 46px;
+      }
+
+      .logo-text-main {
+        font-size: 17px;
+      }
+
+      .logo-text-sub {
+        font-size: 11px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      nav {
+        width: 100%;
       }
 
       .global-nav {
@@ -361,6 +396,14 @@
 
       .site-header.is-open .global-nav {
         display: flex;
+      }
+
+      .global-nav > li {
+        width: 100%;
+      }
+
+      .global-nav > li > a {
+        padding: 4px 0;
       }
 
       .nav-sub {
@@ -400,7 +443,7 @@
       }
 
       .product-grid {
-        grid-template-columns: 1fr; /* 2列→1列 */
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -416,6 +459,10 @@
           <span class="logo-text-sub">ラオスと日本をつなぐ学生サークル</span>
         </div>
       </a>
+
+      <button class="menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">
+        メニュー
+      </button>
 
       <nav>
         <ul class="global-nav">
@@ -451,7 +498,7 @@
           </li>
 
           <li>
-            <a href="index.html#join">お問い合わせ</a>
+            <a href="index.html#contact">お問い合わせ</a>
           </li>
         </ul>
       </nav>
@@ -595,22 +642,27 @@
   </footer>
 
   <script>
-    // スマホ用：ヘッダーをタップするとメニュー開閉（indexと同じ）
     document.addEventListener('DOMContentLoaded', function () {
       const header = document.querySelector('.site-header');
-      const headerInner = document.querySelector('.header-inner');
-      const nav = document.querySelector('.global-nav');
+      const menuButton = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelectorAll('.global-nav a');
 
-      if (!header || !headerInner || !nav) return;
+      if (!header || !menuButton) return;
 
-      function isMobile() {
-        return window.matchMedia('(max-width: 768px)').matches;
-      }
+      menuButton.addEventListener('click', function () {
+        const isOpen = header.classList.toggle('is-open');
+        menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menuButton.textContent = isOpen ? '閉じる' : 'メニュー';
+      });
 
-      headerInner.addEventListener('click', function (e) {
-        if (!isMobile()) return;
-        if (e.target.closest('nav')) return;
-        header.classList.toggle('is-open');
+      navLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+          if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+          header.classList.remove('is-open');
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.textContent = 'メニュー';
+        });
       });
     });
   </script>
