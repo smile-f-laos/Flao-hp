@@ -8,6 +8,7 @@
     :root {
       --primary: #a44f30;
       --primary-dark: #a44f30;
+      --primary-light: #fff5ee;
       --bg: #ffffff;
       --text-main: #000000;
     }
@@ -23,7 +24,7 @@
       background: var(--bg);
       color: var(--text-main);
       line-height: 1.7;
-      padding-top: 60px;
+      padding-top: 76px;
     }
 
     /* ヘッダー */
@@ -45,37 +46,114 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px 16px;
+      gap: 18px;
     }
 
     .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .logo-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    .logo-text-main {
       font-weight: 800;
       font-size: 20px;
       letter-spacing: 0.05em;
-      text-decoration: none;
-      color: #fff;
-      display: inline-block;
+      line-height: 1.1;
     }
 
-    .logo span {
+    .logo-text-sub {
       font-size: 12px;
       display: block;
-      opacity: .8;
+      opacity: 0.8;
     }
 
-    nav {
+    .menu-toggle {
+      display: none;
+      border: 1px solid rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .global-nav {
       display: flex;
+      flex-wrap: wrap;
+      align-items: center;
       gap: 18px;
-      font-size: 14px;
+      font-size: 16px;
+      list-style: none;
     }
 
-    nav a {
+    .global-nav > li {
+      position: relative;
+      list-style: none;
+    }
+
+    .global-nav > li > a {
       color: #fff;
       text-decoration: none;
       font-weight: 600;
+      padding: 4px 0;
+      display: inline-block;
     }
 
-    nav a:hover {
+    .global-nav > li > a:hover {
       text-decoration: underline;
+    }
+
+    .nav-sub {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 180px;
+      padding: 6px 0;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      display: none;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 200;
+    }
+
+    .global-nav > li:hover .nav-sub,
+    .global-nav > li:focus-within .nav-sub {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .nav-sub a {
+      display: block;
+      padding: 6px 14px;
+      font-size: 14px;
+      color: #000000;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-sub a:hover {
+      background: #fff5ee;
+      color: #a44f30;
     }
 
     /* レイアウト共通 */
@@ -144,11 +222,11 @@
       width: 10px;
       height: 10px;
       border-radius: 999px;
-      background: #f5c27a;  /* 国内 */
+      background: #f5c27a;
     }
 
     .legend-dot.laos {
-      background: #c5e1a5;  /* ラオス */
+      background: #c5e1a5;
     }
 
     /* 年表（上段） */
@@ -299,15 +377,83 @@
 
     /* スマホ対応 */
     @media (max-width: 768px) {
+      body {
+        padding-top: 56px;
+      }
+
       .header-inner {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .logo-mark {
+        width: 46px;
+        height: 46px;
+      }
+
+      .logo-text-main {
+        font-size: 17px;
+      }
+
+      .logo-text-sub {
+        font-size: 11px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
       }
 
       nav {
+        width: 100%;
+      }
+
+      .global-nav {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        width: 100%;
+        margin-top: 8px;
         font-size: 13px;
-        gap: 10px;
+      }
+
+      .site-header.is-open .global-nav {
+        display: flex;
+      }
+
+      .global-nav > li {
+        width: 100%;
+      }
+
+      .global-nav > li > a {
+        padding: 4px 0;
+      }
+
+      .nav-sub {
+        position: static;
+        box-shadow: none;
+        background: transparent;
+        border: none;
+        padding: 0;
+        display: block;
+        opacity: 1;
+        transform: none;
+        backdrop-filter: none;
+      }
+
+      .nav-sub a {
+        padding: 2px 0 0;
+        color: #ffe5d6;
+        background: none;
+      }
+
+      .nav-sub a:hover {
+        background: none;
+        text-decoration: underline;
+        color: #ffffff;
       }
 
       .page-title {
@@ -321,17 +467,57 @@
   </style>
 </head>
 <body>
-<header>
+<header class="site-header">
   <div class="header-inner">
     <a href="index.html" class="logo">
-      Smile F LAOS
-      <span>ラオスと日本をつなぐ学生サークル</span>
+      <img src="logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
+      <div>
+        <div class="logo-text-main">Smile F LAOS</div>
+        <span class="logo-text-sub">ラオスと日本をつなぐ学生サークル</span>
+      </div>
     </a>
+
+    <button class="menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">
+      メニュー
+    </button>
+
     <nav>
-      <a href="about.html">団体紹介</a>
-      <a href="index.html#activities">活動内容</a>
-      <a href="gallery.html">写真ギャラリー</a>
-      <a href="index.html#join">参加したい方へ</a>
+      <ul class="global-nav">
+        <li>
+          <a href="about.html">Smile F LAOSとは</a>
+          <div class="nav-sub">
+            <a href="members.html">構成・メンバー紹介</a>
+            <a href="history.html">エフラオの歩み</a>
+            <a href="about.html#about-laos">ラオス概要</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="about.html#activities">活動内容</a>
+          <div class="nav-sub">
+            <a href="coffee.html">コーヒー</a>
+            <a href="education.html">教育支援</a>
+            <a href="studytour.html">スタディツアー</a>
+            <a href="news.html">お知らせ</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="coffee.html">製品紹介</a>
+          <div class="nav-sub">
+            <a href="coffee.html">コーヒー</a>
+            <a href="order.html">注文</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="gallery.html">ギャラリー</a>
+        </li>
+
+        <li>
+          <a href="index.html#contact">お問い合わせ</a>
+        </li>
+      </ul>
     </nav>
   </div>
 </header>
@@ -609,13 +795,6 @@
       <h3 class="year-detail-heading">2013年度｜ラオスとの出会いと原点のスタディツアー</h3>
       <p class="year-detail-meta">※この年はまだ「Smile F LAOS」の名前はなく、前身となるスタディツアーの時期です。</p>
 
-      <!-- 写真があればここに -->
-      <!--
-      <div class="year-detail-photos">
-        <img src="history_photos/2013_1.jpg" alt="2013年度のラオス訪問の様子">
-      </div>
-      -->
-
       <div class="year-detail-text">
         <p>
           2013年度は、まだ「Smile F LAOS」という名前すらなかった、いわば0年目の期間です。
@@ -638,14 +817,6 @@
     <div class="year-detail" data-year="2014">
       <h3 class="year-detail-heading">2014年度（第1期）｜Smile F LAOS誕生と浄水器10台の設置</h3>
       <p class="year-detail-meta">2013年度の経験を受けて、「Smile F LAOS」としての活動が正式にスタートした年。</p>
-
-      <!-- 写真 -->
-      <!--
-      <div class="year-detail-photos">
-        <img src="history_photos/2014_1.jpg" alt="2014年度の販売会の様子">
-        <img src="history_photos/2014_2.jpg" alt="浄水器設置の様子">
-      </div>
-      -->
 
       <div class="year-detail-text">
         <p>
@@ -842,13 +1013,6 @@
       <h3 class="year-detail-heading">2022年度（第9期）｜サークルとして再スタート、2年ぶりの渡航</h3>
       <p class="year-detail-meta">サークル1年目。多くの不安を乗り越えて、2年ぶりにラオスへ渡航した年。</p>
 
-      <!--
-      <div class="year-detail-photos">
-        <img src="history_photos/2022_1.jpg" alt="2022年度スタディツアーの様子">
-        <img src="history_photos/2022_2.jpg" alt="9期メンバー集合写真">
-      </div>
-      -->
-
       <div class="year-detail-text">
         <p>
           2022年度は、エフラオが学生サークルとして本格的に動き出した最初の年であり、
@@ -875,13 +1039,6 @@
       <h3 class="year-detail-heading">2023年度（第10期）｜職業図鑑ワークショップの初実施</h3>
       <p class="year-detail-meta">長く準備してきた職業図鑑を、ついに現地の子どもたちと一緒に使ってみた年。</p>
 
-      <!--
-      <div class="year-detail-photos">
-        <img src="history_photos/2023_1.jpg" alt="職業図鑑WSの様子">
-        <img src="history_photos/2023_2.jpg" alt="子どもたちと紙芝居を読む場面">
-      </div>
-      -->
-
       <div class="year-detail-text">
         <p>
           2023年度は、これまで準備を重ねてきた「職業図鑑」を、実際にラオスの小学校で使ってみた年です。
@@ -905,13 +1062,6 @@
     <div class="year-detail" data-year="2024">
       <h3 class="year-detail-heading">2024年度（第11期）｜教育支援の方向性とクラウドファンディング</h3>
       <p class="year-detail-meta">インフラと学びの中身、その両方をどう支えるかを考え始めたタイミング。</p>
-
-      <!--
-      <div class="year-detail-photos">
-        <img src="history_photos/2024_1.jpg" alt="2024年度WSの様子">
-        <img src="history_photos/2024_2.jpg" alt="教員インタビューの場面">
-      </div>
-      -->
 
       <div class="year-detail-text">
         <p>
@@ -953,6 +1103,32 @@
 <footer>
   © 2025 Smile F LAOS
 </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const header = document.querySelector('.site-header');
+    const menuButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelectorAll('.global-nav a');
+
+    if (!header || !menuButton) return;
+
+    menuButton.addEventListener('click', function () {
+      const isOpen = header.classList.toggle('is-open');
+      menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      menuButton.textContent = isOpen ? '閉じる' : 'メニュー';
+    });
+
+    navLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+        header.classList.remove('is-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.textContent = 'メニュー';
+      });
+    });
+  });
+</script>
 
 <script>
   // 年表クリックで詳細切り替え
