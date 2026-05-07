@@ -366,37 +366,18 @@
       color: var(--primary);
     }
 
-    /* 大切にしていること */
-    .value-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .value-item {
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px 16px;
-      background: #fffdfb;
-    }
-
-    .value-label {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 8px;
-    }
-
-    .value-title {
-      font-size: 16px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .value-text {
+    .about-message {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-left: 4px solid var(--primary);
+      background: var(--primary-light);
+      border-radius: 10px;
       font-size: 14px;
-      color: var(--text-sub);
+      color: #333;
+    }
+
+    .about-message strong {
+      color: var(--primary);
     }
 
     /* 活動カード */
@@ -664,7 +645,6 @@
         margin-bottom: 4px;
       }
 
-      .value-grid,
       .cards {
         grid-template-columns: 1fr;
       }
@@ -786,41 +766,16 @@
         Smile F LAOS（エフラオ）は、ラオスのコーヒー農家さんからフェアトレードで仕入れたコーヒーを
         学生が製品化・販売し、その売上の一部をラオスの子どもたちの教育支援へとつなげている団体です。
         <br>
-        私たちは、支援する側・される側という一方的な関係ではなく、
-        <strong>現地の人々と学び合いながら、寄り添った支援を続けること</strong>を大切にしています。
+        コーヒーを「売る」だけでなく、現地を訪れ、子どもたちや農家の方々と関わりながら、
+        ラオスと日本をつなぐ活動を続けています。
       </p>
-    </section>
 
-    <section class="section" id="values">
-      <div class="section-header">
-        <h2 class="section-title">私たちが大切にしていること</h2>
-        <div class="section-sub">Our values</div>
-      </div>
-
-      <div class="value-grid">
-        <article class="value-item">
-          <span class="value-label">01</span>
-          <h3 class="value-title">寄り添った支援</h3>
-          <p class="value-text">
-            現地の声や状況を大切にしながら、ラオスの子どもたちにとって本当に必要な支援を考え続けます。
-          </p>
-        </article>
-
-        <article class="value-item">
-          <span class="value-label">02</span>
-          <h3 class="value-title">進化する支援</h3>
-          <p class="value-text">
-            毎年の活動やスタディツアーで得た学びを次の活動に活かし、支援の形を少しずつ更新していきます。
-          </p>
-        </article>
-
-        <article class="value-item">
-          <span class="value-label">03</span>
-          <h3 class="value-title">学び合う関係</h3>
-          <p class="value-text">
-            ラオスを一方的に支援するのではなく、現地の人々の暮らしや価値観から私たち自身も学びます。
-          </p>
-        </article>
+      <div class="about-message">
+        <p>
+          私たちが大切にしているのは、現地の声に耳を傾けながら考える
+          <strong>「寄り添った支援」</strong>と、学びを次の活動に活かしていく
+          <strong>「進化する支援」</strong>です。
+        </p>
       </div>
     </section>
 
