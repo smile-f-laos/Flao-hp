@@ -366,18 +366,67 @@
       color: var(--primary);
     }
 
+    /* 団体理念 */
     .about-message {
-      margin-top: 16px;
-      padding: 14px 16px;
+      margin-top: 18px;
+      padding: 16px;
       border-left: 4px solid var(--primary);
       background: var(--primary-light);
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 14px;
       color: #333;
     }
 
-    .about-message strong {
+    .about-message-lead {
+      margin-bottom: 12px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .philosophy-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      counter-reset: philosophy-counter;
+    }
+
+    .philosophy-list li {
+      position: relative;
+      padding: 12px 14px 12px 46px;
+      background: #fff;
+      border: 1px solid rgba(164, 79, 48, 0.18);
+      border-radius: 10px;
+      counter-increment: philosophy-counter;
+    }
+
+    .philosophy-list li::before {
+      content: counter(philosophy-counter);
+      position: absolute;
+      left: 14px;
+      top: 13px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .philosophy-list strong {
+      display: block;
       color: var(--primary);
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .philosophy-list span {
+      display: block;
+      font-size: 13px;
+      color: var(--text-sub);
     }
 
     /* 活動カード */
@@ -771,17 +820,38 @@
       </p>
 
       <div class="about-message">
-        <p>
-          私たちが大切にしているのは、現地の声に耳を傾けながら考える
-          <strong>「寄り添った支援」</strong>と、学びを次の活動に活かしていく
-          <strong>「進化する支援」</strong>です。
+        <p class="about-message-lead">
+          Smile F LAOSは、次の3つの理念に基づいて活動しています。
         </p>
+
+        <ol class="philosophy-list">
+          <li>
+            <strong>ラオスのフェアトレードコーヒーの魅力を広める</strong>
+            <span>
+              ラオス産コーヒーの背景やおいしさを伝え、フェアトレードへの関心を広げます。
+            </span>
+          </li>
+
+          <li>
+            <strong>学生ならではの知識を活かした自立を促す教育支援</strong>
+            <span>
+              学生だからこそ届けられる知識や視点を活かし、子どもたちが自分の将来を考えるきっかけをつくります。
+            </span>
+          </li>
+
+          <li>
+            <strong>ラオスで得た学びをもとにニーズに合った支援を探求し続ける</strong>
+            <span>
+              現地での交流や調査を通して得た学びをもとに、本当に必要とされる支援の形を考え続けます。
+            </span>
+          </li>
+        </ol>
       </div>
     </section>
 
     <section class="section" id="activities">
       <div class="section-header">
-        <h2 class="section-title">エフラオの活動の3柱</h2>
+        <h2 class="section-title">主な活動</h2>
         <div class="section-sub">Activities</div>
       </div>
 
