@@ -3,14 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Smile F LAOS｜学生によるラオス支援サークル</title>
+  <meta
+    name="description"
+    content="Smile F LAOS（エフラオ）は、ラオス産フェアトレードコーヒーの販売を通じて、ラオスの子どもたちの教育支援に取り組む東洋大学の学生サークルです。"
+  />
+
   <style>
     :root {
-      --primary: #a44f30;       /* 明るめの赤茶色（ヘッダー・線） */
-      --primary-dark: #a44f30;  /* ボタンなどの濃い赤茶色 */
-      --accent: #a44f30;
+      --primary: #a44f30;
+      --primary-dark: #7f3d25;
+      --primary-light: #fff5ee;
+      --accent: #f4c27a;
       --bg: #ffffff;
-      --text-main: #000000;
+      --bg-soft: #faf7f5;
+      --text-main: #1f1f1f;
+      --text-sub: #666666;
+      --border: #eeeeee;
     }
 
     * {
@@ -19,24 +29,36 @@
       padding: 0;
     }
 
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
-      line-height: 1.7;
-      padding-top: 60px; /* 固定ヘッダーぶんの余白 */
+    html {
+      scroll-behavior: smooth;
     }
 
-    /* ヘッダー & ナビ */
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg-soft);
+      color: var(--text-main);
+      line-height: 1.7;
+      padding-top: 76px;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* ヘッダー */
     header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 100;
-      background: #a44f30;   /* 茶色 */
+      background: var(--primary);
       color: #fff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
     }
 
     .header-inner {
@@ -49,13 +71,13 @@
       gap: 18px;
     }
 
-    /* ロゴ（左上） */
     .logo {
       display: flex;
       align-items: center;
       gap: 10px;
       text-decoration: none;
       color: #fff;
+      flex-shrink: 0;
     }
 
     .logo-mark {
@@ -76,16 +98,27 @@
     .logo-text-sub {
       font-size: 12px;
       display: block;
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
-    /* グローバルナビ（ドロップダウン付き） */
+    .menu-toggle {
+      display: none;
+      border: 1px solid rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
     .global-nav {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 18px;
-      font-size: 16px;
+      font-size: 15px;
       list-style: none;
     }
 
@@ -97,8 +130,8 @@
     .global-nav > li > a {
       color: #fff;
       text-decoration: none;
-      font-weight: 600;
-      padding: 4px 0;
+      font-weight: 700;
+      padding: 6px 0;
       display: inline-block;
     }
 
@@ -106,18 +139,17 @@
       text-decoration: underline;
     }
 
-    /* ▼ ドロップダウン ▼ */
     .nav-sub {
       position: absolute;
       top: 100%;
       left: 0;
-      min-width: 180px;
+      min-width: 190px;
       padding: 6px 0;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.55);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(6px);
-      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.16);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       display: none;
       opacity: 0;
       transform: translateY(4px);
@@ -134,25 +166,27 @@
 
     .nav-sub a {
       display: block;
-      padding: 6px 14px;
+      padding: 7px 14px;
       font-size: 14px;
-      color: #000000;
+      color: #222;
       text-decoration: none;
       white-space: nowrap;
     }
 
     .nav-sub a:hover {
-      background: #fff5ee;
-      color: #a44f30;
+      background: var(--primary-light);
+      color: var(--primary);
     }
 
-    /* ヒーローエリア（全面スライドショー） */
+    /* ヒーロー */
     .hero {
       position: relative;
       overflow: hidden;
       border-bottom: 4px solid var(--primary);
       color: #fff;
       min-height: 80vh;
+      display: flex;
+      align-items: center;
     }
 
     .hero-bg {
@@ -179,9 +213,10 @@
       position: absolute;
       inset: 0;
       z-index: 1;
-      background: linear-gradient(120deg,
-        rgba(0, 0, 0, 0.65),
-        rgba(0, 0, 0, 0.25)
+      background: linear-gradient(
+        120deg,
+        rgba(0, 0, 0, 0.68),
+        rgba(0, 0, 0, 0.32)
       );
     }
 
@@ -189,53 +224,113 @@
       position: relative;
       z-index: 2;
       max-width: 1100px;
+      width: 100%;
       margin: 0 auto;
-      padding: 60px 16px 70px;
+      padding: 70px 16px 80px;
     }
 
     .hero-title {
-      font-size: 28px;
-      font-weight: 800;
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 900;
       color: #fff;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
+      line-height: 1.35;
+      letter-spacing: 0.03em;
+      max-width: 780px;
     }
 
     .hero-sub {
-      font-size: 15px;
+      font-size: 16px;
       margin-bottom: 22px;
       color: #f5f5f5;
-      max-width: 640px;
+      max-width: 700px;
     }
 
     .hero-badges {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 18px;
+      margin-bottom: 24px;
     }
 
     .badge {
-      font-size: 11px;
-      padding: 4px 9px;
+      font-size: 12px;
+      padding: 5px 11px;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.18);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.55);
       color: #fff;
     }
 
-    /* メインコンテンツ */
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* 共通ボタン */
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: 0.22s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: 1px solid var(--primary);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.9);
+      color: var(--primary);
+      border: 1px solid rgba(255,255,255,0.9);
+    }
+
+    .btn-secondary:hover {
+      background: #fff;
+      transform: translateY(-2px);
+    }
+
+    .btn-line {
+      background: #06c755;
+      color: #fff;
+      border-color: #06c755;
+    }
+
+    .btn-line:hover {
+      background: #04a847;
+      border-color: #04a847;
+    }
+
+    /* メイン */
     .wrapper {
       max-width: 1100px;
-      margin: 24px auto 40px;
+      margin: 28px auto 44px;
       padding: 0 16px;
     }
 
     .section {
       background: #fff;
-      border-radius: 12px;
-      padding: 22px 20px 20px;
-      margin-bottom: 18px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      border-radius: 16px;
+      padding: 26px 22px 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
     .section-header {
@@ -243,22 +338,68 @@
       align-items: baseline;
       justify-content: space-between;
       gap: 10px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .section-title {
-      font-size: 18px;
+      font-size: 20px;
       border-left: 5px solid var(--primary);
       padding-left: 10px;
-      color: var(--primary-dark);
-      font-weight: 700;
+      color: var(--primary);
+      font-weight: 800;
+      line-height: 1.4;
     }
 
     .section-sub {
       font-size: 12px;
-      color: #777;
+      color: #888;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
+    .lead-text {
+      font-size: 15px;
+      color: #333;
+    }
+
+    .lead-text strong {
+      color: var(--primary);
+    }
+
+    /* 大切にしていること */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .value-item {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 16px;
+      background: #fffdfb;
+    }
+
+    .value-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .value-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .value-text {
+      font-size: 14px;
+      color: var(--text-sub);
+    }
+
+    /* 活動カード */
     .cards {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -270,12 +411,13 @@
       text-decoration: none;
       color: inherit;
       display: block;
-      border-radius: 10px;
+      border-radius: 14px;
       transition: 0.25s ease;
+      height: 100%;
     }
 
     .card-link:hover .card {
-      box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.14);
       transform: translateY(-4px);
       border-color: var(--primary);
     }
@@ -286,16 +428,19 @@
     }
 
     .card {
-      border-radius: 10px;
-      border: 1px solid #eee;
+      height: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--border);
       background: #fff;
       overflow: hidden;
+      transition: 0.25s ease;
     }
 
     .card-img-wrap {
       width: 100%;
       aspect-ratio: 4 / 3;
       overflow: hidden;
+      background: #f3f3f3;
     }
 
     .card-img {
@@ -303,26 +448,32 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .card-link:hover .card-img {
+      transform: scale(1.04);
     }
 
     .card-body {
-      padding: 14px 12px 12px;
+      padding: 15px 14px 16px;
     }
 
     .card-badge {
       display: inline-block;
       font-size: 11px;
-      padding: 3px 7px;
+      font-weight: 800;
+      padding: 3px 8px;
       border-radius: 999px;
       background: #ffecb3;
       color: #795548;
-      margin-bottom: 6px;
+      margin-bottom: 7px;
     }
 
     .card-title {
-      font-weight: 700;
-      margin-bottom: 4px;
-      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      font-size: 15px;
     }
 
     .card-text {
@@ -330,87 +481,138 @@
       color: #555;
     }
 
+    .card-more {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    /* お知らせ */
     .news-list {
       list-style: none;
-      font-size: 13px;
+      font-size: 14px;
     }
 
     .news-item + .news-item {
-      margin-top: 8px;
-      border-top: 1px dashed #eee;
-      padding-top: 6px;
+      margin-top: 10px;
+      border-top: 1px dashed #e6e6e6;
+      padding-top: 10px;
     }
 
     .news-date {
-      font-weight: 600;
+      display: inline-block;
+      min-width: 82px;
+      font-weight: 800;
       margin-right: 6px;
-      color: #555;
+      color: var(--primary);
     }
 
     .cta {
       text-align: center;
       font-size: 14px;
-      padding-top: 6px;
+      padding-top: 8px;
     }
 
     .cta p {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .contact-note {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-top: 10px;
     }
 
     footer {
       background: #212121;
       color: #eee;
       text-align: center;
-      padding: 14px 8px;
+      padding: 18px 8px;
       font-size: 12px;
     }
 
-    /* ▼▼ スマホ対応（768px以下） ▼▼ */
+    /* スマホ対応 */
     @media (max-width: 768px) {
-
       body {
-        padding-top: 56px;
+        padding-top: 72px;
       }
 
-      /* ヘッダー（ロゴ＋タイトルはそのまま／メニューは折りたたみ） */
       .header-inner {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 6px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .logo-mark {
+        width: 46px;
+        height: 46px;
+      }
+
+      .logo-text-main {
+        font-size: 17px;
+      }
+
+      .logo-text-sub {
+        font-size: 11px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      nav {
+        width: 100%;
       }
 
       .global-nav {
-        display: none; /* スマホではデフォ非表示 */
+        display: none;
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
         width: 100%;
-        margin-top: 8px;
-        font-size: 13px;
+        padding: 8px 0 4px;
+        font-size: 14px;
       }
 
-      /* .site-header に is-open が付いた時だけ表示（JSで付け外し） */
       .site-header.is-open .global-nav {
         display: flex;
       }
 
+      .global-nav > li {
+        width: 100%;
+      }
+
+      .global-nav > li > a {
+        padding: 4px 0;
+      }
+
       .nav-sub {
         position: static;
-        box-shadow: none;
-        background: transparent;
-        border: none;
-        padding: 0;
         display: block;
         opacity: 1;
         transform: none;
+        min-width: auto;
+        box-shadow: none;
+        background: transparent;
+        border: none;
+        padding: 0 0 2px 12px;
         backdrop-filter: none;
       }
 
       .nav-sub a {
-        padding: 2px 0 0;
+        padding: 2px 0;
         color: #ffe5d6;
         background: none;
+        font-size: 13px;
       }
 
       .nav-sub a:hover {
@@ -419,10 +621,8 @@
         color: #ffffff;
       }
 
-      /* ヒーローを小さめに＆下のコンテンツも見えるように */
       .hero {
-        margin-top: 8px;
-        min-height: 40vh;
+        min-height: 56vh;
       }
 
       .hero-bg .slide {
@@ -430,29 +630,62 @@
       }
 
       .hero-inner {
-        padding: 18px 14px 18px;
+        padding: 42px 16px 44px;
       }
 
-      .hero-title {
-        font-size: 22px;
+      .hero-sub {
+        font-size: 14px;
+      }
+
+      .hero-actions {
+        gap: 9px;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
       }
 
       .wrapper {
-        margin-top: 10px;
+        margin-top: 16px;
       }
 
+      .section {
+        padding: 22px 16px 20px;
+        border-radius: 14px;
+      }
+
+      .section-header {
+        display: block;
+      }
+
+      .section-title {
+        font-size: 18px;
+        margin-bottom: 4px;
+      }
+
+      .value-grid,
       .cards {
         grid-template-columns: 1fr;
+      }
+
+      .news-date {
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      .cta-actions {
+        flex-direction: column;
       }
     }
   </style>
 </head>
+
 <body>
   <!-- ヘッダー -->
   <header class="site-header">
     <div class="header-inner">
-      <!-- ロゴ＋テキスト（クリックでトップへ） -->
-      <a href="index.html" class="logo">
+      <a href="index.html" class="logo" aria-label="Smile F LAOS トップページへ">
         <img src="logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
         <div>
           <div class="logo-text-main">Smile F LAOS</div>
@@ -460,8 +693,11 @@
         </div>
       </a>
 
-      <!-- グローバルナビ -->
-      <nav>
+      <button class="menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">
+        メニュー
+      </button>
+
+      <nav aria-label="グローバルナビゲーション">
         <ul class="global-nav">
           <li>
             <a href="about.html">Smile F LAOSとは</a>
@@ -495,22 +731,22 @@
           </li>
 
           <li>
-            <a href="#join">お問い合わせ</a>
+            <a href="#contact">お問い合わせ</a>
           </li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- ヒーロー：全面スライドショー＋テキスト -->
+  <!-- ヒーロー -->
   <section class="hero">
-    <div class="hero-bg">
-      <img src="HP1.jpg.jpg" alt="ラオスの様子1" class="slide active">
-      <img src="HP2.jpg.jpg" alt="ラオスの様子2" class="slide">
-      <img src="HP3.jpg.jpg" alt="ラオスの様子3" class="slide">
-      <img src="HP4.jpg.jpg" alt="ラオスの様子4" class="slide">
-      <img src="HP5.jpg.jpg" alt="ラオスの様子5" class="slide">
-      <img src="HP6.jpg.jpg" alt="ラオスの様子6" class="slide">
+    <div class="hero-bg" aria-hidden="true">
+      <img src="HP1.jpg.jpg" alt="" class="slide active">
+      <img src="HP2.jpg.jpg" alt="" class="slide">
+      <img src="HP3.jpg.jpg" alt="" class="slide">
+      <img src="HP4.jpg.jpg" alt="" class="slide">
+      <img src="HP5.jpg.jpg" alt="" class="slide">
+      <img src="HP6.jpg.jpg" alt="" class="slide">
     </div>
 
     <div class="hero-overlay"></div>
@@ -519,14 +755,21 @@
       <h1 class="hero-title">
         １杯のコーヒーがつなぐラオスのこども達の笑顔
       </h1>
+
       <p class="hero-sub">
-        Smile F LAOS（通称エフラオ）は、ラオスのフェアトレードコーヒーを学生が製品化・販売し、<br>
-        その利益をこどもたちの教育支援へと循環させる活動を行う東洋大学の学生サークルです。
+        Smile F LAOS（通称エフラオ）は、ラオス産フェアトレードコーヒーの販売を通じて、
+        ラオスの子どもたちの教育支援に取り組む東洋大学の学生サークルです。
       </p>
+
       <div class="hero-badges">
         <span class="badge">フェアトレードコーヒー</span>
         <span class="badge">ラオスの教育支援</span>
         <span class="badge">スタディツアー</span>
+      </div>
+
+      <div class="hero-actions">
+        <a href="about.html" class="btn-primary">エフラオについて知る</a>
+        <a href="coffee.html" class="btn-secondary">コーヒーを見る</a>
       </div>
     </div>
   </section>
@@ -538,10 +781,47 @@
         <h2 class="section-title">Smile F LAOSとは？</h2>
         <div class="section-sub">About us</div>
       </div>
-      <p>
-        Smile F LAOS（エフラオ）は、ラオスの子どもたちの教育支援や文化交流を目的に活動している学生団体です。
-        コーヒー販売・教育支援・スタディツアーなど、<br> <strong>「楽しさ」×「学び」</strong> がつながる場づくりを大切にしています。
+
+      <p class="lead-text">
+        Smile F LAOS（エフラオ）は、ラオスのコーヒー農家さんからフェアトレードで仕入れたコーヒーを
+        学生が製品化・販売し、その売上の一部をラオスの子どもたちの教育支援へとつなげている団体です。
+        <br>
+        私たちは、支援する側・される側という一方的な関係ではなく、
+        <strong>現地の人々と学び合いながら、寄り添った支援を続けること</strong>を大切にしています。
       </p>
+    </section>
+
+    <section class="section" id="values">
+      <div class="section-header">
+        <h2 class="section-title">私たちが大切にしていること</h2>
+        <div class="section-sub">Our values</div>
+      </div>
+
+      <div class="value-grid">
+        <article class="value-item">
+          <span class="value-label">01</span>
+          <h3 class="value-title">寄り添った支援</h3>
+          <p class="value-text">
+            現地の声や状況を大切にしながら、ラオスの子どもたちにとって本当に必要な支援を考え続けます。
+          </p>
+        </article>
+
+        <article class="value-item">
+          <span class="value-label">02</span>
+          <h3 class="value-title">進化する支援</h3>
+          <p class="value-text">
+            毎年の活動やスタディツアーで得た学びを次の活動に活かし、支援の形を少しずつ更新していきます。
+          </p>
+        </article>
+
+        <article class="value-item">
+          <span class="value-label">03</span>
+          <h3 class="value-title">学び合う関係</h3>
+          <p class="value-text">
+            ラオスを一方的に支援するのではなく、現地の人々の暮らしや価値観から私たち自身も学びます。
+          </p>
+        </article>
+      </div>
     </section>
 
     <section class="section" id="activities">
@@ -557,11 +837,12 @@
               <img src="pillar-coffee.jpg.JPG" alt="ラオス産コーヒーの販売の様子" class="card-img">
             </div>
             <div class="card-body">
-              <div class="card-badge">coffee</div>
+              <div class="card-badge">Coffee</div>
               <h3 class="card-title">ラオス産コーヒーの販売</h3>
               <p class="card-text">
-                ラオスの農家さんからフェアトレードでコーヒー豆を仕入れ、学生が製品化します。2ヵ月に1度ほどの学内販売会や東洋大学の学園祭である白山祭、ラオスフェスティバルなどで紹介し、売上の一部を教育支援に活用しています。
+                ラオス産フェアトレードコーヒーを学生が製品化・販売し、売上の一部を教育支援に活用しています。
               </p>
+              <span class="card-more">詳しく見る →</span>
             </div>
           </article>
         </a>
@@ -575,8 +856,9 @@
               <div class="card-badge">Education</div>
               <h3 class="card-title">教育支援</h3>
               <p class="card-text">
-                毎年行う活動は変わりますが、すべてラオスのこども達の教育支援につながる活動を行っています。2025年度は去年度の職業図鑑をバージョンアップした図鑑を寄贈します。
+                小学校訪問や職業図鑑、ワークショップなどを通じて、子どもたちの学びにつながる活動を行っています。
               </p>
+              <span class="card-more">詳しく見る →</span>
             </div>
           </article>
         </a>
@@ -587,77 +869,116 @@
               <img src="pillar-studytour.jpg.JPG" alt="スタディツアーで現地を訪問している様子" class="card-img">
             </div>
             <div class="card-body">
-              <div class="card-badge">studytour</div>
+              <div class="card-badge">Study Tour</div>
               <h3 class="card-title">スタディツアー</h3>
               <p class="card-text">
-                毎年12月に開催する約10日間のスタディツアー。学生が実際にラオスに足を運び、現地の人と交流します。スタディツアーの大きなプロジェクトは小学校でのワークショップや家計調査、ホームステイの3つがあります。
+                毎年ラオスを訪問し、学校での交流や農家さんへの聞き取りを通じて、活動の意味を学び直します。
               </p>
+              <span class="card-more">詳しく見る →</span>
             </div>
           </article>
         </a>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="news">
       <div class="section-header">
         <h2 class="section-title">お知らせ</h2>
         <div class="section-sub">News</div>
       </div>
+
       <ul class="news-list">
         <li class="news-item">
-          <span class="news-date">2025.11.xx</span>
-          白山祭でのコーヒー販売と活動紹介ブースは無事終了しました。ご来場・ご協力ありがとうございました！
+          <span class="news-date">2026.05</span>
+          ラオスフェスティバル出展に向けて準備を進めています。
         </li>
         <li class="news-item">
-          <span class="news-date">2025.10.xx</span>
-          2025年版 職業図鑑の制作がスタートしました。内容チェックにご協力いただける方も募集中です。
+          <span class="news-date">2025.12</span>
+          スタディツアーを実施し、ラオスの小学校訪問や現地での聞き取りを行いました。
+        </li>
+        <li class="news-item">
+          <span class="news-date">2025.11</span>
+          白山祭でのコーヒー販売と活動紹介ブースは無事終了しました。
         </li>
       </ul>
+
       <div class="cta">
-        <p>今後の販売会やイベントの詳しい予定は、お知らせページにまとめていきます。</p>
+        <p>販売会やイベント情報、活動報告はお知らせページにまとめていきます。</p>
         <p><a href="news.html" class="btn-primary">お知らせページへ</a></p>
       </div>
     </section>
 
-    <section class="section" id="join">
+    <section class="section" id="contact">
       <div class="section-header">
         <h2 class="section-title">お問い合わせ・参加してみたい方へ</h2>
         <div class="section-sub">Contact / Join us</div>
       </div>
+
       <div class="cta">
         <p>
-          「ラオスが好き」「国際協力に興味がある」「子どもに関わるのが好き」  
-          そんな人は、きっとエフラオと相性ばっちりです。
+          「ラオスに興味がある」「国際協力に関わってみたい」「コーヒーが好き」
+          「子どもたちの教育支援に関心がある」そんな方は、ぜひエフラオの活動をのぞいてみてください。
         </p>
+
         <p>
-          新歓情報や活動の様子は、SNSや写真ギャラリーでも発信していきます。  
-          参加やコラボ、取材のご相談なども、お気軽にご連絡ください。
+          新歓情報、販売会のお知らせ、日々の活動の様子は公式SNSで発信しています。
+          参加希望やご相談も、公式LINE・Instagramからお気軽にご連絡ください。
+        </p>
+
+        <div class="cta-actions">
+          <a
+            href="https://www.instagram.com/smile_f_laos?igsh=MWttajM1NHFvYXE2eQ=="
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            公式Instagramを見る
+          </a>
+
+          <a
+            href="https://lin.ee/xcI0PXX"
+            class="btn-primary btn-line"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            公式LINEで連絡する
+          </a>
+        </div>
+
+        <p class="contact-note">
+          外部団体・企業の皆さまからのコラボレーションや販売依頼のご相談も歓迎しています。
         </p>
       </div>
     </section>
   </main>
 
   <footer>
-    © 2025 Smile F LAOS
+    © 2026 Smile F LAOS
   </footer>
 
   <script>
-    // スマホ用：ヘッダーをタップするとメニュー開閉
+    // スマホ用：メニュー開閉
     document.addEventListener('DOMContentLoaded', function () {
       const header = document.querySelector('.site-header');
-      const headerInner = document.querySelector('.header-inner');
-      const nav = document.querySelector('.global-nav');
+      const menuButton = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelectorAll('.global-nav a');
 
-      if (!header || !headerInner || !nav) return;
+      if (!header || !menuButton) return;
 
-      function isMobile() {
-        return window.matchMedia('(max-width: 768px)').matches;
-      }
+      menuButton.addEventListener('click', function () {
+        const isOpen = header.classList.toggle('is-open');
+        menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menuButton.textContent = isOpen ? '閉じる' : 'メニュー';
+      });
 
-      headerInner.addEventListener('click', function (e) {
-        if (!isMobile()) return;
-        if (e.target.closest('nav')) return; // メニューをタップしたときは開閉しない
-        header.classList.toggle('is-open');
+      navLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+          if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+          header.classList.remove('is-open');
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.textContent = 'メニュー';
+        });
       });
     });
 
@@ -666,6 +987,8 @@
     let current = 0;
 
     function showSlide(next) {
+      if (slides.length === 0) return;
+
       slides[current].classList.remove('active');
       current = (next + slides.length) % slides.length;
       slides[current].classList.add('active');
@@ -673,7 +996,9 @@
 
     if (slides.length > 0) {
       slides[0].classList.add('active');
-      setInterval(() => showSlide(current + 1), 5000);
+      setInterval(function () {
+        showSlide(current + 1);
+      }, 5000);
     }
   </script>
 </body>
