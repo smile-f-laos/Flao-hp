@@ -7,16 +7,22 @@
   <style>
     :root {
       --primary: #a44f30;
-      --primary-dark: #a44f30;
+      --primary-dark: #8a3f25;
       --primary-light: #fff5ee;
       --bg: #ffffff;
       --text-main: #000000;
+      --text-sub: #666666;
+      --border: #f0dfd1;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -164,27 +170,30 @@
     }
 
     .page-hero {
-      background: #fff5ee;
-      border-radius: 12px;
-      padding: 20px 18px 18px;
+      background: linear-gradient(135deg, #fff5ee 0%, #ffffff 100%);
+      border-radius: 14px;
+      padding: 22px 20px 20px;
       margin-bottom: 20px;
       border-left: 5px solid var(--primary);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
 
     .page-title {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 800;
       margin-bottom: 6px;
+      color: #3f2a1e;
     }
 
     .page-sub {
       font-size: 13px;
       color: #777;
+      letter-spacing: 0.08em;
     }
 
     .page-lead {
       font-size: 14px;
-      margin-top: 8px;
+      margin-top: 10px;
       color: #333;
     }
 
@@ -195,6 +204,7 @@
       margin-bottom: 18px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       font-size: 14px;
+      scroll-margin-top: 90px;
     }
 
     .section-header {
@@ -206,7 +216,7 @@
     }
 
     .section-title {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 700;
       color: var(--primary-dark);
     }
@@ -216,12 +226,12 @@
       color: #777;
     }
 
-    /* タブ風リンク（ページ内リンク） */
+    /* タブ風リンク */
     .news-tabs {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
       font-size: 12px;
     }
 
@@ -241,6 +251,44 @@
       transform: translateY(-1px);
     }
 
+    /* 注目カード */
+    .featured-news {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 10px 0 14px;
+    }
+
+    .featured-card {
+      border-radius: 12px;
+      padding: 14px 14px 13px;
+      background: #fff8f4;
+      border: 1px solid var(--border);
+    }
+
+    .featured-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--primary);
+      border-radius: 999px;
+      padding: 2px 9px;
+      margin-bottom: 6px;
+    }
+
+    .featured-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #3f2a1e;
+      margin-bottom: 4px;
+    }
+
+    .featured-body {
+      font-size: 13px;
+      color: #444;
+    }
+
     /* お知らせカード */
     .news-list {
       display: flex;
@@ -252,8 +300,13 @@
     .news-card {
       background: #fff8f4;
       border-radius: 10px;
-      padding: 10px 12px 9px;
-      border: 1px solid #f0dfd1;
+      padding: 11px 13px 10px;
+      border: 1px solid var(--border);
+    }
+
+    .news-card.is-important {
+      background: #fff5ee;
+      border-left: 4px solid var(--primary);
     }
 
     .news-meta {
@@ -263,7 +316,7 @@
       align-items: center;
       font-size: 12px;
       color: #777;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
 
     .news-date {
@@ -278,12 +331,44 @@
       border-radius: 999px;
       background: #ffecb3;
       color: #795548;
+      font-weight: 700;
+    }
+
+    .category-sales {
+      background: #ffecb3;
+      color: #795548;
+    }
+
+    .category-report {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .category-member {
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+
+    .category-education {
+      background: #f3e5f5;
+      color: #6a1b9a;
+    }
+
+    .status-pill {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--primary-dark);
+      border: 1px solid #d9c9bc;
+      font-weight: 700;
     }
 
     .news-title {
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 2px;
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 3px;
       color: #3f2a1e;
     }
 
@@ -292,14 +377,21 @@
       color: #444;
     }
 
+    .news-detail-list {
+      margin: 8px 0 0 1.1em;
+      font-size: 13px;
+      color: #444;
+    }
+
     .news-more {
-      margin-top: 4px;
+      margin-top: 5px;
       font-size: 12px;
     }
 
     .news-more a {
       color: var(--primary-dark);
       text-decoration: none;
+      font-weight: 600;
     }
 
     .news-more a:hover {
@@ -309,15 +401,13 @@
     .news-note {
       font-size: 12px;
       color: #777;
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
-    /* セクション内見出し（小さめ） */
-    .news-section-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--primary-dark);
-      margin-bottom: 6px;
+    .small-lead {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 8px;
     }
 
     /* ページ下のリンク */
@@ -447,11 +537,22 @@
       }
 
       .page-title {
-        font-size: 19px;
+        font-size: 20px;
+      }
+
+      .featured-news {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
       }
     }
   </style>
 </head>
+
 <body>
 <header class="site-header">
   <div class="header-inner">
@@ -512,134 +613,252 @@
   <!-- ページヒーロー -->
   <div class="page-hero">
     <div class="page-title">お知らせ</div>
-    <div class="page-sub">News & Events</div>
+    <div class="page-sub">News & Activity Reports</div>
     <p class="page-lead">
-      学内販売会や学園祭、ラオスフェスティバルへの出店、ワークショップの実施など、<br>
-      Smile F LAOS の最新情報をこちらのページにまとめていきます。
+      販売会やイベントの予定に加えて、ラオスフェスティバルへの出店報告、教育支援の準備、
+      新メンバーを迎えた活動の様子など、Smile F LAOS の今をお届けします。
     </p>
   </div>
 
-  <!-- お知らせ一覧（タブ＋最新） -->
+  <!-- お知らせ一覧 -->
   <section class="section" id="all">
     <div class="section-header">
-      <h2 class="section-title">最新のお知らせ一覧</h2>
-      <div class="section-sub">All updates</div>
+      <h2 class="section-title">最新のお知らせ</h2>
+      <div class="section-sub">Latest updates</div>
     </div>
 
     <div class="news-tabs">
       <a href="#all">すべて</a>
       <a href="#coffee-events">販売会情報</a>
-      <a href="#events">イベント・ワークショップ</a>
-      <a href="#info">その他のお知らせ</a>
+      <a href="#reports">活動報告</a>
+      <a href="#members">新メンバー</a>
+      <a href="#education-plan">教育支援</a>
     </div>
 
-    <h3 class="news-section-title">最新のお知らせ</h3>
+    <div class="featured-news">
+      <div class="featured-card">
+        <span class="featured-label">次回予定</span>
+        <div class="featured-title">7月中旬に学内販売会を予定しています</div>
+        <p class="featured-body">
+          東洋大学白山キャンパスでの販売会を7月中旬に実施する方向で準備を進めています。
+          詳細な日時・場所は決まり次第お知らせします。
+        </p>
+      </div>
+
+      <div class="featured-card">
+        <span class="featured-label">活動報告</span>
+        <div class="featured-title">ラオスフェスティバルに出店しました</div>
+        <p class="featured-body">
+          ラオス産フェアトレードコーヒーの販売を通して、多くの方にエフラオの活動やラオスの魅力をお伝えしました。
+        </p>
+      </div>
+    </div>
+
     <div class="news-list">
-      <!-- 例1：販売会系 -->
-      <article class="news-card">
+      <article class="news-card is-important">
         <div class="news-meta">
-          <span class="news-date">2025.12.10</span>
-          <span class="news-category">販売会</span>
+          <span class="news-date">2026.07 中旬</span>
+          <span class="news-category category-sales">販売会</span>
+          <span class="status-pill">予定</span>
         </div>
         <div class="news-title">
-          冬の白山キャンパス販売会を実施します（予定）
+          7月中旬に白山キャンパス販売会を実施予定です
         </div>
         <p class="news-body">
-          東洋大学白山キャンパスにて、ラオス産コーヒーの冬季販売会を予定しています。
-          定番の中煎り・深煎りに加えて、新しいドリップパックも数量限定で販売予定です。
+          次回の販売会は、2026年7月中旬ごろに東洋大学白山キャンパスでの実施を予定しています。
+          ラオス産フェアトレードコーヒーの豆やドリップパックを販売する予定です。
+          正式な日時・場所・販売商品は、決まり次第こちらのページやSNSでお知らせします。
         </p>
         <p class="news-more">
-          <a href="#coffee-events">▶ 詳しい日時・場所を見る</a>
+          <a href="#coffee-events">▶ 販売会情報を見る</a>
         </p>
       </article>
 
-      <!-- 例2：イベント・学童WS -->
       <article class="news-card">
         <div class="news-meta">
-          <span class="news-date">2025.11.30</span>
-          <span class="news-category">イベント</span>
+          <span class="news-date">2026.05</span>
+          <span class="news-category category-report">活動報告</span>
         </div>
         <div class="news-title">
-          学童でのラオスワークショップを実施しました（報告）
+          ラオスフェスティバル2026に出店しました
         </div>
         <p class="news-body">
-          都内の学童保育にて、ラオス紹介・クイズ・めんこづくり・おてだま遊びなどを行いました。
-          子どもたちの様子や、気づきについては教育支援のページでも紹介していきます。
+          ラオスフェスティバルにて、ラオス産フェアトレードコーヒーの販売と団体紹介を行いました。
+          ご来場いただいた方々に、ラオスコーヒーの魅力や、販売の先にある教育支援の取り組みについて知っていただく機会となりました。
         </p>
         <p class="news-more">
-          <a href="#events">▶ ワークショップの概要を見る</a>
+          <a href="#reports">▶ 活動報告を見る</a>
         </p>
       </article>
 
-      <!-- 例3：その他のお知らせ -->
       <article class="news-card">
         <div class="news-meta">
-          <span class="news-date">2025.11.01</span>
-          <span class="news-category">お知らせ</span>
+          <span class="news-date">2026.04</span>
+          <span class="news-category category-member">新メンバー</span>
         </div>
         <div class="news-title">
-          Smile F LAOS 公式ホームページ公開のお知らせ
+          新入生を迎え、今年度の活動が本格的に始まりました
         </div>
         <p class="news-body">
-          活動内容やラオスでの教育支援、スタディツアーの様子を紹介する公式ホームページを公開しました。
-          少しずつ内容を充実させていきますので、温かく見守っていただけると嬉しいです。
+          今年度も新たなメンバーを迎え、Smile F LAOS の活動が本格的にスタートしました。
+          コーヒー販売、教育支援、スタディツアー、広報活動など、それぞれの班で準備を進めています。
+        </p>
+        <p class="news-more">
+          <a href="#members">▶ 新メンバーのお知らせを見る</a>
+        </p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-meta">
+          <span class="news-date">2026.05</span>
+          <span class="news-category category-education">教育支援</span>
+        </div>
+        <div class="news-title">
+          今年度の教育支援の構想づくりを進めています
+        </div>
+        <p class="news-body">
+          今年度の教育支援では、現地で必要とされている支援を改めて考えながら、教材づくりや翻訳を中心に準備を進めています。
+          ラオスの子どもたちにとって学びにつながる支援を届けられるよう、メンバーで話し合いを重ねています。
+        </p>
+        <p class="news-more">
+          <a href="#education-plan">▶ 教育支援の進捗を見る</a>
         </p>
       </article>
     </div>
 
     <p class="news-note">
-      ※ 日程や内容は変更になる場合があります。最新情報は本ページまたはSNSでご確認ください。
+      ※ 予定は変更になる場合があります。最新情報は本ページまたは公式SNSでご確認ください。
     </p>
   </section>
 
-  <!-- 販売会情報（coffee.html からの導線用） -->
+  <!-- 販売会情報 -->
   <section class="section" id="coffee-events">
     <div class="section-header">
       <h2 class="section-title">販売会情報</h2>
       <div class="section-sub">Coffee events</div>
     </div>
 
-    <h3 class="news-section-title">今後の販売会予定</h3>
+    <p class="small-lead">
+      Smile F LAOS では、ラオス産フェアトレードコーヒーの販売を通して、ラオスコーヒーの魅力を広めるとともに、
+      活動で得た収益の一部を教育支援につなげています。
+    </p>
+
     <div class="news-list">
-      <article class="news-card">
+      <article class="news-card is-important">
         <div class="news-meta">
-          <span class="news-date">2025.12.10</span>
-          <span class="news-category">販売会</span>
+          <span class="news-date">2026.07 中旬</span>
+          <span class="news-category category-sales">販売会</span>
+          <span class="status-pill">予定</span>
         </div>
         <div class="news-title">
-          【予定】冬の白山キャンパス販売会
+          【予定】7月中旬 白山キャンパス販売会
         </div>
         <p class="news-body">
-          日時：2025年12月10日（水）11:00〜16:00（予定）<br>
-          場所：東洋大学 白山キャンパス ○号館前<br>
-          内容：コーヒー豆・ドリップパックの販売、ラオスでの教育支援パネル展示 など
+          2026年7月中旬ごろ、東洋大学白山キャンパスにて販売会を実施する方向で準備を進めています。
         </p>
+        <ul class="news-detail-list">
+          <li>日時：2026年7月中旬予定</li>
+          <li>場所：東洋大学 白山キャンパス予定</li>
+          <li>内容：ラオス産コーヒー豆・ドリップパックの販売、活動紹介など</li>
+          <li>詳細：決まり次第、ホームページ・SNSでお知らせします</li>
+        </ul>
       </article>
-
-      <!-- 追加したくなったら、この記事ブロックをコピペして増やしていく感じでOK -->
     </div>
   </section>
 
-  <!-- イベント・ワークショップ -->
-  <section class="section" id="events">
+  <!-- 活動報告 -->
+  <section class="section" id="reports">
     <div class="section-header">
-      <h2 class="section-title">イベント・ワークショップ</h2>
-      <div class="section-sub">Events / Workshops</div>
+      <h2 class="section-title">活動報告</h2>
+      <div class="section-sub">Activity reports</div>
     </div>
 
     <div class="news-list">
       <article class="news-card">
         <div class="news-meta">
-          <span class="news-date">2025.11.30</span>
-          <span class="news-category">イベント</span>
+          <span class="news-date">2026.05</span>
+          <span class="news-category category-report">活動報告</span>
         </div>
         <div class="news-title">
-          学童向けラオスワークショップの実施報告
+          ラオスフェスティバル2026に出店しました
         </div>
         <p class="news-body">
-          ラオスのクイズや文化紹介、めんこづくり・おてだま遊び、ビデオメッセージ撮影などを通して、
-          子どもたちがそれぞれの形でラオスに関心を持ってくれる様子が印象的でした。
-          詳しい内容は教育支援ページでも紹介予定です。
+          2026年5月に開催されたラオスフェスティバルに出店し、ラオス産フェアトレードコーヒーの販売を行いました。
+          当日は多くの方にブースへお立ち寄りいただき、コーヒーの味わいだけでなく、
+          Smile F LAOS が取り組む教育支援やスタディツアーについても紹介することができました。
+        </p>
+        <p class="news-body">
+          今回の出店を通して、ラオスに関心を持ってくださる方々と直接お話しすることができ、
+          私たちの活動をより多くの方に知っていただく貴重な機会となりました。
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 新メンバー -->
+  <section class="section" id="members">
+    <div class="section-header">
+      <h2 class="section-title">新メンバーを迎えました</h2>
+      <div class="section-sub">New members</div>
+    </div>
+
+    <div class="news-list">
+      <article class="news-card">
+        <div class="news-meta">
+          <span class="news-date">2026.04</span>
+          <span class="news-category category-member">新メンバー</span>
+        </div>
+        <div class="news-title">
+          新入生を迎え、今年度の活動が本格スタートしました
+        </div>
+        <p class="news-body">
+          新歓活動を経て、今年度も新たなメンバーが Smile F LAOS に加わりました。
+          新メンバーとともに、コーヒーの販売活動、ラオスについて学ぶ活動、教育支援の準備、広報活動などを進めています。
+        </p>
+        <p class="news-body">
+          これからの活動では、メンバー一人ひとりの関心や得意なことを活かしながら、
+          ラオスと日本をつなぐ取り組みをさらに広げていきます。
+        </p>
+        <p class="news-more">
+          <a href="members.html">▶ 構成・メンバー紹介ページを見る</a>
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 教育支援 -->
+  <section class="section" id="education-plan">
+    <div class="section-header">
+      <h2 class="section-title">教育支援の進捗</h2>
+      <div class="section-sub">Education support</div>
+    </div>
+
+    <p class="small-lead">
+      Smile F LAOS では、ラオスでの学びや現地のニーズをもとに、子どもたちの学びにつながる支援を考え続けています。
+    </p>
+
+    <div class="news-list">
+      <article class="news-card">
+        <div class="news-meta">
+          <span class="news-date">2026.05</span>
+          <span class="news-category category-education">教育支援</span>
+          <span class="status-pill">準備中</span>
+        </div>
+        <div class="news-title">
+          今年度の教育支援の構想づくりに入りました
+        </div>
+        <p class="news-body">
+          今年度の教育支援では、ラオスの子どもたちにとって本当に必要な支援とは何かを考えながら、
+          教材づくりや翻訳を中心とした支援の構想を進めています。
+        </p>
+        <ul class="news-detail-list">
+          <li>現地で必要とされている支援内容の整理</li>
+          <li>教材やテキストブック形式の支援案の検討</li>
+          <li>ラオスの子どもたちに伝わりやすい内容・表現の検討</li>
+          <li>メンバーによる話し合いと年間スケジュールづくり</li>
+        </ul>
+        <p class="news-body">
+          具体的な内容が決まり次第、教育支援ページやお知らせページで随時ご報告していきます。
         </p>
         <p class="news-more">
           <a href="education.html">▶ 教育支援ページを見る</a>
@@ -648,7 +867,7 @@
     </div>
   </section>
 
-  <!-- その他のお知らせ -->
+  <!-- その他 -->
   <section class="section" id="info">
     <div class="section-header">
       <h2 class="section-title">その他のお知らせ</h2>
@@ -658,15 +877,15 @@
     <div class="news-list">
       <article class="news-card">
         <div class="news-meta">
-          <span class="news-date">2025.11.01</span>
+          <span class="news-date">2026.05</span>
           <span class="news-category">お知らせ</span>
         </div>
         <div class="news-title">
-          Smile F LAOS 公式ホームページ公開
+          ホームページの内容を随時更新しています
         </div>
         <p class="news-body">
-          エフラオの活動やラオスでの教育支援を、より分かりやすく伝えるためのホームページを公開しました。
-          これからメンバーと一緒に、コンテンツや写真を増やしていく予定です。
+          活動内容や販売会情報、教育支援の進捗などを、今後もホームページで発信していきます。
+          最新情報はお知らせページのほか、公式SNSでも発信予定です。
         </p>
       </article>
     </div>
@@ -679,7 +898,7 @@
 </main>
 
 <footer>
-  © 2025 Smile F LAOS
+  © 2026 Smile F LAOS
 </footer>
 
 <script>
