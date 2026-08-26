@@ -182,6 +182,270 @@
       color: #777;
     }
 
+    .tour-carousel {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .tour-carousel-viewport {
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .tour-carousel-track {
+      display: flex;
+      transition: transform 0.55s ease;
+    }
+
+    .tour-slide {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      min-width: 100%;
+    }
+
+    .tour-slide--single .tour-photo {
+      grid-column: 2;
+    }
+
+    .tour-photo {
+      aspect-ratio: 4 / 3;
+      margin: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #eee7e2;
+      box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    }
+
+    .tour-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .tour-carousel-button {
+      position: absolute;
+      top: calc(50% - 16px);
+      z-index: 2;
+      display: grid;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      place-items: center;
+      background: rgba(44, 34, 29, .78);
+      color: #fff;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    .tour-carousel-button:hover,
+    .tour-carousel-button:focus-visible {
+      background: var(--primary-dark);
+    }
+
+    .tour-carousel-button:focus-visible,
+    .tour-carousel-dot:focus-visible {
+      outline: 3px solid rgba(164, 79, 48, .35);
+      outline-offset: 2px;
+    }
+
+    .tour-carousel-prev {
+      left: 10px;
+    }
+
+    .tour-carousel-next {
+      right: 10px;
+    }
+
+    .tour-carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      min-height: 10px;
+      margin-top: 10px;
+    }
+
+    .tour-carousel-dot {
+      width: 9px;
+      height: 9px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: #d5c5bc;
+      cursor: pointer;
+    }
+
+    .tour-carousel-dot.is-active {
+      background: var(--primary);
+    }
+
+    .tour-slide {
+        gap: 6px;
+      }
+
+      .tour-photo {
+        border-radius: 8px;
+      }
+
+      .tour-carousel-button {
+        width: 32px;
+        height: 32px;
+        font-size: 24px;
+      }
+
+      .tour-carousel-prev {
+        left: 5px;
+      }
+
+      .tour-carousel-next {
+        right: 5px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tour-carousel-track {
+        transition: none;
+      }
+
+      <section class="tour-carousel" aria-label="教育支援の写真">
+  <div class="tour-carousel-viewport">
+    <div class="tour-carousel-track">
+
+      <!-- 1セット目：写真A～C -->
+      <div class="tour-slide">
+        <figure class="tour-photo">
+          <img src="photoA.jpg" alt="教育支援の写真A">
+        </figure>
+
+        <figure class="tour-photo">
+          <img src="photoB.jpg" alt="教育支援の写真B">
+        </figure>
+
+        <figure class="tour-photo">
+          <img src="photoC.jpg" alt="教育支援の写真C">
+        </figure>
+      </div>
+
+      <!-- 2セット目：写真D～F -->
+      <div class="tour-slide">
+        <figure class="tour-photo">
+          <img src="photoD.jpg" alt="教育支援の写真D" loading="lazy">
+        </figure>
+
+        <figure class="tour-photo">
+          <img src="photoE.jpg" alt="教育支援の写真E" loading="lazy">
+        </figure>
+
+        <figure class="tour-photo">
+          <img src="photoF.jpg" alt="教育支援の写真F" loading="lazy">
+        </figure>
+      </div>
+
+    </div>
+  </div>
+
+  <button class="tour-carousel-button tour-carousel-prev"
+          type="button"
+          aria-label="前の3枚を表示">
+    &#8249;
+  </button>
+
+  <button class="tour-carousel-button tour-carousel-next"
+          type="button"
+          aria-label="次の3枚を表示">
+    &#8250;
+  </button>
+
+  <div class="tour-carousel-dots"
+       aria-label="表示する写真の組を選択"></div>
+</section>
+
+const carousel = document.querySelector('.tour-carousel');
+    if (!carousel) return;
+
+    const track = carousel.querySelector('.tour-carousel-track');
+    const slides = Array.from(carousel.querySelectorAll('.tour-slide'));
+    const previousButton = carousel.querySelector('.tour-carousel-prev');
+    const nextButton = carousel.querySelector('.tour-carousel-next');
+    const dotsContainer = carousel.querySelector('.tour-carousel-dots');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let currentSlide = 0;
+    let autoplayTimer = null;
+
+    const dots = slides.map(function (_, index) {
+      const dot = document.createElement('button');
+      dot.className = 'tour-carousel-dot';
+      dot.type = 'button';
+      dot.setAttribute('aria-label', (index + 1) + '組目の写真を表示');
+      dot.addEventListener('click', function () {
+        showSlide(index);
+        restartAutoplay();
+      });
+      dotsContainer.appendChild(dot);
+      return dot;
+    });
+
+    function showSlide(index) {
+      currentSlide = (index + slides.length) % slides.length;
+      track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+
+      slides.forEach(function (slide, slideIndex) {
+        slide.setAttribute('aria-hidden', slideIndex === currentSlide ? 'false' : 'true');
+      });
+
+      dots.forEach(function (dot, dotIndex) {
+        const isActive = dotIndex === currentSlide;
+        dot.classList.toggle('is-active', isActive);
+        dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+      });
+    }
+
+    function stopAutoplay() {
+      if (autoplayTimer !== null) {
+        window.clearInterval(autoplayTimer);
+        autoplayTimer = null;
+      }
+    }
+
+    function startAutoplay() {
+      if (reduceMotion || slides.length < 2) return;
+      stopAutoplay();
+      autoplayTimer = window.setInterval(function () {
+        showSlide(currentSlide + 1);
+      }, 5000);
+    }
+
+    function restartAutoplay() {
+      stopAutoplay();
+      startAutoplay();
+    }
+
+    previousButton.addEventListener('click', function () {
+      showSlide(currentSlide - 1);
+      restartAutoplay();
+    });
+
+    nextButton.addEventListener('click', function () {
+      showSlide(currentSlide + 1);
+      restartAutoplay();
+    });
+
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+    carousel.addEventListener('focusin', stopAutoplay);
+    carousel.addEventListener('focusout', function (event) {
+      if (!carousel.contains(event.relatedTarget)) startAutoplay();
+    });
+
+    showSlide(0);
+    startAutoplay();
+      
+
     .section {
       background: #fff;
       border-radius: 12px;
