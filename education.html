@@ -284,7 +284,8 @@
       background: var(--primary);
     }
 
-    .tour-slide {
+    @media (max-width: 768px) {
+      .tour-slide {
         gap: 6px;
       }
 
@@ -312,139 +313,7 @@
         transition: none;
       }
 
-      <section class="tour-carousel" aria-label="教育支援の写真">
-  <div class="tour-carousel-viewport">
-    <div class="tour-carousel-track">
-
-      <!-- 1セット目：写真A～C -->
-      <div class="tour-slide">
-        <figure class="tour-photo">
-          <img src="photoA.jpg" alt="教育支援の写真A">
-        </figure>
-
-        <figure class="tour-photo">
-          <img src="photoB.jpg" alt="教育支援の写真B">
-        </figure>
-
-        <figure class="tour-photo">
-          <img src="photoC.jpg" alt="教育支援の写真C">
-        </figure>
-      </div>
-
-      <!-- 2セット目：写真D～F -->
-      <div class="tour-slide">
-        <figure class="tour-photo">
-          <img src="photoD.jpg" alt="教育支援の写真D" loading="lazy">
-        </figure>
-
-        <figure class="tour-photo">
-          <img src="photoE.jpg" alt="教育支援の写真E" loading="lazy">
-        </figure>
-
-        <figure class="tour-photo">
-          <img src="photoF.jpg" alt="教育支援の写真F" loading="lazy">
-        </figure>
-      </div>
-
-    </div>
-  </div>
-
-  <button class="tour-carousel-button tour-carousel-prev"
-          type="button"
-          aria-label="前の3枚を表示">
-    &#8249;
-  </button>
-
-  <button class="tour-carousel-button tour-carousel-next"
-          type="button"
-          aria-label="次の3枚を表示">
-    &#8250;
-  </button>
-
-  <div class="tour-carousel-dots"
-       aria-label="表示する写真の組を選択"></div>
-</section>
-
-const carousel = document.querySelector('.tour-carousel');
-    if (!carousel) return;
-
-    const track = carousel.querySelector('.tour-carousel-track');
-    const slides = Array.from(carousel.querySelectorAll('.tour-slide'));
-    const previousButton = carousel.querySelector('.tour-carousel-prev');
-    const nextButton = carousel.querySelector('.tour-carousel-next');
-    const dotsContainer = carousel.querySelector('.tour-carousel-dots');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let currentSlide = 0;
-    let autoplayTimer = null;
-
-    const dots = slides.map(function (_, index) {
-      const dot = document.createElement('button');
-      dot.className = 'tour-carousel-dot';
-      dot.type = 'button';
-      dot.setAttribute('aria-label', (index + 1) + '組目の写真を表示');
-      dot.addEventListener('click', function () {
-        showSlide(index);
-        restartAutoplay();
-      });
-      dotsContainer.appendChild(dot);
-      return dot;
-    });
-
-    function showSlide(index) {
-      currentSlide = (index + slides.length) % slides.length;
-      track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-
-      slides.forEach(function (slide, slideIndex) {
-        slide.setAttribute('aria-hidden', slideIndex === currentSlide ? 'false' : 'true');
-      });
-
-      dots.forEach(function (dot, dotIndex) {
-        const isActive = dotIndex === currentSlide;
-        dot.classList.toggle('is-active', isActive);
-        dot.setAttribute('aria-current', isActive ? 'true' : 'false');
-      });
     }
-
-    function stopAutoplay() {
-      if (autoplayTimer !== null) {
-        window.clearInterval(autoplayTimer);
-        autoplayTimer = null;
-      }
-    }
-
-    function startAutoplay() {
-      if (reduceMotion || slides.length < 2) return;
-      stopAutoplay();
-      autoplayTimer = window.setInterval(function () {
-        showSlide(currentSlide + 1);
-      }, 5000);
-    }
-
-    function restartAutoplay() {
-      stopAutoplay();
-      startAutoplay();
-    }
-
-    previousButton.addEventListener('click', function () {
-      showSlide(currentSlide - 1);
-      restartAutoplay();
-    });
-
-    nextButton.addEventListener('click', function () {
-      showSlide(currentSlide + 1);
-      restartAutoplay();
-    });
-
-    carousel.addEventListener('mouseenter', stopAutoplay);
-    carousel.addEventListener('mouseleave', startAutoplay);
-    carousel.addEventListener('focusin', stopAutoplay);
-    carousel.addEventListener('focusout', function (event) {
-      if (!carousel.contains(event.relatedTarget)) startAutoplay();
-    });
-
-    showSlide(0);
-    startAutoplay();
-      
 
     .section {
       background: #fff;
@@ -765,7 +634,7 @@ const carousel = document.querySelector('.tour-carousel');
           <a href="coffee.html">製品紹介</a>
           <div class="nav-sub">
             <a href="coffee.html">コーヒー</a>
-            <a href="order.html">注文</a>
+            <a href="order.html">購入のご相談</a>
           </div>
         </li>
 
@@ -787,6 +656,59 @@ const carousel = document.querySelector('.tour-carousel');
     <h1 class="page-title">教育支援</h1>
     <div class="page-sub">education support</div>
   </div>
+
+  <section class="tour-carousel" aria-label="教育支援の写真">
+  <div class="tour-carousel-viewport">
+    <div class="tour-carousel-track">
+
+      <!-- 1セット目：写真A～C -->
+      <div class="tour-slide">
+        <figure class="tour-photo">
+          <img src="photoA.jpg" alt="教育支援の写真A">
+        </figure>
+
+        <figure class="tour-photo">
+          <img src="photoB.jpg" alt="教育支援の写真B">
+        </figure>
+
+        <figure class="tour-photo">
+          <img src="photoC.jpg" alt="教育支援の写真C">
+        </figure>
+      </div>
+
+      <!-- 2セット目：写真D～F -->
+      <div class="tour-slide">
+        <figure class="tour-photo">
+          <img src="phptoD.jpg" alt="教育支援の写真D" loading="lazy">
+        </figure>
+
+        <figure class="tour-photo">
+          <img src="phptoE.jpg" alt="教育支援の写真E" loading="lazy">
+        </figure>
+
+        <figure class="tour-photo">
+          <img src="phptoF.jpg" alt="教育支援の写真F" loading="lazy">
+        </figure>
+      </div>
+
+    </div>
+  </div>
+
+  <button class="tour-carousel-button tour-carousel-prev"
+          type="button"
+          aria-label="前の3枚を表示">
+    &#8249;
+  </button>
+
+  <button class="tour-carousel-button tour-carousel-next"
+          type="button"
+          aria-label="次の3枚を表示">
+    &#8250;
+  </button>
+
+  <div class="tour-carousel-dots"
+       aria-label="表示する写真の組を選択"></div>
+</section>
 
   <!-- エフラオの教育支援とは？ -->
   <section class="section">
@@ -910,7 +832,7 @@ const carousel = document.querySelector('.tour-carousel');
   <section class="section">
     <div class="section-header">
       <h2 class="section-title">2025年度の取り組み</h2>
-      <div class="section-sub">This year's project</div>
+      <div class="section-sub">2025 projects</div>
     </div>
 
     <p>
@@ -1037,6 +959,89 @@ const carousel = document.querySelector('.tour-carousel');
         menuButton.textContent = 'メニュー';
       });
     });
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const carousel = document.querySelector('.tour-carousel');
+    if (!carousel) return;
+
+    const track = carousel.querySelector('.tour-carousel-track');
+    const slides = Array.from(carousel.querySelectorAll('.tour-slide'));
+    const previousButton = carousel.querySelector('.tour-carousel-prev');
+    const nextButton = carousel.querySelector('.tour-carousel-next');
+    const dotsContainer = carousel.querySelector('.tour-carousel-dots');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let currentSlide = 0;
+    let autoplayTimer = null;
+
+    const dots = slides.map(function (_, index) {
+      const dot = document.createElement('button');
+      dot.className = 'tour-carousel-dot';
+      dot.type = 'button';
+      dot.setAttribute('aria-label', (index + 1) + '組目の写真を表示');
+      dot.addEventListener('click', function () {
+        showSlide(index);
+        restartAutoplay();
+      });
+      dotsContainer.appendChild(dot);
+      return dot;
+    });
+
+    function showSlide(index) {
+      currentSlide = (index + slides.length) % slides.length;
+      track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+
+      slides.forEach(function (slide, slideIndex) {
+        slide.setAttribute('aria-hidden', slideIndex === currentSlide ? 'false' : 'true');
+      });
+
+      dots.forEach(function (dot, dotIndex) {
+        const isActive = dotIndex === currentSlide;
+        dot.classList.toggle('is-active', isActive);
+        dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+      });
+    }
+
+    function stopAutoplay() {
+      if (autoplayTimer !== null) {
+        window.clearInterval(autoplayTimer);
+        autoplayTimer = null;
+      }
+    }
+
+    function startAutoplay() {
+      if (reduceMotion || slides.length < 2) return;
+      stopAutoplay();
+      autoplayTimer = window.setInterval(function () {
+        showSlide(currentSlide + 1);
+      }, 5000);
+    }
+
+    function restartAutoplay() {
+      stopAutoplay();
+      startAutoplay();
+    }
+
+    previousButton.addEventListener('click', function () {
+      showSlide(currentSlide - 1);
+      restartAutoplay();
+    });
+
+    nextButton.addEventListener('click', function () {
+      showSlide(currentSlide + 1);
+      restartAutoplay();
+    });
+
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+    carousel.addEventListener('focusin', stopAutoplay);
+    carousel.addEventListener('focusout', function (event) {
+      if (!carousel.contains(event.relatedTarget)) startAutoplay();
+    });
+
+    showSlide(0);
+    startAutoplay();
   });
 </script>
 </body>
