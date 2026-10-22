@@ -1,0 +1,11 @@
+{
+  "sourceFiles": 81,
+  "photos": 80,
+  "duplicates": [
+    {
+      "file": "IMG_6519.jpg",
+      "same_as": "IMG_6519 (1).jpg"
+    }
+  ],
+  "order": "EXIF DateTimeOriginal; camera clock as recorded"
+}
