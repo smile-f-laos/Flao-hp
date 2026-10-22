@@ -283,7 +283,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="logo">
-        <img src="logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
+        <img src="assets/images/brand/logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
         <div>
           <div class="logo-text-main">Smile F LAOS</div>
           <span class="logo-text-sub">ラオスと日本をつなぐ学生サークル</span>
@@ -340,8 +340,8 @@
     <p>これまでの活動で撮影した写真をまとめています。</p>
 
     <div class="gallery">
-      <img src="LINE_ALBUM_2023スタツア_251101_34.jpg" alt="ラオスでのスタディツアー活動の様子">
-      <img src="S__227942405_0.jpg" alt="Smile F LAOSの活動の様子">
+      <img src="assets/images/gallery/gallery-01.jpg" alt="ラオスでのスタディツアー活動の様子">
+      <img src="assets/images/gallery/gallery-02.jpg" alt="Smile F LAOSの活動の様子">
     </div>
   </main>
 
@@ -358,6 +358,7 @@
       menuButton.addEventListener('click', function () {
         const isOpen = header.classList.toggle('is-open');
         menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menuButton.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
         menuButton.textContent = isOpen ? '閉じる' : 'メニュー';
       });
 
@@ -367,6 +368,7 @@
 
           header.classList.remove('is-open');
           menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.setAttribute('aria-label', 'メニューを開く');
           menuButton.textContent = 'メニュー';
         });
       });

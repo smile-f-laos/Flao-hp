@@ -715,7 +715,7 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="festival.css">
+  <link rel="stylesheet" href="assets/css/festival.css">
 </head>
 
 <body>
@@ -723,7 +723,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="logo" aria-label="Smile F LAOS トップページへ">
-        <img src="logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
+        <img src="assets/images/brand/logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
         <div>
           <div class="logo-text-main">Smile F LAOS</div>
           <span class="logo-text-sub">ラオスと日本をつなぐ学生サークル</span>
@@ -778,12 +778,12 @@
   <!-- ヒーロー -->
   <section class="hero">
     <div class="hero-bg" aria-hidden="true">
-      <img src="HP1.jpg.jpg" alt="" class="slide active">
-      <img src="HP2.jpg.jpg" alt="" class="slide">
-      <img src="HP3.jpg.jpg" alt="" class="slide">
-      <img src="HP4.jpg.jpg" alt="" class="slide">
-      <img src="HP5.jpg.jpg" alt="" class="slide">
-      <img src="HP6.jpg.jpg" alt="" class="slide">
+      <img src="assets/images/home/hero-01.jpg" alt="" class="slide active">
+      <img src="assets/images/home/hero-02.jpg" alt="" class="slide">
+      <img src="assets/images/home/hero-03.jpg" alt="" class="slide">
+      <img src="assets/images/home/hero-04.jpg" alt="" class="slide">
+      <img src="assets/images/home/hero-05.jpg" alt="" class="slide">
+      <img src="assets/images/home/hero-06.jpg" alt="" class="slide">
     </div>
 
     <div class="hero-overlay"></div>
@@ -838,7 +838,7 @@
       </div>
 
       <p class="lead-text">
-        Smile F LAOS（エフラオ）は、ラオスのコーヒー農家さんからフェアトレードで仕入れたコーヒーを
+        Smile F LAOS（エフラオ）は、ATJを通じて仕入れたラオスのフェアトレードコーヒーを
         学生が製品化・販売し、その売上の一部をラオスの子どもたちの教育支援へとつなげている団体です。
         <br>
         コーヒーを「売る」だけでなく、現地を訪れ、子どもたちや農家の方々と関わりながら、
@@ -885,7 +885,7 @@
         <a href="coffee.html" class="card-link">
           <article class="card">
             <div class="card-img-wrap">
-              <img src="pillar-coffee.jpg.JPG" alt="ラオス産コーヒーの販売の様子" class="card-img">
+              <img src="assets/images/home/pillar-coffee.jpg" alt="ラオス産コーヒーの販売の様子" class="card-img">
             </div>
             <div class="card-body">
               <div class="card-badge">Coffee</div>
@@ -901,7 +901,7 @@
         <a href="education.html" class="card-link">
           <article class="card">
             <div class="card-img-wrap">
-              <img src="pillar-education.jpg.JPG" alt="ラオスの小学校での教育支援の様子" class="card-img">
+              <img src="assets/images/home/pillar-education.jpg" alt="ラオスの小学校での教育支援の様子" class="card-img">
             </div>
             <div class="card-body">
               <div class="card-badge">Education</div>
@@ -917,7 +917,7 @@
         <a href="studytour.html" class="card-link">
           <article class="card">
             <div class="card-img-wrap">
-              <img src="pillar-studytour.jpg.JPG" alt="スタディツアーで現地を訪問している様子" class="card-img">
+              <img src="assets/images/home/pillar-studytour.jpg" alt="スタディツアーで現地を訪問している様子" class="card-img">
             </div>
             <div class="card-body">
               <div class="card-badge">Study Tour</div>
@@ -1012,6 +1012,7 @@
       menuButton.addEventListener('click', function () {
         const isOpen = header.classList.toggle('is-open');
         menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menuButton.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
         menuButton.textContent = isOpen ? '閉じる' : 'メニュー';
       });
 
@@ -1021,6 +1022,7 @@
 
           header.classList.remove('is-open');
           menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.setAttribute('aria-label', 'メニューを開く');
           menuButton.textContent = 'メニュー';
         });
       });

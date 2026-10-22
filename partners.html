@@ -324,7 +324,7 @@
 <header class="site-header">
   <div class="header-inner">
     <a href="index.html" class="logo">
-      <img src="logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
+      <img src="assets/images/brand/logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
       <div>
         <div class="logo-text-main">Smile F LAOS</div>
         <span class="logo-text-sub">ラオスと日本をつなぐ学生サークル</span>
@@ -438,6 +438,7 @@
     menuButton.addEventListener('click', function () {
       const isOpen = header.classList.toggle('is-open');
       menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menuButton.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
       menuButton.textContent = isOpen ? '閉じる' : 'メニュー';
     });
 
@@ -447,6 +448,7 @@
 
         header.classList.remove('is-open');
         menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.setAttribute('aria-label', 'メニューを開く');
         menuButton.textContent = 'メニュー';
       });
     });
