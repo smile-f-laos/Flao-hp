@@ -44,10 +44,6 @@ for album in albums:
 
 content=hero('PHOTO JOURNAL','写真で見る、エフラオ。','年度ごとのアルバムから、活動の記録をたどれます。','<span>ギャラリー</span>')
 content+='<section class="album-list" aria-label="年度別アルバム">'+''.join(cards)+'</section>'
-content+='''<details class="legacy-album"><summary>これまでの活動写真<span>年度未確認・2枚</span></summary><div class="album-photos">'''
-for i,cap in [(1,'ラオスでのスタディツアー活動の様子'),(2,'Smile F LAOSの活動の様子')]:
-    src=f'assets/images/gallery/gallery-0{i}.jpg'
-    content+=f'<figure><a href="{src}" target="_blank" rel="noopener noreferrer"><img src="{src}" alt="{cap}" loading="lazy"></a><figcaption>{cap}</figcaption></figure>'
-content+='</div></details></main>'
+content+='</main>'
 (root/'gallery.html').write_text(page(content,'写真ギャラリー','Smile F LAOSの活動写真を年度ごとのアルバムで紹介します。'),encoding='utf-8')
 print(f'Generated gallery index and {len(albums)} annual album(s).')
