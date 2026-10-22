@@ -453,7 +453,7 @@
 <header class="site-header">
   <div class="header-inner">
     <a href="index.html" class="logo">
-      <img src="logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
+      <img src="assets/images/brand/logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
       <div>
         <div class="logo-text-main">Smile F LAOS</div>
         <span class="logo-text-sub">ラオスと日本をつなぐ学生サークル</span>
@@ -515,32 +515,32 @@
     <div class="tour-carousel-viewport">
       <div class="tour-carousel-track">
         <div class="tour-slide">
-          <figure class="tour-photo"><img src="S__53059601_0.jpg" alt="スタディツアーの活動写真1"></figure>
-          <figure class="tour-photo"><img src="S__53059602_0.jpg" alt="スタディツアーの活動写真2"></figure>
-          <figure class="tour-photo"><img src="S__53059603_0.jpg" alt="スタディツアーの活動写真3"></figure>
+          <figure class="tour-photo"><img src="assets/images/study-tour/tour-01.jpg" alt="スタディツアーの活動写真1"></figure>
+          <figure class="tour-photo"><img src="assets/images/study-tour/tour-02.jpg" alt="スタディツアーの活動写真2"></figure>
+          <figure class="tour-photo"><img src="assets/images/study-tour/tour-03.jpg" alt="スタディツアーの活動写真3"></figure>
         </div>
         <div class="tour-slide">
-          <figure class="tour-photo"><img src="S__53059604_0.jpg" alt="スタディツアーの活動写真4" loading="lazy"></figure>
-          <figure class="tour-photo"><img src="S__53059605_0.jpg" alt="スタディツアーの活動写真5" loading="lazy"></figure>
-          <figure class="tour-photo"><img src="S__53059606_0.jpg" alt="スタディツアーの活動写真6" loading="lazy"></figure>
+          <figure class="tour-photo"><img src="assets/images/study-tour/tour-04.jpg" alt="スタディツアーの活動写真4" loading="lazy"></figure>
+          <figure class="tour-photo"><img src="assets/images/study-tour/tour-05.jpg" alt="スタディツアーの活動写真5" loading="lazy"></figure>
+          <figure class="tour-photo"><img src="assets/images/study-tour/tour-06.jpg" alt="スタディツアーの活動写真6" loading="lazy"></figure>
         </div>
         <div class="tour-slide">
-          <figure class="tour-photo"><img src="S__53059609_0.jpg" alt="スタディツアーの活動写真7" loading="lazy"></figure>
-          <figure class="tour-photo"><img src="S__53059610_0.jpg" alt="スタディツアーの活動写真8" loading="lazy"></figure>
-          <figure class="tour-photo"><img src="S__53059611_0.jpg" alt="スタディツアーの活動写真9" loading="lazy"></figure>
+          <figure class="tour-photo"><img src="assets/images/study-tour/tour-09.jpg" alt="スタディツアーの活動写真7" loading="lazy"></figure>
+          <figure class="tour-photo"><img src="assets/images/study-tour/tour-10.jpg" alt="スタディツアーの活動写真8" loading="lazy"></figure>
+          <figure class="tour-photo"><img src="assets/images/study-tour/tour-11.jpg" alt="スタディツアーの活動写真9" loading="lazy"></figure>
         </div>
         <div class="tour-slide">
-          <figure class="tour-photo"><img src="S__53059612_0.jpg" alt="スタディツアーの活動写真10" loading="lazy"></figure>
-          <figure class="tour-photo"><img src="S__53059613_0.jpg" alt="スタディツアーの活動写真11" loading="lazy"></figure>
-          <figure class="tour-photo"><img src="S__53059614_0.jpg" alt="スタディツアーの活動写真12" loading="lazy"></figure>
+          <figure class="tour-photo"><img src="assets/images/study-tour/tour-12.jpg" alt="スタディツアーの活動写真10" loading="lazy"></figure>
+          <figure class="tour-photo"><img src="assets/images/study-tour/tour-13.jpg" alt="スタディツアーの活動写真11" loading="lazy"></figure>
+          <figure class="tour-photo"><img src="assets/images/study-tour/tour-14.jpg" alt="スタディツアーの活動写真12" loading="lazy"></figure>
         </div>
         <div class="tour-slide">
-          <figure class="tour-photo"><img src="S__53059615_0.jpg" alt="スタディツアーの活動写真13" loading="lazy"></figure>
-          <figure class="tour-photo"><img src="S__53059620_0.jpg" alt="スタディツアーの活動写真14" loading="lazy"></figure>
-          <figure class="tour-photo"><img src="photo1.jpg" alt="スタディツアーの活動写真15" loading="lazy"></figure>
+          <figure class="tour-photo"><img src="assets/images/study-tour/tour-15.jpg" alt="スタディツアーの活動写真13" loading="lazy"></figure>
+          <figure class="tour-photo"><img src="assets/images/study-tour/tour-20.jpg" alt="スタディツアーの活動写真14" loading="lazy"></figure>
+          <figure class="tour-photo"><img src="assets/images/study-tour/detail-01.jpg" alt="スタディツアーの活動写真15" loading="lazy"></figure>
         </div>
         <div class="tour-slide tour-slide--single">
-          <figure class="tour-photo"><img src="photo2.jpg" alt="スタディツアーの活動写真16" loading="lazy"></figure>
+          <figure class="tour-photo"><img src="assets/images/study-tour/detail-02.jpg" alt="スタディツアーの活動写真16" loading="lazy"></figure>
         </div>
       </div>
     </div>
@@ -613,6 +613,7 @@
     menuButton.addEventListener('click', function () {
       const isOpen = header.classList.toggle('is-open');
       menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menuButton.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
       menuButton.textContent = isOpen ? '閉じる' : 'メニュー';
     });
 
@@ -622,6 +623,7 @@
 
         header.classList.remove('is-open');
         menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.setAttribute('aria-label', 'メニューを開く');
         menuButton.textContent = 'メニュー';
       });
     });

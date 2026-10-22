@@ -593,13 +593,13 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="updates.css">
+  <link rel="stylesheet" href="assets/css/updates.css">
 </head>
 <body>
 <header class="site-header">
   <div class="header-inner">
     <a href="index.html" class="logo">
-      <img src="logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
+      <img src="assets/images/brand/logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
       <div>
         <div class="logo-text-main">Smile F LAOS</div>
         <span class="logo-text-sub">ラオスと日本をつなぐ学生サークル</span>
@@ -665,30 +665,30 @@
       <!-- 1セット目：写真A～C -->
       <div class="tour-slide">
         <figure class="tour-photo">
-          <img src="photoA.jpg" alt="教育支援の写真A">
+          <img src="assets/images/education/education-a.jpg" alt="教育支援の写真A">
         </figure>
 
         <figure class="tour-photo">
-          <img src="photoB.jpg" alt="教育支援の写真B">
+          <img src="assets/images/education/education-b.jpg" alt="教育支援の写真B">
         </figure>
 
         <figure class="tour-photo">
-          <img src="photoC.jpg" alt="教育支援の写真C">
+          <img src="assets/images/education/education-c.jpg" alt="教育支援の写真C">
         </figure>
       </div>
 
       <!-- 2セット目：写真D～F -->
       <div class="tour-slide">
         <figure class="tour-photo">
-          <img src="phptoD.jpg" alt="教育支援の写真D" loading="lazy">
+          <img src="assets/images/education/education-d.jpg" alt="教育支援の写真D" loading="lazy">
         </figure>
 
         <figure class="tour-photo">
-          <img src="phptoE.jpg" alt="教育支援の写真E" loading="lazy">
+          <img src="assets/images/education/education-e.jpg" alt="教育支援の写真E" loading="lazy">
         </figure>
 
         <figure class="tour-photo">
-          <img src="phptoF.jpg" alt="教育支援の写真F" loading="lazy">
+          <img src="assets/images/education/education-f.jpg" alt="教育支援の写真F" loading="lazy">
         </figure>
       </div>
 
@@ -739,7 +739,7 @@
         エフラオの活動は、「コーヒー」と「教育支援」がぐるっと循環するモデルになっています。
       </p>
       <ul class="pill-list">
-        <li>ラオスの農家さんからコーヒー豆を購入</li>
+        <li>ATJを通じてラオスのフェアトレードコーヒー豆を仕入れ</li>
         <li>学生が企画して販売・広報</li>
         <li>売上の一部を教育支援に活用</li>
         <li>現地でのニーズを聞きながら支援内容をアップデート</li>
@@ -915,6 +915,7 @@
     menuButton.addEventListener('click', function () {
       const isOpen = header.classList.toggle('is-open');
       menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menuButton.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
       menuButton.textContent = isOpen ? '閉じる' : 'メニュー';
     });
 
@@ -924,6 +925,7 @@
 
         header.classList.remove('is-open');
         menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.setAttribute('aria-label', 'メニューを開く');
         menuButton.textContent = 'メニュー';
       });
     });

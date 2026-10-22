@@ -610,7 +610,7 @@
 <header class="site-header">
   <div class="header-inner">
     <a href="index.html" class="logo">
-      <img src="logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
+      <img src="assets/images/brand/logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
       <div>
         <div class="logo-text-main">Smile F LAOS</div>
         <span class="logo-text-sub">ラオスと日本をつなぐ学生サークル</span>
@@ -672,12 +672,12 @@
   <!-- 写真＋ざっくり商品紹介 -->
   <section class="product-intro">
     <div class="product-photo-wrap">
-      <img src="HP7.jpg" alt="Smile F LAOSのChampa Coffeeパッケージ写真" class="product-photo">
+      <img src="assets/images/coffee/package.jpg" alt="Smile F LAOSのChampa Coffeeパッケージ写真" class="product-photo">
     </div>
     <div class="product-lead">
       <h2>ラオスの農家さんのコーヒーを、学生の手で届ける</h2>
       <p>
-        エフラオでは、ラオス・パクソン近郊の農家さんからフェアトレードでコーヒー豆を購入し、
+        エフラオでは、ATJを通じて、ラオス・パクソン近郊の農家さんが育てたフェアトレードのコーヒー豆を仕入れ、
         学生がパッケージデザインや商品企画を行っています。ドリップパックや豆の販売を通して、
         ラオスの魅力や農家さんのこだわりをキャンパス内外に伝えています。
       </p>
@@ -898,6 +898,7 @@
     menuButton.addEventListener('click', function () {
       const isOpen = header.classList.toggle('is-open');
       menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menuButton.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
       menuButton.textContent = isOpen ? '閉じる' : 'メニュー';
     });
 
@@ -907,6 +908,7 @@
 
         header.classList.remove('is-open');
         menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.setAttribute('aria-label', 'メニューを開く');
         menuButton.textContent = 'メニュー';
       });
     });
