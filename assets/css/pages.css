@@ -230,3 +230,20 @@ caption{text-align:left;font-size:12px;padding:0 0 13px}
 
 @media(prefers-reduced-motion:no-preference){.photo-viewport{scroll-behavior:smooth}
 }
+
+/* 12期の写真を本文と並べ、過年度の記録として紹介する */
+.photo-story{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:center}
+.photo-story-copy{min-width:0}
+.story-photo{margin:0;min-width:0}
+.story-photo img{display:block;width:100%;height:auto}
+.story-photo figcaption,.tour-cover figcaption{font-size:12px;line-height:1.8;margin-top:10px;color:var(--muted)}
+.story-photo figcaption span,.tour-cover figcaption span{display:block;font-size:10px;letter-spacing:.04em;margin-top:3px}
+.page-cover.tour-cover img{height:auto;aspect-ratio:auto;display:block}
+.tour-journal{padding:38px 0;border-top:1px solid var(--line)}
+.tour-journal h2,.earlier-gallery-title{font-family:'Yu Mincho',serif;font-weight:500;font-size:28px;line-height:1.6}
+.tour-journal>p{font-size:14px;line-height:1.9;color:var(--muted);margin-bottom:30px}
+.tour-photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:38px 28px;align-items:start}
+.tour-photo-grid .story-photo:nth-child(even){margin-top:50px}
+.tour-photo-grid a{display:block}
+@media(max-width:760px){.photo-story{grid-template-columns:1fr;gap:24px}.tour-photo-grid{grid-template-columns:1fr;gap:30px}.tour-photo-grid .story-photo:nth-child(even){margin-top:0}.tour-journal h2,.earlier-gallery-title{font-size:24px}}
+.photo-story-copy .peaberry-grid,.photo-story-copy .bean-cards,.photo-story-copy .two-cols{grid-template-columns:1fr;gap:20px}
