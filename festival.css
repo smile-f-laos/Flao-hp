@@ -1,0 +1,38 @@
+.festival-panel {
+  background: #fff8f1;
+  border: 1px solid #e6caba;
+  border-top: 5px solid #a44f30;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  scroll-margin-top: 96px;
+}
+.festival-eyebrow { color: #884126; font-size: 12px; font-weight: 800; letter-spacing: .08em; margin-bottom: 6px; }
+.festival-panel h2 { font-size: 24px; line-height: 1.5; margin-bottom: 12px; }
+.festival-panel h3 { font-size: 18px; margin: 24px 0 12px; }
+.festival-lead { font-size: 16px; margin-bottom: 16px; }
+.festival-details { display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 10px 16px; margin: 16px 0; }
+.festival-details dt { color: #884126; font-weight: 700; }
+.festival-details dd { margin: 0; }
+.festival-room { display: inline-block; background: #fff; border: 1px solid #e6caba; border-radius: 6px; padding: 3px 10px; margin: 4px 8px 4px 0; }
+.festival-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.festival-link { display: inline-block; background: #a44f30; border: 2px solid #a44f30; border-radius: 999px; padding: 9px 20px; color: #fff; font-size: 14px; font-weight: 700; text-decoration: none; text-align: center; }
+.festival-link:hover { background: #813c23; border-color: #813c23; }
+.festival-link:focus-visible { outline: 3px solid #252525; outline-offset: 3px; }
+.festival-link-secondary { background: #fff; color: #884126; }
+.festival-link-secondary:hover { background: #f5e3d6; color: #884126; }
+.festival-menu { border-collapse: collapse; width: 100%; background: #fff; font-size: 14px; }
+.festival-menu caption { text-align: left; margin-bottom: 10px; font-weight: 700; }
+.festival-menu th, .festival-menu td { padding: 12px; border-bottom: 1px solid #e6caba; text-align: left; vertical-align: top; }
+.festival-menu thead th { background: #f2e1d5; color: #5f2c18; }
+.festival-menu tbody th { font-weight: 600; }
+.festival-menu td { white-space: nowrap; }
+.festival-menu small { display: block; font-size: 12px; font-weight: 400; color: #555; margin-top: 3px; }
+.festival-note { font-size: 13px; color: #555; margin-top: 12px; }
+@media (max-width: 768px) {
+  .festival-panel { padding: 20px 16px; scroll-margin-top: 90px; }
+  .festival-panel h2 { font-size: 21px; }
+  .festival-details { grid-template-columns: 64px minmax(0, 1fr); gap: 10px; font-size: 14px; }
+  .festival-menu { font-size: 13px; }
+  .festival-menu th, .festival-menu td { padding: 10px 6px; }
+}
