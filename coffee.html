@@ -1,694 +1,167 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ラオス産コーヒーの販売｜Smile F LAOS</title>
-  <style>
-    :root {
-      --primary: #a44f30;
-      --primary-dark: #a44f30;
-      --primary-light: #fff5ee;
-      --bg: #ffffff;
-      --text-main: #000000;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
-      line-height: 1.7;
-      padding-top: 76px;
-    }
-
-    /* ヘッダー */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-
-    .header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 16px;
-      gap: 18px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: #fff;
-      flex-shrink: 0;
-    }
-
-    .logo-mark {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      object-fit: contain;
-      background: #fff;
-    }
-
-    .logo-text-main {
-      font-weight: 800;
-      font-size: 20px;
-      letter-spacing: 0.05em;
-      line-height: 1.1;
-    }
-
-    .logo-text-sub {
-      font-size: 12px;
-      display: block;
-      opacity: 0.8;
-    }
-
-    .menu-toggle {
-      display: none;
-      border: 1px solid rgba(255,255,255,0.6);
-      background: rgba(255,255,255,0.12);
-      color: #fff;
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .global-nav {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 18px;
-      font-size: 16px;
-      list-style: none;
-    }
-
-    .global-nav > li {
-      position: relative;
-      list-style: none;
-    }
-
-    .global-nav > li > a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 4px 0;
-      display: inline-block;
-    }
-
-    .global-nav > li > a:hover {
-      text-decoration: underline;
-    }
-
-    .nav-sub {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 180px;
-      padding: 6px 0;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      display: none;
-      opacity: 0;
-      transform: translateY(4px);
-      transition: opacity 0.18s ease, transform 0.18s ease;
-      z-index: 200;
-    }
-
-    .global-nav > li:hover .nav-sub,
-    .global-nav > li:focus-within .nav-sub {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .nav-sub a {
-      display: block;
-      padding: 6px 14px;
-      font-size: 14px;
-      color: #000000;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .nav-sub a:hover {
-      background: #fff5ee;
-      color: #a44f30;
-    }
-
-    /* 共通レイアウト */
-    .wrapper {
-      max-width: 1100px;
-      margin: 24px auto 40px;
-      padding: 0 16px;
-    }
-
-    .page-hero {
-      background: #fff5ee;
-      border-radius: 12px;
-      padding: 20px 18px 18px;
-      margin-bottom: 20px;
-      border-left: 5px solid var(--primary);
-    }
-
-    .page-title {
-      font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 6px;
-    }
-
-    .page-sub {
-      font-size: 13px;
-      color: #777;
-    }
-
-    .section {
-      background: #fff;
-      border-radius: 12px;
-      padding: 20px 18px 18px;
-      margin-bottom: 18px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      font-size: 14px;
-    }
-
-    .section h2 {
-      font-size: 17px;
-      margin-bottom: 8px;
-      color: var(--primary-dark);
-    }
-
-    .section h3 {
-      font-size: 15px;
-      margin: 14px 0 6px;
-      color: var(--primary-dark);
-    }
-
-    ul {
-      padding-left: 1.2em;
-    }
-
-    li {
-      margin-bottom: 4px;
-    }
-
-    /* 商品写真＋ざっくり説明 */
-    .product-intro {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
-      gap: 22px;
-      align-items: center;
-      margin-bottom: 22px;
-    }
-
-    .product-photo-wrap {
-      background: #fff5ee;
-      border-radius: 12px;
-      padding: 16px;
-    }
-
-    .product-photo {
-      width: 100%;
-      border-radius: 10px;
-      display: block;
-      object-fit: cover;
-    }
-
-    .product-lead {
-      background: #fff;
-      border-radius: 12px;
-      padding: 18px 18px 16px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      font-size: 14px;
-    }
-
-    .product-lead h2 {
-      font-size: 17px;
-      margin-bottom: 8px;
-      color: var(--primary-dark);
-    }
-
-    /* Peaberry 説明ブロック */
-    .section-peaberry {
-      font-size: 14px;
-    }
-
-    .peaberry-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-      gap: 18px;
-      margin-top: 8px;
-    }
-
-    .peaberry-text p + p {
-      margin-top: 6px;
-    }
-
-    .peaberry-point {
-      background: #fff5ee;
-      border-radius: 10px;
-      padding: 12px 12px 10px;
-      font-size: 13px;
-    }
-
-    .peaberry-point h4 {
-      font-size: 14px;
-      margin-bottom: 6px;
-      color: var(--primary-dark);
-    }
-
-    /* 隙間を埋める特徴カード */
-    .ingr-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 24px 20px;
-      margin-top: -10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-
-    .ingr-flex {
-      display: flex;
-      gap: 20px;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    .ingr-item {
-      flex: 1;
-      min-width: 250px;
-      background: #fff8f4;
-      border-left: 4px solid #a44f30;
-      border-radius: 10px;
-      padding: 16px 14px;
-    }
-
-    .ingr-item h3 {
-      margin-bottom: 6px;
-      font-size: 15px;
-      color: #a44f30;
-    }
-
-    .ingr-item p {
-      font-size: 13px;
-      color: #444;
-    }
-
-    .ingr-icon {
-      font-size: 20px;
-      color: #a44f30;
-      margin-bottom: 4px;
-    }
-
-    /* 中煎り・深煎りの図っぽい表示 */
-    .roast-compare {
-      background: #fff;
-    }
-
-    .roast-compare-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 10px;
-    }
-
-    .roast-card {
-      flex: 1 1 260px;
-      border-radius: 12px;
-      padding: 16px 14px 14px;
-      background: #ffffff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .roast-label {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    .roast-card--medium {
-      border-top: 6px solid #3aa86b;
-    }
-    .roast-card--medium .roast-label {
-      background: #3aa86b;
-    }
-
-    .roast-card--dark {
-      border-top: 6px solid #a44f30;
-    }
-    .roast-card--dark .roast-label {
-      background: #a44f30;
-    }
-
-    .roast-note {
-      font-size: 13px;
-      margin-top: 8px;
-    }
-
-    .roast-bars {
-      margin-top: 10px;
-      font-size: 12px;
-    }
-
-    .roast-bar-row {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .roast-bar-label {
-      width: 42px;
-    }
-
-    .roast-bar-track {
-      flex: 1;
-      height: 6px;
-      border-radius: 999px;
-      background: #eee;
-      overflow: hidden;
-    }
-
-    .roast-bar-fill {
-      height: 100%;
-      border-radius: 999px;
-    }
-
-    .roast-card--medium .roast-bar-fill {
-      background: linear-gradient(90deg, #a8e2c0, #3aa86b);
-    }
-
-    .roast-card--dark .roast-bar-fill {
-      background: linear-gradient(90deg, #f0c0a4, #a44f30);
-    }
-
-    .roast-icon {
-      position: absolute;
-      right: -18px;
-      bottom: -18px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      opacity: 0.08;
-    }
-    .roast-card--medium .roast-icon {
-      background: #3aa86b;
-    }
-    .roast-card--dark .roast-icon {
-      background: #a44f30;
-    }
-
-    /* コーヒー豆の特徴カード */
-    .beans-section {
-      margin-bottom: 22px;
-    }
-
-    .beans-section-title {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--primary-dark);
-      margin-bottom: 10px;
-    }
-
-    .bean-cards {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .bean-card {
-      background: #fff5ee;
-      border-radius: 12px;
-      padding: 14px 14px 12px;
-      font-size: 13px;
-    }
-
-    .bean-card h3 {
-      font-size: 15px;
-      margin-bottom: 6px;
-      color: var(--primary-dark);
-    }
-
-    .bean-card p {
-      margin-bottom: 4px;
-    }
-
-    .bean-card ul {
-      margin-top: 4px;
-    }
-
-    /* ページ下のリンク */
-    .page-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .back-link {
-      display: inline-block;
-      font-size: 13px;
-      text-decoration: none;
-      color: var(--primary-dark);
-    }
-
-    .back-link::before {
-      content: "← ";
-    }
-
-    .back-link-main {
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: var(--primary);
-      color: #fff;
-      font-weight: 600;
-    }
-
-    .back-link-main::before {
-      content: "";
-    }
-
-    .back-link-main:hover {
-      background: #8a3f25;
-    }
-
-    /* フッター */
-    footer {
-      background: #212121;
-      color: #eee;
-      text-align: center;
-      padding: 14px 8px;
-      font-size: 12px;
-      margin-top: 24px;
-    }
-
-    /* スマホ対応 */
-    @media (max-width: 900px) {
-      .product-intro {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding-top: 56px;
-      }
-
-      .header-inner {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 6px;
-        flex-wrap: wrap;
-      }
-
-      .logo-mark {
-        width: 46px;
-        height: 46px;
-      }
-
-      .logo-text-main {
-        font-size: 17px;
-      }
-
-      .logo-text-sub {
-        font-size: 11px;
-      }
-
-      .menu-toggle {
-        display: inline-flex;
-      }
-
-      nav {
-        width: 100%;
-      }
-
-      .global-nav {
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        width: 100%;
-        margin-top: 8px;
-        font-size: 13px;
-      }
-
-      .site-header.is-open .global-nav {
-        display: flex;
-      }
-
-      .global-nav > li {
-        width: 100%;
-      }
-
-      .global-nav > li > a {
-        padding: 4px 0;
-      }
-
-      .nav-sub {
-        position: static;
-        box-shadow: none;
-        background: transparent;
-        border: none;
-        padding: 0;
-        display: block;
-        opacity: 1;
-        transform: none;
-        backdrop-filter: none;
-      }
-
-      .nav-sub a {
-        padding: 2px 0 0;
-        color: #ffe5d6;
-        background: none;
-      }
-
-      .nav-sub a:hover {
-        background: none;
-        text-decoration: underline;
-        color: #ffffff;
-      }
-
-      .page-title {
-        font-size: 19px;
-      }
-
-      .bean-cards {
-        grid-template-columns: 1fr;
-      }
-
-      .peaberry-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ラオス産コーヒーの販売｜Smile F LAOS</title>
+<meta name="description" content="Smile F LAOSのコーヒーをご紹介します。">
+<script src="assets/js/page-start.js">
+</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/pages.css">
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner">
-    <a href="index.html" class="logo">
-      <img src="assets/images/brand/logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
-      <div>
-        <div class="logo-text-main">Smile F LAOS</div>
-        <span class="logo-text-sub">ラオスと日本をつなぐ学生サークル</span>
-      </div>
-    </a>
-
-    <button class="menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">
-      メニュー
-    </button>
-
-    <nav>
-      <ul class="global-nav">
-        <li>
-          <a href="about.html">Smile F LAOSとは</a>
-          <div class="nav-sub">
-            <a href="members.html">構成・メンバー紹介</a>
-            <a href="history.html">エフラオの歩み</a>
-            <a href="about.html#about-laos">ラオス概要</a>
-          </div>
-        </li>
-
-        <li>
-          <a href="index.html#activities">活動内容</a>
-          <div class="nav-sub">
-            <a href="coffee.html">コーヒー</a>
-            <a href="education.html">教育支援</a>
-            <a href="studytour.html">スタディツアー</a>
-            <a href="news.html">お知らせ</a>
-          </div>
-        </li>
-
-        <li>
-          <a href="coffee.html">製品紹介</a>
-          <div class="nav-sub">
-            <a href="coffee.html">コーヒー</a>
-            <a href="order.html">購入のご相談</a>
-          </div>
-        </li>
-
-        <li>
-          <a href="gallery.html">ギャラリー</a>
-        </li>
-
-        <li>
-          <a href="index.html#contact">お問い合わせ</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+<a class="skip-link" href="#main-content">本文へ移動</a>
+<div class="wrap">
+<header>
+<a class="brand" href="index.html">
+<img src="assets/images/brand/logo.jpg" alt="エフラオのロゴ">
+<div>
+<b>Smile F LAOS</b>
+<small>東洋大学から、ラオスとつながる。</small>
+</div>
+</a>
+<nav class="site-nav" aria-label="グローバルナビゲーション">
+<details class="site-nav-group">
+<summary>Smile F LAOSとは</summary>
+<div class="site-subnav">
+<a href="about.html">団体紹介</a>
+<a href="members.html">構成・メンバー紹介</a>
+<a href="history.html">エフラオの歩み</a>
+<a href="about.html#about-laos">ラオス概要</a>
+</div>
+</details>
+<details class="site-nav-group">
+<summary>活動内容</summary>
+<div class="site-subnav">
+<a href="index.html#activities">主な活動</a>
+<a href="coffee.html">コーヒー</a>
+<a href="education.html">教育支援</a>
+<a href="studytour.html">スタディツアー</a>
+<a href="news.html">お知らせ</a>
+</div>
+</details>
+<details class="site-nav-group">
+<summary>製品紹介</summary>
+<div class="site-subnav">
+<a href="coffee.html">コーヒー</a>
+<a href="order.html">購入のご相談</a>
+</div>
+</details>
+<a href="gallery.html">ギャラリー</a>
+<a href="index.html#contact">お問い合わせ</a>
+</nav>
 </header>
-
-<main class="wrapper">
-  <!-- タイトル -->
-  <div class="page-hero">
-    <h1 class="page-title">ラオス産コーヒーの販売</h1>
-    <div class="page-sub">coffee × fairtrade</div>
-  </div>
-
-  <!-- 写真＋ざっくり商品紹介 -->
-  <section class="product-intro">
-    <div class="product-photo-wrap">
-      <img src="assets/images/coffee/package.jpg" alt="Smile F LAOSのChampa Coffeeパッケージ写真" class="product-photo">
-    </div>
-    <div class="product-lead">
-      <h2>ラオスの農家さんのコーヒーを、学生の手で届ける</h2>
-      <p>
+</div>
+<main class="page-main coffee" id="main-content">
+  <nav class="breadcrumbs" aria-label="現在の位置">
+<a href="index.html">トップ</a>
+<span>／</span>
+<span>コーヒー</span>
+</nav>
+<section class="page-hero">
+<div class="page-hero-grid">
+<div>
+<p class="page-kicker">COFFEE</p>
+<h1 class="page-title">ラオスのコーヒーを、<br>学生の手で。</h1>
+<p class="page-lead">
         エフラオでは、ATJを通じて、ラオス・パクソン近郊の農家さんが育てたフェアトレードのコーヒー豆を仕入れ、
         学生がパッケージデザインや商品企画を行っています。ドリップパックや豆の販売を通して、
         ラオスの魅力や農家さんのこだわりをキャンパス内外に伝えています。
       </p>
     </div>
+<figure class="page-cover">
+<img src="assets/images/coffee/package.jpg" alt="Smile F LAOSのChampa Coffee">
+<figcaption>Smile F LAOSのChampa Coffee</figcaption>
+</figure>
+</div>
+</section>
+<nav class="page-index" aria-label="このページの内容">
+<a href="#coffee-section-1">中煎りと深煎りの2種類</a>
+<a href="#coffee-section-2">エフラオのコーヒー豆の特徴</a>
+<a href="#coffee-section-3">焙煎と味わいのこだわり</a>
+<a href="#coffee-section-4">どこで販売している？</a>
+<a href="#coffee-section-5">売上はどう活かされる？</a>
+</nav>
+<section class="section roast-compare" id="coffee-section-1">
+    <h2>中煎りと深煎りの2種類</h2>
+    <p>
+      飲み方や気分に合わせて、2つの焙煎度から選んで楽しんでいただけます。
+    </p>
+
+    <div class="roast-compare-grid">
+      <div class="roast-card roast-card--medium">
+        <span class="roast-label">中煎り（ミディアム）</span>
+        <p class="roast-note">
+          酸味とコクのバランスがよく、後味はすっきり。<br>
+          ホットコーヒーで、華やかな香りを楽しみたい方におすすめです。
+          サンドウィッチなどによく合い、お昼の休憩のお供に最適な一杯です。
+        </p>
+
+        <div class="roast-bars">
+          <div class="roast-bar-row">
+            <span class="roast-bar-label">酸味</span>
+            <div class="roast-bar-track">
+              <div class="roast-bar-fill" style="width:70%;">
+</div>
+            </div>
+          </div>
+          <div class="roast-bar-row">
+            <span class="roast-bar-label">コク</span>
+            <div class="roast-bar-track">
+              <div class="roast-bar-fill" style="width:50%;">
+</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="roast-icon">
+</div>
+      </div>
+
+      <div class="roast-card roast-card--dark">
+        <span class="roast-label">深煎り（ダーク）</span>
+        <p class="roast-note">
+          しっかりとしたコクと香ばしさがあり、ミルクとも相性◎。<br>
+          アイスコーヒーや、濃いめの味わいが好きな方にぴったりです。
+          ケーキなどの甘いスイーツによく合いティータイムのお供に最適な一杯です。
+        </p>
+
+        <div class="roast-bars">
+          <div class="roast-bar-row">
+            <span class="roast-bar-label">酸味</span>
+            <div class="roast-bar-track">
+              <div class="roast-bar-fill" style="width:30%;">
+</div>
+            </div>
+          </div>
+          <div class="roast-bar-row">
+            <span class="roast-bar-label">コク</span>
+            <div class="roast-bar-track">
+              <div class="roast-bar-fill" style="width:85%;">
+</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="roast-icon">
+</div>
+      </div>
+    </div>
   </section>
 
-  <section class="section section-peaberry">
+  <aside class="purchase-strip">
+<div>
+<h2>白山祭で、ラオスコーヒーを。</h2>
+<p>2026年10月31日・11月1日 ／ 両日10:00〜18:00</p>
+<p>東洋大学 白山キャンパス 1号館5階<br>販売1505教室・イートイン1511教室</p>
+</div>
+<a href="order.html#festival-menu">販売メニューを見る ↗</a>
+</aside>
+<section class="section section-peaberry" id="coffee-section-2">
     <h2>エフラオのコーヒー豆の特徴</h2>
 
     <div class="peaberry-grid">
-      <!-- 左：詳しい説明 -->
       <div class="peaberry-text">
         <h3>ピーベリー（Peaberry）100％</h3>
         <p>
@@ -701,7 +174,6 @@
         </p>
       </div>
 
-      <!-- 右：かんたんポイント（重複しない内容） -->
       <div class="peaberry-point">
         <h4>ピーベリーのポイント</h4>
         <ul>
@@ -711,10 +183,9 @@
         </ul>
       </div>
     </div>
-  </section>
-
-  <!-- 隙間を埋める図解カード -->
-  <section class="section ingr-card">
+  <details class="page-details">
+<summary>ピーベリーの特徴を詳しく読む</summary>
+<div class="ingr-content">
     <div class="ingr-flex">
 
       <div class="ingr-item">
@@ -736,78 +207,15 @@
       </div>
 
     </div>
-  </section>
+  </div>
 
-  <!-- 焙煎度と飲み方 -->
-  <section class="section roast-compare">
-    <h2>中煎りと深煎りの2種類</h2>
-    <p style="font-size:13px; margin-top:4px;">
-      飲み方や気分に合わせて、2つの焙煎度から選んで楽しんでいただけます。
-    </p>
+  </details>
+</section>
 
-    <div class="roast-compare-grid">
-      <!-- 中煎りカード（緑） -->
-      <div class="roast-card roast-card--medium">
-        <span class="roast-label">中煎り（ミディアム）</span>
-        <p class="roast-note">
-          酸味とコクのバランスがよく、後味はすっきり。<br>
-          ホットコーヒーで、華やかな香りを楽しみたい方におすすめです。
-          サンドウィッチなどによく合い、お昼の休憩のお供に最適な一杯です。
-        </p>
-
-        <div class="roast-bars">
-          <div class="roast-bar-row">
-            <span class="roast-bar-label">酸味</span>
-            <div class="roast-bar-track">
-              <div class="roast-bar-fill" style="width:70%;"></div>
-            </div>
-          </div>
-          <div class="roast-bar-row">
-            <span class="roast-bar-label">コク</span>
-            <div class="roast-bar-track">
-              <div class="roast-bar-fill" style="width:50%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="roast-icon"></div>
-      </div>
-
-      <!-- 深煎りカード（茶色） -->
-      <div class="roast-card roast-card--dark">
-        <span class="roast-label">深煎り（ダーク）</span>
-        <p class="roast-note">
-          しっかりとしたコクと香ばしさがあり、ミルクとも相性◎。<br>
-          アイスコーヒーや、濃いめの味わいが好きな方にぴったりです。
-          ケーキなどの甘いスイーツによく合いティータイムのお供に最適な一杯です。
-        </p>
-
-        <div class="roast-bars">
-          <div class="roast-bar-row">
-            <span class="roast-bar-label">酸味</span>
-            <div class="roast-bar-track">
-              <div class="roast-bar-fill" style="width:30%;"></div>
-            </div>
-          </div>
-          <div class="roast-bar-row">
-            <span class="roast-bar-label">コク</span>
-            <div class="roast-bar-track">
-              <div class="roast-bar-fill" style="width:85%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="roast-icon"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 豆のこだわり（2枚のカードに整理） -->
-  <section class="section beans-section">
+  <section class="section beans-section" id="coffee-section-3">
     <h2 class="beans-section-title">焙煎と味わいのこだわり</h2>
 
     <div class="bean-cards">
-      <!-- 国内焙煎・鮮度 -->
       <article class="bean-card">
         <h3>国内焙煎・新鮮さへのこだわり</h3>
         <p>
@@ -819,7 +227,6 @@
         </p>
       </article>
 
-      <!-- 風味のイメージ -->
       <article class="bean-card">
         <h3>飲みやすく、毎日続けられる一杯</h3>
         <p>
@@ -834,8 +241,7 @@
     </div>
   </section>
 
-  <!-- どこで販売している？ -->
-  <section class="section">
+  <section class="section" id="coffee-section-4">
     <h2>どこで販売している？</h2>
 
     <h3>ラオスフェスティバル</h3>
@@ -848,7 +254,8 @@
     <p>
       学内販売会を通じて、学生や教職員の方々にコーヒーを紹介しています。2026年度は4月30日〜5月1日、7月15日・16日、10月14日・15日に開催し、3回とも完売しました。
       コーヒーの背景や支援の仕組みをポップやトークで伝えることで、「買って終わり」ではない
-      関わり方を大切にしています。<br><a href="news.html#reports" class="back-link">学内販売会の活動報告を見る</a>
+      関わり方を大切にしています。<br>
+<a href="news.html#reports" class="back-link">学内販売会の活動報告を見る</a>
     </p>
 
     <h3>白山祭（学園祭）・文京博覧会</h3>
@@ -859,8 +266,7 @@
     </p>
   </section>
 
-  <!-- 売上の使い方 -->
-  <section class="section">
+  <section class="section" id="coffee-section-5">
     <h2>売上はどう活かされる？</h2>
     <p>
       コーヒーの売上の一部は、ラオスの子どもたちの教育環境を整えるための支援に使われます。
@@ -869,13 +275,11 @@
     </p>
   </section>
 
-  <!-- 戻りリンク＋お知らせページ導線 -->
   <div class="page-links">
     <a href="index.html#activities" class="back-link">
       活動一覧に戻る
     </a>
 
-    <!-- お知らせ（販売会予定）へのリンク -->
     <a href="news.html" class="back-link back-link-main">
       今後の販売会のお知らせを見る
     </a>
@@ -883,36 +287,34 @@
 
 </main>
 
-<footer>
-  © 2026 Smile F LAOS
+<section class="join" id="contact">
+<div>
+<h2>一緒に、ラオスとつながろう。</h2>
+<p>活動への参加や、コーヒー販売のご相談はこちらから。</p>
+</div>
+<div class="contact-links">
+<a href="https://lin.ee/xcI0PXX" target="_blank" rel="noopener noreferrer">公式LINEで相談する ↗</a>
+<a href="https://www.instagram.com/smile_f_laos?igsh=MWttajM1NHFvYXE2eQ==" target="_blank" rel="noopener noreferrer">Instagramを見る ↗</a>
+</div>
+</section>
+<footer class="wrap">
+<nav class="footer-nav" aria-label="サイト内のページ">
+<a href="about.html">団体紹介</a>
+<a href="education.html">教育支援</a>
+<a href="studytour.html">スタディツアー</a>
+<a href="news.html">お知らせ・活動報告</a>
+<a href="gallery.html">ギャラリー</a>
+<a href="members.html">メンバー</a>
+<a href="history.html">沿革</a>
+<a href="partners.html">協力団体</a>
+<a href="order.html">購入のご相談</a>
+</nav>
+<span>Smile F LAOS ／ 東洋大学</span>
+<span>© 2026 Smile F LAOS</span>
 </footer>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const header = document.querySelector('.site-header');
-    const menuButton = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelectorAll('.global-nav a');
-
-    if (!header || !menuButton) return;
-
-    menuButton.addEventListener('click', function () {
-      const isOpen = header.classList.toggle('is-open');
-      menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        menuButton.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
-      menuButton.textContent = isOpen ? '閉じる' : 'メニュー';
-    });
-
-    navLinks.forEach(function (link) {
-      link.addEventListener('click', function () {
-        if (!window.matchMedia('(max-width: 768px)').matches) return;
-
-        header.classList.remove('is-open');
-        menuButton.setAttribute('aria-expanded', 'false');
-          menuButton.setAttribute('aria-label', 'メニューを開く');
-        menuButton.textContent = 'メニュー';
-      });
-    });
-  });
+<script src="assets/js/navigation.js" defer>
+</script>
+<script src="assets/js/pages.js" defer>
 </script>
 </body>
 </html>
