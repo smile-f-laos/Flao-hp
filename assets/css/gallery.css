@@ -22,11 +22,6 @@
 .album-photo img{display:block;width:100%;height:100%;object-fit:contain}
 .album-photos figcaption{font-size:12px;line-height:1.9;margin-top:10px;color:var(--muted)}
 .album-end{display:flex;justify-content:space-between;gap:20px;font-size:12px;margin:30px 0}
-.legacy-album{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:25px 0}
-.legacy-album summary{cursor:pointer;font-size:18px}
-.legacy-album summary span{font-size:11px;color:var(--muted);margin-left:15px}
-.legacy-album .album-photos{margin-top:25px;grid-template-columns:1fr 1fr}
-.legacy-album img{width:100%;height:auto;display:block}
 .photo-viewer{width:min(1100px,96vw);max-height:96dvh;padding:16px 22px;border:0;background:var(--paper,#f8f5ef);color:var(--ink,#302922)}
 .photo-viewer::backdrop{background:rgba(30,24,20,.86)}
 .viewer-tools,.viewer-bottom{display:flex;justify-content:space-between;align-items:center;gap:15px;font-size:12px}
@@ -37,5 +32,5 @@
 .viewer-original{font-size:11px}
 body:has(.photo-viewer[open]){overflow:hidden}
 @media(max-width:1000px){.album-list{grid-template-columns:1fr}}
-@media(max-width:760px){.album-list{padding:45px 0}.album-folder>img{min-height:190px}.folder-info{padding:18px;gap:9px}.folder-info strong{font-size:22px}.album-toolbar{align-items:flex-start;flex-direction:column;gap:8px}.album-toolbar p{margin:0}.album-photos{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}.album-day-heading h2{font-size:26px}.album-days{gap:8px}.album-days a{padding:7px 13px}.photo-viewer{padding:12px}.viewer-image{height:57dvh}.viewer-bottom{flex-wrap:wrap}.viewer-original{order:3;flex-basis:100%;text-align:center;margin-top:8px}.album-photos figcaption{font-size:11px}.legacy-album .album-photos{grid-template-columns:1fr}}
+@media(max-width:760px){.album-list{padding:45px 0}.album-folder>img{min-height:190px}.folder-info{padding:18px;gap:9px}.folder-info strong{font-size:22px}.album-toolbar{align-items:flex-start;flex-direction:column;gap:8px}.album-toolbar p{margin:0}.album-photos{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}.album-day-heading h2{font-size:26px}.album-days{gap:8px}.album-days a{padding:7px 13px}.photo-viewer{padding:12px}.viewer-image{height:57dvh}.viewer-bottom{flex-wrap:wrap}.viewer-original{order:3;flex-basis:100%;text-align:center;margin-top:8px}.album-photos figcaption{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.album-folder{transition:none}}
