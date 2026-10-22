@@ -1,718 +1,114 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>教育支援｜Smile F LAOS</title>
-  <style>
-    :root {
-      --primary: #a44f30;
-      --primary-dark: #a44f30;
-      --primary-light: #fff5ee;
-      --bg: #ffffff;
-      --text-main: #000000;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
-      line-height: 1.7;
-      padding-top: 76px;
-    }
-
-    /* ヘッダー */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-
-    .header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 16px;
-      gap: 18px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: #fff;
-      flex-shrink: 0;
-    }
-
-    .logo-mark {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      object-fit: contain;
-      background: #fff;
-    }
-
-    .logo-text-main {
-      font-weight: 800;
-      font-size: 20px;
-      letter-spacing: 0.05em;
-      line-height: 1.1;
-    }
-
-    .logo-text-sub {
-      font-size: 12px;
-      display: block;
-      opacity: 0.8;
-    }
-
-    .menu-toggle {
-      display: none;
-      border: 1px solid rgba(255,255,255,0.6);
-      background: rgba(255,255,255,0.12);
-      color: #fff;
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .global-nav {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 18px;
-      font-size: 16px;
-      list-style: none;
-    }
-
-    .global-nav > li {
-      position: relative;
-      list-style: none;
-    }
-
-    .global-nav > li > a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 4px 0;
-      display: inline-block;
-    }
-
-    .global-nav > li > a:hover {
-      text-decoration: underline;
-    }
-
-    .nav-sub {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 180px;
-      padding: 6px 0;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      display: none;
-      opacity: 0;
-      transform: translateY(4px);
-      transition: opacity 0.18s ease, transform 0.18s ease;
-      z-index: 200;
-    }
-
-    .global-nav > li:hover .nav-sub,
-    .global-nav > li:focus-within .nav-sub {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .nav-sub a {
-      display: block;
-      padding: 6px 14px;
-      font-size: 14px;
-      color: #000000;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .nav-sub a:hover {
-      background: #fff5ee;
-      color: #a44f30;
-    }
-
-    /* 共通レイアウト */
-    .wrapper {
-      max-width: 1100px;
-      margin: 24px auto 40px;
-      padding: 0 16px;
-    }
-
-    .page-hero {
-      background: #fff5ee;
-      border-radius: 12px;
-      padding: 20px 18px 18px;
-      margin-bottom: 20px;
-      border-left: 5px solid var(--primary);
-    }
-
-    .page-title {
-      font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 6px;
-    }
-
-    .page-sub {
-      font-size: 13px;
-      color: #777;
-    }
-
-    .tour-carousel {
-      position: relative;
-      margin-bottom: 20px;
-    }
-
-    .tour-carousel-viewport {
-      overflow: hidden;
-      border-radius: 12px;
-    }
-
-    .tour-carousel-track {
-      display: flex;
-      transition: transform 0.55s ease;
-    }
-
-    .tour-slide {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      min-width: 100%;
-    }
-
-    .tour-slide--single .tour-photo {
-      grid-column: 2;
-    }
-
-    .tour-photo {
-      aspect-ratio: 4 / 3;
-      margin: 0;
-      overflow: hidden;
-      border-radius: 12px;
-      background: #eee7e2;
-      box-shadow: 0 2px 6px rgba(0,0,0,.08);
-    }
-
-    .tour-photo img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .tour-carousel-button {
-      position: absolute;
-      top: calc(50% - 16px);
-      z-index: 2;
-      display: grid;
-      width: 38px;
-      height: 38px;
-      padding: 0;
-      border: 0;
-      border-radius: 50%;
-      place-items: center;
-      background: rgba(44, 34, 29, .78);
-      color: #fff;
-      font-size: 28px;
-      line-height: 1;
-      cursor: pointer;
-      transform: translateY(-50%);
-    }
-
-    .tour-carousel-button:hover,
-    .tour-carousel-button:focus-visible {
-      background: var(--primary-dark);
-    }
-
-    .tour-carousel-button:focus-visible,
-    .tour-carousel-dot:focus-visible {
-      outline: 3px solid rgba(164, 79, 48, .35);
-      outline-offset: 2px;
-    }
-
-    .tour-carousel-prev {
-      left: 10px;
-    }
-
-    .tour-carousel-next {
-      right: 10px;
-    }
-
-    .tour-carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 7px;
-      min-height: 10px;
-      margin-top: 10px;
-    }
-
-    .tour-carousel-dot {
-      width: 9px;
-      height: 9px;
-      padding: 0;
-      border: 0;
-      border-radius: 50%;
-      background: #d5c5bc;
-      cursor: pointer;
-    }
-
-    .tour-carousel-dot.is-active {
-      background: var(--primary);
-    }
-
-    @media (max-width: 768px) {
-      .tour-slide {
-        gap: 6px;
-      }
-
-      .tour-photo {
-        border-radius: 8px;
-      }
-
-      .tour-carousel-button {
-        width: 32px;
-        height: 32px;
-        font-size: 24px;
-      }
-
-      .tour-carousel-prev {
-        left: 5px;
-      }
-
-      .tour-carousel-next {
-        right: 5px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .tour-carousel-track {
-        transition: none;
-      }
-
-    }
-
-    .section {
-      background: #fff;
-      border-radius: 12px;
-      padding: 20px 18px 18px;
-      margin-bottom: 18px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      font-size: 14px;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .section-title {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--primary-dark);
-    }
-
-    .section-sub {
-      font-size: 12px;
-      color: #777;
-    }
-
-    .section p + p {
-      margin-top: 6px;
-    }
-
-    ul {
-      padding-left: 1.2em;
-    }
-
-    li {
-      margin-bottom: 4px;
-    }
-
-    /* これまでの支援（タイムライン風） */
-    .timeline {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 12px;
-      margin-top: 6px;
-      font-size: 13px;
-    }
-
-    .timeline-item {
-      position: relative;
-      padding-left: 18px;
-    }
-
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: 4px;
-      top: 4px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--primary);
-    }
-
-    .timeline-year {
-      font-weight: 700;
-      font-size: 13px;
-      color: var(--primary-dark);
-    }
-
-    .timeline-title {
-      font-weight: 600;
-      margin-top: 2px;
-    }
-
-    .timeline-desc {
-      margin-top: 2px;
-      color: #444;
-    }
-
-    /* 取り組みカード（今年度など） */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 6px;
-    }
-
-    .card {
-      background: #fff5ee;
-      border-radius: 12px;
-      padding: 14px 14px 12px;
-      font-size: 13px;
-    }
-
-    .card-tag {
-      display: inline-block;
-      font-size: 11px;
-      padding: 3px 7px;
-      border-radius: 999px;
-      background: #ffecb3;
-      color: #795548;
-      margin-bottom: 4px;
-    }
-
-    .card-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--primary-dark);
-      margin-bottom: 4px;
-    }
-
-    .card ul {
-      margin-top: 4px;
-    }
-
-    /* 大切にしていること（3カラム→スマホ1カラム） */
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 8px;
-      font-size: 13px;
-    }
-
-    .value-item {
-      background: #f7f3f0;
-      border-radius: 10px;
-      padding: 10px 10px 9px;
-    }
-
-    .value-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--primary-dark);
-      margin-bottom: 4px;
-    }
-
-    /* ページ下のリンク */
-    .page-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .back-link {
-      display: inline-block;
-      font-size: 13px;
-      text-decoration: none;
-      color: var(--primary-dark);
-    }
-
-    .back-link::before {
-      content: "← ";
-    }
-
-    .back-link-main {
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: var(--primary);
-      color: #fff;
-      font-weight: 600;
-    }
-
-    .back-link-main::before {
-      content: "";
-    }
-
-    .back-link-main:hover {
-      background: #8a3f25;
-    }
-
-    /* フッター */
-    footer {
-      background: #212121;
-      color: #eee;
-      text-align: center;
-      padding: 14px 8px;
-      font-size: 12px;
-      margin-top: 24px;
-    }
-
-    /* スマホ対応 */
-    @media (max-width: 768px) {
-      body {
-        padding-top: 56px;
-      }
-
-      .header-inner {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 6px;
-        flex-wrap: wrap;
-      }
-
-      .logo-mark {
-        width: 46px;
-        height: 46px;
-      }
-
-      .logo-text-main {
-        font-size: 17px;
-      }
-
-      .logo-text-sub {
-        font-size: 11px;
-      }
-
-      .menu-toggle {
-        display: inline-flex;
-      }
-
-      nav {
-        width: 100%;
-      }
-
-      .global-nav {
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        width: 100%;
-        margin-top: 8px;
-        font-size: 13px;
-      }
-
-      .site-header.is-open .global-nav {
-        display: flex;
-      }
-
-      .global-nav > li {
-        width: 100%;
-      }
-
-      .global-nav > li > a {
-        padding: 4px 0;
-      }
-
-      .nav-sub {
-        position: static;
-        box-shadow: none;
-        background: transparent;
-        border: none;
-        padding: 0;
-        display: block;
-        opacity: 1;
-        transform: none;
-        backdrop-filter: none;
-      }
-
-      .nav-sub a {
-        padding: 2px 0 0;
-        color: #ffe5d6;
-        background: none;
-      }
-
-      .nav-sub a:hover {
-        background: none;
-        text-decoration: underline;
-        color: #ffffff;
-      }
-
-      .page-title {
-        font-size: 19px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .values-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
-  <link rel="stylesheet" href="assets/css/updates.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>教育支援｜Smile F LAOS</title>
+<meta name="description" content="Smile F LAOSの教育支援をご紹介します。">
+<script src="assets/js/page-start.js">
+</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/pages.css">
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner">
-    <a href="index.html" class="logo">
-      <img src="assets/images/brand/logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
-      <div>
-        <div class="logo-text-main">Smile F LAOS</div>
-        <span class="logo-text-sub">ラオスと日本をつなぐ学生サークル</span>
-      </div>
-    </a>
-
-    <button class="menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">
-      メニュー
-    </button>
-
-    <nav>
-      <ul class="global-nav">
-        <li>
-          <a href="about.html">Smile F LAOSとは</a>
-          <div class="nav-sub">
-            <a href="members.html">構成・メンバー紹介</a>
-            <a href="history.html">エフラオの歩み</a>
-            <a href="about.html#about-laos">ラオス概要</a>
-          </div>
-        </li>
-
-        <li>
-          <a href="index.html#activities">活動内容</a>
-          <div class="nav-sub">
-            <a href="coffee.html">コーヒー</a>
-            <a href="education.html">教育支援</a>
-            <a href="studytour.html">スタディツアー</a>
-            <a href="news.html">お知らせ</a>
-          </div>
-        </li>
-
-        <li>
-          <a href="coffee.html">製品紹介</a>
-          <div class="nav-sub">
-            <a href="coffee.html">コーヒー</a>
-            <a href="order.html">購入のご相談</a>
-          </div>
-        </li>
-
-        <li>
-          <a href="gallery.html">ギャラリー</a>
-        </li>
-
-        <li>
-          <a href="index.html#contact">お問い合わせ</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+<a class="skip-link" href="#main-content">本文へ移動</a>
+<div class="wrap">
+<header>
+<a class="brand" href="index.html">
+<img src="assets/images/brand/logo.jpg" alt="エフラオのロゴ">
+<div>
+<b>Smile F LAOS</b>
+<small>東洋大学から、ラオスとつながる。</small>
+</div>
+</a>
+<nav class="site-nav" aria-label="グローバルナビゲーション">
+<details class="site-nav-group">
+<summary>Smile F LAOSとは</summary>
+<div class="site-subnav">
+<a href="about.html">団体紹介</a>
+<a href="members.html">構成・メンバー紹介</a>
+<a href="history.html">エフラオの歩み</a>
+<a href="about.html#about-laos">ラオス概要</a>
+</div>
+</details>
+<details class="site-nav-group">
+<summary>活動内容</summary>
+<div class="site-subnav">
+<a href="index.html#activities">主な活動</a>
+<a href="coffee.html">コーヒー</a>
+<a href="education.html">教育支援</a>
+<a href="studytour.html">スタディツアー</a>
+<a href="news.html">お知らせ</a>
+</div>
+</details>
+<details class="site-nav-group">
+<summary>製品紹介</summary>
+<div class="site-subnav">
+<a href="coffee.html">コーヒー</a>
+<a href="order.html">購入のご相談</a>
+</div>
+</details>
+<a href="gallery.html">ギャラリー</a>
+<a href="index.html#contact">お問い合わせ</a>
+</nav>
 </header>
-
-<main class="wrapper">
-  <!-- タイトル -->
-  <div class="page-hero">
-    <h1 class="page-title">教育支援</h1>
-    <div class="page-sub">education support</div>
-  </div>
-
-  <section class="tour-carousel" aria-label="教育支援の写真">
-  <div class="tour-carousel-viewport">
-    <div class="tour-carousel-track">
-
-      <!-- 1セット目：写真A～C -->
-      <div class="tour-slide">
-        <figure class="tour-photo">
-          <img src="assets/images/education/education-a.jpg" alt="教育支援の写真A">
-        </figure>
-
-        <figure class="tour-photo">
-          <img src="assets/images/education/education-b.jpg" alt="教育支援の写真B">
-        </figure>
-
-        <figure class="tour-photo">
-          <img src="assets/images/education/education-c.jpg" alt="教育支援の写真C">
-        </figure>
-      </div>
-
-      <!-- 2セット目：写真D～F -->
-      <div class="tour-slide">
-        <figure class="tour-photo">
-          <img src="assets/images/education/education-d.jpg" alt="教育支援の写真D" loading="lazy">
-        </figure>
-
-        <figure class="tour-photo">
-          <img src="assets/images/education/education-e.jpg" alt="教育支援の写真E" loading="lazy">
-        </figure>
-
-        <figure class="tour-photo">
-          <img src="assets/images/education/education-f.jpg" alt="教育支援の写真F" loading="lazy">
-        </figure>
-      </div>
-
-    </div>
-  </div>
-
-  <button class="tour-carousel-button tour-carousel-prev"
-          type="button"
-          aria-label="前の3枚を表示">
-    &#8249;
-  </button>
-
-  <button class="tour-carousel-button tour-carousel-next"
-          type="button"
-          aria-label="次の3枚を表示">
-    &#8250;
-  </button>
-
-  <div class="tour-carousel-dots"
-       aria-label="表示する写真の組を選択"></div>
+</div>
+<main class="page-main education" id="main-content">
+  <nav class="breadcrumbs" aria-label="現在の位置">
+<a href="index.html">トップ</a>
+<span>／</span>
+<span>教育支援</span>
+</nav>
+<section class="page-hero">
+<div class="page-hero-grid">
+<div>
+<p class="page-kicker">EDUCATION</p>
+<h1 class="page-title">暮らしの学びを、<br>一冊の物語に。</h1>
+<p class="page-lead">2026年度は、食育・衛生・環境をテーマにしたテキストブックを制作しています。10月に物語のストーリーが完成し、翻訳や現地での活用に向けた準備を進めています。</p>
+</div>
+<figure class="page-cover">
+<img src="assets/images/home/pillar-education.jpg" alt="これまでの教育支援の活動風景">
+<figcaption>これまでの教育支援の活動風景</figcaption>
+</figure>
+</div>
 </section>
+<nav class="page-index" aria-label="このページの内容">
+<a href="#project-2026">2026年度の取り組み</a>
+<a href="#education-section-2">エフラオの教育支援とは？</a>
+<a href="#education-section-3">コーヒーと教育支援のサイクル</a>
+<a href="#education-section-4">ラオスの教育と本の状況</a>
+<a href="#education-section-5">これまでの支援の例</a>
+<a href="#education-section-6">大切にしていること</a>
+</nav>
+<section class="section activity-section" id="project-2026">
+<div class="section-header">
+<h2 class="section-title">2026年度の取り組み</h2>
+<div class="section-sub">2026 projects</div>
+</div>
+<p class="activity-note">2026年10月時点</p>
+<p>2026年度は、食育・衛生・環境をテーマにしたテキストブックを制作しています。10月に物語のストーリーが完成し、原稿を整え、翻訳や現地での活用に向けた準備を進めています。</p>
+<h3>物語を通して、身近な暮らしを学ぶ</h3>
+<p>子どもたちが物語を楽しみながら、日々の生活に結びつく学びに出会える教材を目指しています。物語と学習ページを組み合わせ、イラストなどを通して分かりやすく伝えることを大切にしています。</p>
+    <div class="activity-themes">
+      <article class="activity-theme">
+<h3>食育</h3>
+<p>身近な食材や栄養を題材に、食べることと暮らしのつながりを考えます。</p>
+</article>
+      <article class="activity-theme">
+<h3>衛生</h3>
+<p>手洗いなど、毎日の生活の中で実践できる衛生習慣を学びます。</p>
+</article>
+      <article class="activity-theme">
+<h3>環境</h3>
+<p>ごみの扱いなど、身の回りの環境について考えるきっかけをつくります。</p>
+</article>
+    </div>
+    <h3>現地での活用に向けて</h3>
+<p>現地の暮らしや文化に合った表現を考え、ラオス語への翻訳や、テキストブックとワークショップをつなげた活用に向けて準備しています。</p>
+<a class="activity-link" href="news.html#education-plan">制作の進捗を見る →</a>
+  </section>
 
-  <!-- エフラオの教育支援とは？ -->
-  <section class="section">
+  <section class="section" id="education-section-2">
     <div class="section-header">
       <h2 class="section-title">エフラオの教育支援とは？</h2>
       <div class="section-sub">What we do</div>
@@ -727,7 +123,7 @@
     </p>
   </section>
 
-  <section class="section">
+  <section class="section" id="education-section-3">
   <div class="section-header">
     <h2 class="section-title">コーヒーと教育支援のサイクル</h2>
     <div class="section-sub">Our model</div>
@@ -746,14 +142,14 @@
       </ul>
     </div>
     <div>
-      <p style="font-size:13px;">
+      <p>
         これまでには浄水器やコンポストの設置支援、職業図鑑の制作・寄贈などを行ってきました。<br>
       </p>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="education-section-4">
   <div class="section-header">
     <h2 class="section-title">ラオスの教育と本の状況</h2>
     <div class="section-sub">Learning environment</div>
@@ -769,18 +165,18 @@
     <li>教師しか教科書を持っていない学校も少なくない</li>
     <li>口承文化が強く、読書習慣が根づきにくい</li>
   </ul>
-  <p style="font-size:13px; margin-top:8px;">
+  <p>
     また、ラオス国立図書館の蔵書数は近隣国と比べて少なく、財政状況により本の購入も限られているのが現状です。
   </p>
 
-  <p style="font-size:14px; margin-top:14px; font-weight:bold;">
+  <p>
     NPO法人「ラオスのこども」とは？
   </p>
-  <p style="font-size:13px; margin-top:4px;">
+  <p>
     「ラオスのこども」は、ラオスの子どもの教育環境の向上を目的に1982年から活動している日本のNGOです。
     ラオス語の創作絵本や昔話、生活に関する本などを現地で出版し、全国の小中学校に届ける取り組みを続けています。
   </p>
-  <p style="font-size:13px; margin-top:4px;">
+  <p>
     出版や図書館づくりに加えて、本の管理や活用の仕方を伝える「読書推進セミナー」、
     図書室と安全な遊び場を備えた「子ども文化センター」の運営など、
     子どもたちが本や表現活動と出会える場を広げています。
@@ -791,8 +187,7 @@
   </p>
 </section>
   
-  <!-- これまでの支援の例 -->
-  <section class="section">
+  <section class="section" id="education-section-5">
     <div class="section-header">
       <h2 class="section-title">これまでの支援の例</h2>
       <div class="section-sub">Past projects</div>
@@ -829,18 +224,7 @@
     </div>
   </section>
 
-  <!-- 2026年度の取り組み -->
-  <section class="section activity-section" id="project-2026"><div class="section-header"><h2 class="section-title">2026年度の取り組み</h2><div class="section-sub">2026 projects</div></div><p class="activity-note">2026年10月時点</p><p>2026年度は、食育・衛生・環境をテーマにしたテキストブックを制作しています。10月に物語のストーリーが完成し、原稿を整え、翻訳や現地での活用に向けた準備を進めています。</p><h3>物語を通して、身近な暮らしを学ぶ</h3><p>子どもたちが物語を楽しみながら、日々の生活に結びつく学びに出会える教材を目指しています。物語と学習ページを組み合わせ、イラストなどを通して分かりやすく伝えることを大切にしています。</p>
-    <div class="activity-themes">
-      <article class="activity-theme"><h3>食育</h3><p>身近な食材や栄養を題材に、食べることと暮らしのつながりを考えます。</p></article>
-      <article class="activity-theme"><h3>衛生</h3><p>手洗いなど、毎日の生活の中で実践できる衛生習慣を学びます。</p></article>
-      <article class="activity-theme"><h3>環境</h3><p>ごみの扱いなど、身の回りの環境について考えるきっかけをつくります。</p></article>
-    </div>
-    <h3>現地での活用に向けて</h3><p>現地の暮らしや文化に合った表現を考え、ラオス語への翻訳や、テキストブックとワークショップをつなげた活用に向けて準備しています。</p><a class="activity-link" href="news.html#education-plan">制作の進捗を見る →</a>
-  </section>
-
-  <!-- 大切にしていること -->  <!-- 大切にしていること -->
-  <section class="section">
+  <section class="section" id="education-section-6">
     <div class="section-header">
       <h2 class="section-title">大切にしていること</h2>
       <div class="section-sub">Our values</div>
@@ -873,8 +257,7 @@
     </div>
   </section>
 
-  <!-- 現地とのつながり -->
-  <section class="section">
+  <section class="section" id="education-section-7">
     <div class="section-header">
       <h2 class="section-title">スタディツアーとのつながり</h2>
       <div class="section-sub">Link to study tours</div>
@@ -898,121 +281,81 @@
       </a>
     </div>
   </section>
+<section class="photo-carousel" aria-label="これまでの教材・活動写真">
+<h2>これまでの教材・活動写真</h2>
+<div class="photo-viewport" tabindex="0" aria-label="写真一覧。左右にスクロールできます">
+<div class="photo-track">
+<figure class="photo-cell">
+<a href="assets/images/education/education-a.jpg" target="_blank" rel="noopener noreferrer" aria-label="教育支援の写真Aを大きく見る">
+<img src="assets/images/education/education-a.jpg" alt="教育支援の写真A">
+        </a>
+</figure>
+<figure class="photo-cell">
+<a href="assets/images/education/education-b.jpg" target="_blank" rel="noopener noreferrer" aria-label="教育支援の写真Bを大きく見る">
+<img src="assets/images/education/education-b.jpg" alt="教育支援の写真B">
+        </a>
+</figure>
+<figure class="photo-cell">
+<a href="assets/images/education/education-c.jpg" target="_blank" rel="noopener noreferrer" aria-label="教育支援の写真Cを大きく見る">
+<img src="assets/images/education/education-c.jpg" alt="教育支援の写真C">
+        </a>
+</figure>
+<figure class="photo-cell">
+<a href="assets/images/education/education-d.jpg" target="_blank" rel="noopener noreferrer" aria-label="教育支援の写真Dを大きく見る">
+<img src="assets/images/education/education-d.jpg" alt="教育支援の写真D" loading="lazy">
+        </a>
+</figure>
+<figure class="photo-cell">
+<a href="assets/images/education/education-e.jpg" target="_blank" rel="noopener noreferrer" aria-label="教育支援の写真Eを大きく見る">
+<img src="assets/images/education/education-e.jpg" alt="教育支援の写真E" loading="lazy">
+        </a>
+</figure>
+<figure class="photo-cell">
+<a href="assets/images/education/education-f.jpg" target="_blank" rel="noopener noreferrer" aria-label="教育支援の写真Fを大きく見る">
+<img src="assets/images/education/education-f.jpg" alt="教育支援の写真F" loading="lazy">
+        </a>
+</figure>
+</div>
+</div>
+<div class="photo-controls">
+<span class="photo-count" aria-live="polite">
+</span>
+<div class="photo-buttons">
+<button type="button" class="photo-prev" aria-label="前の写真を表示">‹</button>
+<button type="button" class="photo-next" aria-label="次の写真を表示">›</button>
+</div>
+</div>
+</section>
 </main>
 
-<footer>
-  © 2026 Smile F LAOS
+<section class="join" id="contact">
+<div>
+<h2>一緒に、ラオスとつながろう。</h2>
+<p>活動への参加や、コーヒー販売のご相談はこちらから。</p>
+</div>
+<div class="contact-links">
+<a href="https://lin.ee/xcI0PXX" target="_blank" rel="noopener noreferrer">公式LINEで相談する ↗</a>
+<a href="https://www.instagram.com/smile_f_laos?igsh=MWttajM1NHFvYXE2eQ==" target="_blank" rel="noopener noreferrer">Instagramを見る ↗</a>
+</div>
+</section>
+<footer class="wrap">
+<nav class="footer-nav" aria-label="サイト内のページ">
+<a href="about.html">団体紹介</a>
+<a href="education.html">教育支援</a>
+<a href="studytour.html">スタディツアー</a>
+<a href="news.html">お知らせ・活動報告</a>
+<a href="gallery.html">ギャラリー</a>
+<a href="members.html">メンバー</a>
+<a href="history.html">沿革</a>
+<a href="partners.html">協力団体</a>
+<a href="order.html">購入のご相談</a>
+</nav>
+<span>Smile F LAOS ／ 東洋大学</span>
+<span>© 2026 Smile F LAOS</span>
 </footer>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const header = document.querySelector('.site-header');
-    const menuButton = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelectorAll('.global-nav a');
-
-    if (!header || !menuButton) return;
-
-    menuButton.addEventListener('click', function () {
-      const isOpen = header.classList.toggle('is-open');
-      menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        menuButton.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
-      menuButton.textContent = isOpen ? '閉じる' : 'メニュー';
-    });
-
-    navLinks.forEach(function (link) {
-      link.addEventListener('click', function () {
-        if (!window.matchMedia('(max-width: 768px)').matches) return;
-
-        header.classList.remove('is-open');
-        menuButton.setAttribute('aria-expanded', 'false');
-          menuButton.setAttribute('aria-label', 'メニューを開く');
-        menuButton.textContent = 'メニュー';
-      });
-    });
-  });
+<script src="assets/js/navigation.js" defer>
 </script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const carousel = document.querySelector('.tour-carousel');
-    if (!carousel) return;
-
-    const track = carousel.querySelector('.tour-carousel-track');
-    const slides = Array.from(carousel.querySelectorAll('.tour-slide'));
-    const previousButton = carousel.querySelector('.tour-carousel-prev');
-    const nextButton = carousel.querySelector('.tour-carousel-next');
-    const dotsContainer = carousel.querySelector('.tour-carousel-dots');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let currentSlide = 0;
-    let autoplayTimer = null;
-
-    const dots = slides.map(function (_, index) {
-      const dot = document.createElement('button');
-      dot.className = 'tour-carousel-dot';
-      dot.type = 'button';
-      dot.setAttribute('aria-label', (index + 1) + '組目の写真を表示');
-      dot.addEventListener('click', function () {
-        showSlide(index);
-        restartAutoplay();
-      });
-      dotsContainer.appendChild(dot);
-      return dot;
-    });
-
-    function showSlide(index) {
-      currentSlide = (index + slides.length) % slides.length;
-      track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-
-      slides.forEach(function (slide, slideIndex) {
-        slide.setAttribute('aria-hidden', slideIndex === currentSlide ? 'false' : 'true');
-      });
-
-      dots.forEach(function (dot, dotIndex) {
-        const isActive = dotIndex === currentSlide;
-        dot.classList.toggle('is-active', isActive);
-        dot.setAttribute('aria-current', isActive ? 'true' : 'false');
-      });
-    }
-
-    function stopAutoplay() {
-      if (autoplayTimer !== null) {
-        window.clearInterval(autoplayTimer);
-        autoplayTimer = null;
-      }
-    }
-
-    function startAutoplay() {
-      if (reduceMotion || slides.length < 2) return;
-      stopAutoplay();
-      autoplayTimer = window.setInterval(function () {
-        showSlide(currentSlide + 1);
-      }, 5000);
-    }
-
-    function restartAutoplay() {
-      stopAutoplay();
-      startAutoplay();
-    }
-
-    previousButton.addEventListener('click', function () {
-      showSlide(currentSlide - 1);
-      restartAutoplay();
-    });
-
-    nextButton.addEventListener('click', function () {
-      showSlide(currentSlide + 1);
-      restartAutoplay();
-    });
-
-    carousel.addEventListener('mouseenter', stopAutoplay);
-    carousel.addEventListener('mouseleave', startAutoplay);
-    carousel.addEventListener('focusin', stopAutoplay);
-    carousel.addEventListener('focusout', function (event) {
-      if (!carousel.contains(event.relatedTarget)) startAutoplay();
-    });
-
-    showSlide(0);
-    startAutoplay();
-  });
+<script src="assets/js/pages.js" defer>
 </script>
 </body>
 </html>

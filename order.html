@@ -1,549 +1,149 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>コーヒーの購入・ご相談｜Smile F LAOS</title>
-  <style>
-    :root {
-      --primary: #a44f30;
-      --primary-dark: #a44f30;
-      --primary-light: #fff5ee;
-      --accent: #a44f30;
-      --bg: #ffffff;
-      --text-main: #000000;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
-      line-height: 1.7;
-      padding-top: 76px;
-    }
-
-    /* ヘッダー */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: #a44f30;
-      color: #fff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-
-    .header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 16px;
-      gap: 18px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: #fff;
-      flex-shrink: 0;
-    }
-
-    .logo-mark {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      object-fit: contain;
-      background: #fff;
-    }
-
-    .logo-text-main {
-      font-weight: 800;
-      font-size: 20px;
-      letter-spacing: 0.05em;
-      line-height: 1.1;
-    }
-
-    .logo-text-sub {
-      font-size: 12px;
-      display: block;
-      opacity: 0.8;
-    }
-
-    .menu-toggle {
-      display: none;
-      border: 1px solid rgba(255,255,255,0.6);
-      background: rgba(255,255,255,0.12);
-      color: #fff;
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .global-nav {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 18px;
-      font-size: 16px;
-      list-style: none;
-    }
-
-    .global-nav > li {
-      position: relative;
-      list-style: none;
-    }
-
-    .global-nav > li > a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 4px 0;
-      display: inline-block;
-    }
-
-    .global-nav > li > a:hover {
-      text-decoration: underline;
-    }
-
-    .nav-sub {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 180px;
-      padding: 6px 0;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      display: none;
-      opacity: 0;
-      transform: translateY(4px);
-      transition: opacity 0.18s ease, transform 0.18s ease;
-      z-index: 200;
-    }
-
-    .global-nav > li:hover .nav-sub,
-    .global-nav > li:focus-within .nav-sub {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .nav-sub a {
-      display: block;
-      padding: 6px 14px;
-      font-size: 14px;
-      color: #000000;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .nav-sub a:hover {
-      background: #fff5ee;
-      color: #a44f30;
-    }
-
-    /* ヒーロー（注文ページ用のシンプルな帯） */
-    .hero-order {
-      background: #a44f30;
-      color: #fff;
-      border-bottom: 4px solid #8b4127;
-    }
-
-    .hero-order-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 28px 16px 24px;
-    }
-
-    .hero-order-title {
-      font-size: 24px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .hero-order-sub {
-      font-size: 14px;
-      opacity: 0.95;
-      max-width: 720px;
-    }
-
-    /* メイン */
-    .wrapper {
-      max-width: 1100px;
-      margin: 24px auto 40px;
-      padding: 0 16px;
-    }
-
-    .section {
-      background: #fff;
-      border-radius: 12px;
-      padding: 22px 20px 20px;
-      margin-bottom: 18px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-size: 18px;
-      border-left: 5px solid var(--primary);
-      padding-left: 10px;
-      color: var(--primary-dark);
-      font-weight: 700;
-    }
-
-    .section-sub {
-      font-size: 12px;
-      color: #777;
-    }
-
-    /* 商品カード */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      font-size: 14px;
-    }
-
-    .product-card {
-      border-radius: 10px;
-      border: 1px solid #eee;
-      background: #fff;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .product-img-wrap {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      background: #f9f5f2;
-    }
-
-    .product-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .product-body {
-      padding: 12px 12px 14px;
-    }
-
-    .product-name {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .product-roast {
-      font-size: 12px;
-      color: #a44f30;
-      margin-bottom: 4px;
-    }
-
-    .product-price {
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .product-note {
-      font-size: 12px;
-      color: #666;
-    }
-
-    /* 注文の流れ */
-    .flow-list {
-      list-style: none;
-      counter-reset: step;
-      font-size: 14px;
-    }
-
-    .flow-item {
-      position: relative;
-      padding-left: 40px;
-      margin-bottom: 12px;
-    }
-
-    .flow-item::before {
-      counter-increment: step;
-      content: counter(step);
-      position: absolute;
-      left: 0;
-      top: 2px;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: #a44f30;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    /* ボタン */
-    .btn-primary {
-      display: inline-block;
-      padding: 10px 20px;
-      border-radius: 999px;
-      background: var(--primary-dark);
-      color: #fff;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    }
-
-    .btn-primary:hover {
-      background: #8b4127;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.18);
-    }
-
-    .btn-primary:active {
-      transform: translateY(0);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.18);
-    }
-
-    .cta-center {
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    /* フッター */
-    footer {
-      background: #212121;
-      color: #eee;
-      text-align: center;
-      padding: 14px 8px;
-      font-size: 12px;
-      margin-top: 24px;
-    }
-
-    /* スマホ対応 */
-    @media (max-width: 768px) {
-      body {
-        padding-top: 56px;
-      }
-
-      .header-inner {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 6px;
-        flex-wrap: wrap;
-      }
-
-      .logo-mark {
-        width: 46px;
-        height: 46px;
-      }
-
-      .logo-text-main {
-        font-size: 17px;
-      }
-
-      .logo-text-sub {
-        font-size: 11px;
-      }
-
-      .menu-toggle {
-        display: inline-flex;
-      }
-
-      nav {
-        width: 100%;
-      }
-
-      .global-nav {
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        width: 100%;
-        margin-top: 8px;
-        font-size: 13px;
-      }
-
-      .site-header.is-open .global-nav {
-        display: flex;
-      }
-
-      .global-nav > li {
-        width: 100%;
-      }
-
-      .global-nav > li > a {
-        padding: 4px 0;
-      }
-
-      .nav-sub {
-        position: static;
-        box-shadow: none;
-        background: transparent;
-        border: none;
-        padding: 0;
-        display: block;
-        opacity: 1;
-        transform: none;
-        backdrop-filter: none;
-      }
-
-      .nav-sub a {
-        padding: 2px 0 0;
-        color: #ffe5d6;
-        background: none;
-      }
-
-      .nav-sub a:hover {
-        background: none;
-        text-decoration: underline;
-        color: #ffffff;
-      }
-
-      .hero-order-inner {
-        padding: 20px 14px 18px;
-      }
-
-      .hero-order-title {
-        font-size: 20px;
-      }
-
-      .wrapper {
-        margin-top: 18px;
-      }
-
-      .product-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-    .cta-center { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-    .btn-primary { max-width: 100%; text-align: center; }
-  </style>
-  <link rel="stylesheet" href="assets/css/festival.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>コーヒーの購入・ご相談｜Smile F LAOS</title>
+<meta name="description" content="Smile F LAOSの購入・ご相談をご紹介します。">
+<script src="assets/js/page-start.js">
+</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/pages.css">
 </head>
 <body>
-  <!-- ヘッダー -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="logo">
-        <img src="assets/images/brand/logo.jpg" alt="Smile F LAOS ロゴ" class="logo-mark">
-        <div>
-          <div class="logo-text-main">Smile F LAOS</div>
-          <span class="logo-text-sub">ラオスと日本をつなぐ学生サークル</span>
-        </div>
-      </a>
-
-      <button class="menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">
-        メニュー
-      </button>
-
-      <nav>
-        <ul class="global-nav">
-          <li>
-            <a href="about.html">Smile F LAOSとは</a>
-            <div class="nav-sub">
-              <a href="members.html">構成・メンバー紹介</a>
-              <a href="history.html">エフラオの歩み</a>
-              <a href="about.html#about-laos">ラオス概要</a>
-            </div>
-          </li>
-
-          <li>
-            <a href="index.html#activities">活動内容</a>
-            <div class="nav-sub">
-              <a href="coffee.html">コーヒー</a>
-              <a href="education.html">教育支援</a>
-              <a href="studytour.html">スタディツアー</a>
-              <a href="news.html">お知らせ</a>
-            </div>
-          </li>
-
-          <li>
-            <a href="coffee.html">製品紹介</a>
-            <div class="nav-sub">
-              <a href="coffee.html">コーヒー</a>
-              <a href="order.html">購入のご相談</a>
-            </div>
-          </li>
-
-          <li>
-            <a href="gallery.html">ギャラリー</a>
-          </li>
-
-          <li>
-            <a href="index.html#contact">お問い合わせ</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- ヒーロー（帯） -->
-  <section class="hero-order">
-    <div class="hero-order-inner">
-      <h1 class="hero-order-title">コーヒーの購入・ご相談</h1>
-      <p class="hero-order-sub">
+<a class="skip-link" href="#main-content">本文へ移動</a>
+<div class="wrap">
+<header>
+<a class="brand" href="index.html">
+<img src="assets/images/brand/logo.jpg" alt="エフラオのロゴ">
+<div>
+<b>Smile F LAOS</b>
+<small>東洋大学から、ラオスとつながる。</small>
+</div>
+</a>
+<nav class="site-nav" aria-label="グローバルナビゲーション">
+<details class="site-nav-group">
+<summary>Smile F LAOSとは</summary>
+<div class="site-subnav">
+<a href="about.html">団体紹介</a>
+<a href="members.html">構成・メンバー紹介</a>
+<a href="history.html">エフラオの歩み</a>
+<a href="about.html#about-laos">ラオス概要</a>
+</div>
+</details>
+<details class="site-nav-group">
+<summary>活動内容</summary>
+<div class="site-subnav">
+<a href="index.html#activities">主な活動</a>
+<a href="coffee.html">コーヒー</a>
+<a href="education.html">教育支援</a>
+<a href="studytour.html">スタディツアー</a>
+<a href="news.html">お知らせ</a>
+</div>
+</details>
+<details class="site-nav-group">
+<summary>製品紹介</summary>
+<div class="site-subnav">
+<a href="coffee.html">コーヒー</a>
+<a href="order.html">購入のご相談</a>
+</div>
+</details>
+<a href="gallery.html">ギャラリー</a>
+<a href="index.html#contact">お問い合わせ</a>
+</nav>
+</header>
+</div>
+<main class="page-main order" id="main-content">
+    <nav class="breadcrumbs" aria-label="現在の位置">
+<a href="index.html">トップ</a>
+<span>／</span>
+<span>購入・ご相談</span>
+</nav>
+<section class="page-hero">
+<div class="page-hero-grid" style="grid-template-columns:1fr">
+<div>
+<p class="page-kicker">COFFEE / CONTACT</p>
+<h1 class="page-title">コーヒーの購入・ご相談</h1>
+<p class="page-lead">
         Smile F LAOSのフェアトレードコーヒーに興味を持ってくださりありがとうございます。<br>
         販売会やイベントでの購入については、お知らせをご覧ください。商品の取り扱いや購入方法は、公式LINE・Instagramからお問い合わせいただけます。
       </p>
     </div>
-  </section>
-
-  <!-- メイン -->
-  <main class="wrapper">
-    <section class="festival-panel" aria-labelledby="festival-title">
+</div>
+</section>
+<nav class="page-index" aria-label="このページの内容">
+<a href="#order-section-1">販売商品について</a>
+<a href="#order-section-2">購入についてのお問い合わせ</a>
+<a href="#order-section-3">よくあるお問い合わせ</a>
+</nav>
+<section class="festival-panel" aria-labelledby="festival-title" id="hakusan2026">
       <p class="festival-eyebrow">HAKUSAN FESTIVAL 2026</p>
       <h2 id="festival-title">白山祭で購入できます</h2>
     <dl class="festival-details">
       <dt>日程</dt>
-      <dd><time datetime="2026-10-31">2026年10月31日（土）</time>・<time datetime="2026-11-01">11月1日（日）</time><br>両日 10:00〜18:00</dd>
+      <dd>
+<time datetime="2026-10-31">2026年10月31日（土）</time>・<time datetime="2026-11-01">11月1日（日）</time>
+<br>両日 10:00〜18:00</dd>
       <dt>会場</dt>
       <dd>東洋大学 白山キャンパス<br>1号館5階</dd>
       <dt>教室</dt>
-      <dd><span class="festival-room">販売：1505教室</span><span class="festival-room">イートイン：1511教室</span></dd>
+      <dd>
+<span class="festival-room">販売：1505教室</span>
+<span class="festival-room">イートイン：1511教室</span>
+</dd>
     </dl>
-    <h3>白山祭の販売メニュー</h3>
+    <h3 id="festival-menu">白山祭の販売メニュー</h3>
     <table class="festival-menu">
       <caption>通常価格・学割価格（全商品100円引き）</caption>
-      <thead><tr><th scope="col">商品</th><th scope="col">通常</th><th scope="col">学割</th></tr></thead>
+      <thead>
+<tr>
+<th scope="col">商品</th>
+<th scope="col">通常</th>
+<th scope="col">学割</th>
+</tr>
+</thead>
       <tbody>
-        <tr><th scope="row">コーヒー<small>ホット／アイス</small></th><td>500円</td><td>400円</td></tr>
-        <tr><th scope="row">コーヒー＋クッキー</th><td>600円</td><td>500円</td></tr>
-        <tr><th scope="row">コーヒー＋ドリップパック3個<small>中煎り／深煎り</small></th><td>1,000円</td><td>900円</td></tr>
-        <tr><th scope="row">ドリップパック3個<small>中煎り／深煎り</small></th><td>600円</td><td>500円</td></tr>
-        <tr><th scope="row">ミックスドリップパック6個<small>中煎り3個＋深煎り3個</small></th><td>1,100円</td><td>1,000円</td></tr>
-        <tr><th scope="row">コーヒー豆・粉 100g<small>中煎り／深煎り</small></th><td>1,100円</td><td>1,000円</td></tr>
-        <tr><th scope="row">コーヒー豆・粉 200g<small>中煎り／深煎り</small></th><td>1,800円</td><td>1,700円</td></tr>
+        <tr>
+<th scope="row">コーヒー<small>ホット／アイス</small>
+</th>
+<td>500円</td>
+<td>400円</td>
+</tr>
+        <tr>
+<th scope="row">コーヒー＋クッキー</th>
+<td>600円</td>
+<td>500円</td>
+</tr>
+        <tr>
+<th scope="row">コーヒー＋ドリップパック3個<small>中煎り／深煎り</small>
+</th>
+<td>1,000円</td>
+<td>900円</td>
+</tr>
+        <tr>
+<th scope="row">ドリップパック3個<small>中煎り／深煎り</small>
+</th>
+<td>600円</td>
+<td>500円</td>
+</tr>
+        <tr>
+<th scope="row">ミックスドリップパック6個<small>中煎り3個＋深煎り3個</small>
+</th>
+<td>1,100円</td>
+<td>1,000円</td>
+</tr>
+        <tr>
+<th scope="row">コーヒー豆・粉 100g<small>中煎り／深煎り</small>
+</th>
+<td>1,100円</td>
+<td>1,000円</td>
+</tr>
+        <tr>
+<th scope="row">コーヒー豆・粉 200g<small>中煎り／深煎り</small>
+</th>
+<td>1,800円</td>
+<td>1,700円</td>
+</tr>
       </tbody>
     </table>
     <p class="festival-note">学割は、セット商品も1セットにつき100円引きです。ホット・アイス、同じ容量の豆・粉は同じ価格です。</p>
@@ -552,8 +152,7 @@
       <a class="festival-link festival-link-secondary" href="index.html#contact">お問い合わせ</a>
     </div>
     </section>
-    <!-- 商品一覧 -->
-    <section class="section">
+    <section class="section" id="order-section-1">
       <div class="section-header">
         <h2 class="section-title">販売商品について</h2>
         <div class="section-sub">Products</div>
@@ -566,8 +165,7 @@
       </div>
     </section>
 
-    <!-- 注文の流れ -->
-    <section class="section">
+    <section class="section" id="order-section-2">
       <div class="section-header">
         <h2 class="section-title">購入についてのお問い合わせ</h2>
         <div class="section-sub">Contact us</div>
@@ -583,7 +181,7 @@
           購入方法やお支払いについては、案内された内容をご確認ください。
         </li>
       </ul>
-      <p style="font-size: 12px; color:#777; margin-top: 8px;">
+      <p>
         ※ 大量注文やイベントでの利用をお考えの方は、余裕をもってご相談いただけると助かります。
       </p>
 
@@ -593,53 +191,50 @@
       </div>
     </section>
 
-    <!-- よくある質問など、あとで増やしてもOK -->
-    <section class="section">
+    <section class="section" id="order-section-3">
       <div class="section-header">
         <h2 class="section-title">よくあるお問い合わせ</h2>
         <div class="section-sub">FAQ</div>
       </div>
-      <p style="font-size: 14px; margin-bottom: 6px;">
-        Q. 通販（配送）は行っていますか？<br>
-        A. 配送の対応可否や受け取り方法は、公式LINEまたはInstagramからお問い合わせください。
-      </p>
-      <p style="font-size: 14px;">
-        Q. 大学関係者以外でも購入できますか？<br>
-        A. 学園祭や学外イベントなど、一般の方もご参加いただける場で販売しています。最新情報は「お知らせ」やSNSをご覧ください。
-      </p>
-    </section>
+      <details class="faq-item">
+<summary>Q. 通販（配送）は行っていますか？</summary>
+<p>A. 配送の対応可否や受け取り方法は、公式LINEまたはInstagramからお問い合わせください。</p>
+</details>
+<details class="faq-item">
+<summary>Q. 大学関係者以外でも購入できますか？</summary>
+<p>A. 学園祭や学外イベントなど、一般の方もご参加いただける場で販売しています。最新情報は「お知らせ」やSNSをご覧ください。</p>
+</details>
+</section>
   </main>
 
-  <footer>
-    © 2026 Smile F LAOS
-  </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const header = document.querySelector('.site-header');
-      const menuButton = document.querySelector('.menu-toggle');
-      const navLinks = document.querySelectorAll('.global-nav a');
-
-      if (!header || !menuButton) return;
-
-      menuButton.addEventListener('click', function () {
-        const isOpen = header.classList.toggle('is-open');
-        menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        menuButton.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
-        menuButton.textContent = isOpen ? '閉じる' : 'メニュー';
-      });
-
-      navLinks.forEach(function (link) {
-        link.addEventListener('click', function () {
-          if (!window.matchMedia('(max-width: 768px)').matches) return;
-
-          header.classList.remove('is-open');
-          menuButton.setAttribute('aria-expanded', 'false');
-          menuButton.setAttribute('aria-label', 'メニューを開く');
-          menuButton.textContent = 'メニュー';
-        });
-      });
-    });
-  </script>
+  <section class="join" id="contact">
+<div>
+<h2>一緒に、ラオスとつながろう。</h2>
+<p>活動への参加や、コーヒー販売のご相談はこちらから。</p>
+</div>
+<div class="contact-links">
+<a href="https://lin.ee/xcI0PXX" target="_blank" rel="noopener noreferrer">公式LINEで相談する ↗</a>
+<a href="https://www.instagram.com/smile_f_laos?igsh=MWttajM1NHFvYXE2eQ==" target="_blank" rel="noopener noreferrer">Instagramを見る ↗</a>
+</div>
+</section>
+<footer class="wrap">
+<nav class="footer-nav" aria-label="サイト内のページ">
+<a href="about.html">団体紹介</a>
+<a href="education.html">教育支援</a>
+<a href="studytour.html">スタディツアー</a>
+<a href="news.html">お知らせ・活動報告</a>
+<a href="gallery.html">ギャラリー</a>
+<a href="members.html">メンバー</a>
+<a href="history.html">沿革</a>
+<a href="partners.html">協力団体</a>
+<a href="order.html">購入のご相談</a>
+</nav>
+<span>Smile F LAOS ／ 東洋大学</span>
+<span>© 2026 Smile F LAOS</span>
+</footer>
+<script src="assets/js/navigation.js" defer>
+</script>
+<script src="assets/js/pages.js" defer>
+</script>
 </body>
 </html>
