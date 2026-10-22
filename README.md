@@ -8,6 +8,7 @@
 - 写真・ロゴ：`assets/images/`（下表）
 - スタイル：`assets/css/`（トップページは `home.css`）
 - トップの写真スライド・回転する活動紹介：`assets/js/home.js`
+- トップのヘッダーメニュー：`assets/js/navigation.js`
 - 更新の手順書：`docs/00_まず最初に読む.md`、`docs/01_運用マニュアル.md`
 
 |画像フォルダ|用途|
