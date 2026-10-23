@@ -1,0 +1,19 @@
+/* 団体紹介専用：ページ幅・写真と本文の基本比率は共通設定を維持。 */
+.origin-story{align-items:start}
+.origin-photo{margin-top:80px}
+#about-section-3>.section-header{margin-bottom:24px}
+#about-section-3 .photo-story{align-items:start}
+#about-section-3 .story-photo{margin-top:14px}
+#about-section-3 .cycle-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:25px 0}
+#about-section-3 .cycle-step{padding:16px 0 0;border-top:2px solid var(--rust)}
+#about-section-3 .cycle-step-num{font-size:11px;font-weight:600;letter-spacing:.1em}
+#about-section-3 .cycle-step-title{font-size:17px;font-weight:700;line-height:1.8;margin:8px 0 12px}
+#about-section-3 .cycle-step p{font-size:13px;line-height:1.9;margin:0}
+#about-section-3 .note-text{font-size:12px;line-height:2;padding-top:18px;border-top:1px solid var(--line);margin-top:28px}
+#about-section-4 .two-cols{gap:40px;align-items:start}
+#about-section-4 .two-cols h3{font-size:20px;margin:8px 0 0;padding:15px 18px;background:#eee5d8;border-top:2px solid var(--rust)}
+#about-section-4 .strengths-list,#about-section-4 .achievements-list{list-style:none;margin:0;padding:0}
+#about-section-4 .strengths-list li,#about-section-4 .achievements-list li{padding:18px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:2;margin:0}
+#about-section-4 .highlight,#about-section-4 .achievement-label{display:block;font-weight:700;color:var(--rust);font-size:16px;line-height:1.8;margin-bottom:7px}
+#about-section-4 .note-text{font-size:12px;margin-top:20px;line-height:2}
+@media(max-width:760px){.origin-photo{margin-top:0}#about-section-3 .cycle-steps{grid-template-columns:1fr;gap:20px}#about-section-3 .cycle-step{display:grid;grid-template-columns:55px 1fr;gap:3px 14px;padding-top:16px}#about-section-3 .cycle-step-num{grid-row:1/3;padding-top:5px}#about-section-3 .cycle-step-title{margin:0 0 5px}#about-section-3 .cycle-step p{grid-column:2}#about-section-3 .story-photo{margin-top:0}#about-section-4 .two-cols{gap:30px}#about-section-4 .strengths-list li,#about-section-4 .achievements-list li{padding:17px 0}}
