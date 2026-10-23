@@ -1,0 +1,24 @@
+/* トップページ専用。共通ヘッダー・お問い合わせには影響させない。 */
+.home-principles-feature{grid-column:1/-1;margin-top:35px;background:#eee5d8;border-top:4px solid var(--rust);padding:32px 36px 36px}
+.principles-heading{display:flex;align-items:baseline;gap:24px;flex-wrap:wrap;margin-bottom:25px}
+.intro .principles-heading p{font-size:10px;font-weight:700;letter-spacing:.16em;color:var(--rust);margin:0}
+.intro .principles-heading h2{font-size:29px;line-height:1.6}
+.home-principles-feature ol{list-style:none;counter-reset:principle;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;padding:0;margin:0}
+.home-principles-feature li{counter-increment:principle;font-size:17px;font-weight:600;line-height:1.9;padding:0 24px 0 0;border-right:1px solid #cfc0ae}
+.home-principles-feature li:last-child{border:0;padding-right:0}
+.home-principles-feature li:before{content:'0' counter(principle);display:block;font-family:Georgia,serif;font-size:35px;line-height:1.2;font-weight:400;color:var(--rust);margin-bottom:14px}
+.join.home-contact{display:block}
+.home-contact>div:first-child{margin-bottom:30px}
+.home-contact h2{text-wrap:balance}
+.home-contact .contact-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1180px}
+.home-contact .home-social-link{display:flex;align-items:center;gap:16px;color:var(--ink);background:var(--paper);border:1px solid #ead9c8;padding:20px 22px;text-decoration:none;min-width:0}
+.home-contact .home-social-link:hover{background:#fff;box-shadow:0 3px 0 #763b25}
+.social-icon{display:flex;align-items:center;justify-content:center;width:48px;height:48px;background:#fff;flex-shrink:0;border-radius:12px}
+.home-contact .social-icon svg{display:block;width:30px;height:30px;object-fit:contain}
+.social-label{display:block;min-width:0}
+.social-label strong{display:block;font-size:17px;font-weight:700}
+.social-label small{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+.social-arrow{margin-left:auto;color:var(--rust);font-size:20px}
+.home-contact a:focus-visible{outline:2px solid #fff;outline-offset:5px}
+@media(max-width:1000px){.home-contact .home-social-link{padding:18px 14px;gap:10px}.social-label strong{font-size:15px}.social-icon{width:40px;height:40px}.home-contact .social-icon svg{width:26px;height:26px}}
+@media(max-width:760px){.home-principles-feature{padding:25px 22px;margin-top:30px}.principles-heading{gap:8px;display:block;margin-bottom:20px}.intro .principles-heading h2{font-size:26px;margin-top:8px}.home-principles-feature ol{grid-template-columns:1fr;gap:0}.home-principles-feature li{display:grid;grid-template-columns:35px 1fr;gap:16px;border-right:0;border-bottom:1px solid #cfc0ae;padding:20px 0;font-size:16px}.home-principles-feature li:first-child{padding-top:0}.home-principles-feature li:last-child{padding-bottom:0}.home-principles-feature li:before{font-size:28px;margin:3px 0 0}.home-contact .contact-links{grid-template-columns:1fr;gap:12px}.home-contact .home-social-link{padding:15px 18px;gap:16px}.social-label strong{font-size:17px}}
