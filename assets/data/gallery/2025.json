@@ -5,6 +5,66 @@
   "description": "学校での交流、コーヒー畑への訪問、メンバーと過ごした時間。12期のスタディツアーを、写真で振り返ります。",
   "photos": [
     {
+      "source": "IMG_9842.jpg",
+      "date": "2025-12-17",
+      "sortTime": "2025-12-17T22:28:50",
+      "caption": "空港の待合スペースで記念撮影",
+      "full": "assets/images/gallery/2025/full/photo-9842.jpg",
+      "thumb": "assets/images/gallery/2025/thumb/photo-9842.jpg",
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "source": "IMG_9052.jpg",
+      "date": "2025-12-17",
+      "sortTime": "2025-12-17T23:34:58",
+      "caption": "荷物と一緒に、空港で集合写真",
+      "full": "assets/images/gallery/2025/full/photo-9052.jpg",
+      "thumb": "assets/images/gallery/2025/thumb/photo-9052.jpg",
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "source": "IMG_9146.jpg",
+      "date": "2025-12-18",
+      "sortTime": "2025-12-18T17:20:59",
+      "caption": "食事を囲むメンバーたち",
+      "full": "assets/images/gallery/2025/full/photo-9146.jpg",
+      "thumb": "assets/images/gallery/2025/thumb/photo-9146.jpg",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "source": "IMG_6044.jpg",
+      "date": "2025-12-19",
+      "sortTime": "2025-12-19T14:50:48",
+      "caption": "市場に並ぶ串焼きと店の人々",
+      "full": "assets/images/gallery/2025/full/photo-6044.jpg",
+      "thumb": "assets/images/gallery/2025/thumb/photo-6044.jpg",
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "source": "IMG_0180.jpg",
+      "date": "2025-12-19",
+      "sortTime": "2025-12-19T17:59:45",
+      "caption": "夕空の下、建物の前で記念撮影",
+      "full": "assets/images/gallery/2025/full/photo-0180.jpg",
+      "thumb": "assets/images/gallery/2025/thumb/photo-0180.jpg",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "source": "IMG_5008.jpg",
+      "date": "2025-12-21",
+      "sortTime": "2025-12-21T06:39:38",
+      "caption": "窓の向こうの朝の景色を眺めて",
+      "full": "assets/images/gallery/2025/full/photo-5008.jpg",
+      "thumb": "assets/images/gallery/2025/thumb/photo-5008.jpg",
+      "width": 1200,
+      "height": 1600
+    },
+    {
       "source": "IMG_6206.jpg",
       "date": "2025-12-21",
       "sortTime": "2025-12-21T10:20:23",
@@ -765,6 +825,16 @@
       "height": 1067
     },
     {
+      "source": "IMG_5270.jpg",
+      "date": "2025-12-27",
+      "sortTime": "2025-12-27T15:43:27",
+      "caption": "緑の景色を背にくつろぐメンバー",
+      "full": "assets/images/gallery/2025/full/photo-5270.jpg",
+      "thumb": "assets/images/gallery/2025/thumb/photo-5270.jpg",
+      "width": 1200,
+      "height": 1600
+    },
+    {
       "source": "IMG_0382.jpg",
       "date": "2025-12-27",
       "sortTime": "2025-12-27T16:11:47",
@@ -773,6 +843,26 @@
       "thumb": "assets/images/gallery/2025/thumb/photo-0382.jpg",
       "width": 1200,
       "height": 1600
+    },
+    {
+      "source": "IMG_0470.jpg",
+      "date": "2025-12-27",
+      "sortTime": "2025-12-27T16:32:01",
+      "caption": "緑に囲まれたテラスでメンバーと",
+      "full": "assets/images/gallery/2025/full/photo-0470.jpg",
+      "thumb": "assets/images/gallery/2025/thumb/photo-0470.jpg",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "source": "IMG_20251227_170944_Original.jpg",
+      "date": "2025-12-27",
+      "sortTime": "2025-12-27T17:09:44",
+      "caption": "屋外に集まるメンバーたち",
+      "full": "assets/images/gallery/2025/full/photo-20251227_170944_original.jpg",
+      "thumb": "assets/images/gallery/2025/thumb/photo-20251227_170944_original.jpg",
+      "width": 1600,
+      "height": 1200
     },
     {
       "source": "IMG_6519 (1).jpg",
@@ -795,6 +885,26 @@
       "height": 1600
     },
     {
+      "source": "IMG_6969.jpg",
+      "date": "2025-12-28",
+      "sortTime": "2025-12-28T08:59:34",
+      "caption": "屋内の作業場を見学する様子",
+      "full": "assets/images/gallery/2025/full/photo-6969.jpg",
+      "thumb": "assets/images/gallery/2025/thumb/photo-6969.jpg",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "source": "IMG_1511.jpg",
+      "date": "2025-12-28",
+      "sortTime": "2025-12-28T10:30:40",
+      "caption": "カフェでのひととき",
+      "full": "assets/images/gallery/2025/full/photo-1511.jpg",
+      "thumb": "assets/images/gallery/2025/thumb/photo-1511.jpg",
+      "width": 1600,
+      "height": 1200
+    },
+    {
       "source": "IMG_20251228_111532_Original.jpg",
       "date": "2025-12-28",
       "sortTime": "2025-12-28T11:15:32",
@@ -803,6 +913,16 @@
       "thumb": "assets/images/gallery/2025/thumb/photo-20251228_111532_original.jpg",
       "width": 1200,
       "height": 1600
+    },
+    {
+      "source": "IMG_6789.jpg",
+      "date": "2025-12-29",
+      "sortTime": "2025-12-29T10:23:08",
+      "caption": "空港でメンバーの集合写真",
+      "full": "assets/images/gallery/2025/full/photo-6789.jpg",
+      "thumb": "assets/images/gallery/2025/thumb/photo-6789.jpg",
+      "width": 1600,
+      "height": 1200
     }
   ]
 }
