@@ -86,10 +86,10 @@ var COMMENTS_HTML_ = `<!doctype html><html lang="ja"><head><meta charset="utf-8"
 </style></head><body><h2>コーヒーの感想を聞かせてください</h2><p class="note">ログインは不要です。名前とコメントは、団体側で確認した後に公開します。個人情報や公開したくない内容は書かないでください。</p><form id="form"><label for="name">ニックネーム（任意）</label><input id="name" name="name" type="text" maxlength="40" autocomplete="nickname"><label for="message">コメント</label><textarea id="message" name="message" maxlength="1200" required placeholder="コーヒーの感想や、活動へのメッセージをどうぞ"></textarea><label class="trap" aria-hidden="true">Website<input id="website" type="text" tabindex="-1" autocomplete="off"></label><label class="consent"><input id="consent" type="checkbox" required><span>入力した名前とコメントが、このサイトに公開されることに同意します。</span></label><button id="submit" type="submit" disabled>コメントを送る</button></form><p id="status" role="status" aria-live="polite">入力画面を準備しています。</p><section class="comments"><h2>届いた声</h2><div id="list" aria-live="polite">読み込んでいます。</div></section><script>
 var token = '';
 var form = document.getElementById('form');
-var status = document.getElementById('status');
+var commentStatus = document.getElementById('status');
 var button = document.getElementById('submit');
-function failure(error) { status.textContent = error.message || '読み込めませんでした。時間をおいてお試しください。'; status.className = 'error'; }
-google.script.run.withSuccessHandler(function(value) { token = value; button.disabled = false; status.textContent = ''; }).withFailureHandler(failure).getCommentToken();
+function failure(error) { commentStatus.textContent = error.message || '読み込めませんでした。時間をおいてお試しください。'; commentStatus.className = 'error'; }
+google.script.run.withSuccessHandler(function(value) { token = value; button.disabled = false; commentStatus.textContent = ''; }).withFailureHandler(failure).getCommentToken();
 google.script.run.withSuccessHandler(function(rows) {
   var list = document.getElementById('list'); list.textContent = '';
   if (!rows.length) { list.textContent = 'まだ公開されたコメントはありません。最初の感想をお待ちしています。'; return; }
@@ -103,10 +103,10 @@ google.script.run.withSuccessHandler(function(rows) {
 }).withFailureHandler(function() { document.getElementById('list').textContent = 'コメントを読み込めませんでした。時間をおいてお試しください。'; }).getPublicComments();
 form.addEventListener('submit', function(event) {
   event.preventDefault(); if (!form.reportValidity() || !token || button.disabled) return;
-  button.disabled = true; status.className = ''; status.textContent = '送信しています…';
+  button.disabled = true; commentStatus.className = ''; commentStatus.textContent = '送信しています…';
   google.script.run.withSuccessHandler(function(result) {
     if (!result || result.accepted !== true) { button.disabled = false; failure({ message:'送信を確認できませんでした。時間をおいてお試しください。' }); return; }
-    form.reset(); token = ''; status.textContent = 'コメントを受け付けました。団体側で確認した後に公開します。ありがとうございます。';
+    form.reset(); token = ''; commentStatus.textContent = 'コメントを受け付けました。団体側で確認した後に公開します。ありがとうございます。';
   }).withFailureHandler(function(error) { button.disabled = false; failure(error); }).submitPublicComment({ token:token, name:document.getElementById('name').value, message:document.getElementById('message').value, consent:document.getElementById('consent').checked, website:document.getElementById('website').value });
 });
 </script></body></html>`;
