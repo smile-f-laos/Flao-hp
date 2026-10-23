@@ -46,6 +46,6 @@ for album in albums:
 
 content=hero('PHOTO JOURNAL','写真で見る、エフラオ。','年度ごとのアルバムから、活動の記録をたどれます。','<span>ギャラリー</span>')
 content+='<section class="album-list" aria-label="年度別アルバム">'+''.join(cards)+'</section>'
-content+='</main>'
+content+='<section class="gallery-updating"><h2>ほかの写真・年度</h2><p>ただいま更新中です。準備ができ次第、順次追加していきます。</p></section></main>'
 (root/'gallery.html').write_text(page(content,'写真ギャラリー','Smile F LAOSの活動写真を年度ごとのアルバムで紹介します。'),encoding='utf-8')
 print(f'Generated gallery index and {len(albums)} annual album(s).')
