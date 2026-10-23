@@ -31,7 +31,9 @@ for album in albums:
     days=[(d,list(ps)) for d,ps in groupby(photos,key=lambda p:p['date'])]
     content+='<nav class="album-days" aria-label="撮影日から探す">'+''.join(f'<a href="#day-{d}">{int(d[5:7])}/{int(d[8:])}</a>' for d,_ in days)+'</nav>'
     for date,items in days:
-        content+=f'<section class="album-day" id="day-{date}"><div class="album-day-heading"><h2><time datetime="{date}">{int(date[5:7])}月{int(date[8:])}日</time></h2><span>{len(items)}枚</span></div><div class="album-photos">'
+        summary=album.get('daySummaries',{}).get(date,'')
+        summary_html=f'<p class="album-day-summary">{escape(summary)}</p>' if summary else ''
+        content+=f'<section class="album-day" id="day-{date}"><div class="album-day-heading"><h2><time datetime="{date}">{int(date[5:7])}月{int(date[8:])}日</time></h2>{summary_html}<span class="album-day-count">{len(items)}枚</span></div><div class="album-photos">'
         for p in items:
             cap=escape(p['caption'],quote=True)
             content+=f'''<figure><a class="album-photo" href="{p['full']}" data-caption="{cap}" data-date="{date}" aria-label="{cap}の写真を大きく見る"><img src="{p['thumb']}" alt="{cap}" width="{p['width']}" height="{p['height']}" loading="lazy" decoding="async"></a><figcaption>{cap}</figcaption></figure>'''
