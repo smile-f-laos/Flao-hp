@@ -49,3 +49,7 @@ content+='<section class="album-list" aria-label="年度別アルバム">'+''.jo
 content+='<section class="gallery-updating"><h2>ほかの写真・年度</h2><p>ただいま更新中です。準備ができ次第、順次追加していきます。</p></section></main>'
 (root/'gallery.html').write_text(page(content,'写真ギャラリー','Smile F LAOSの活動写真を年度ごとのアルバムで紹介します。'),encoding='utf-8')
 print(f'Generated gallery index and {len(albums)} annual album(s).')
+
+# Refresh page-specific metadata after rendering the annual album pages.
+import runpy
+runpy.run_path(str(root/'scripts/update-sharing.py'))
