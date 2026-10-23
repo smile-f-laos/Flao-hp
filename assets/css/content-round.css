@@ -16,3 +16,8 @@
 .contact-note{font-size:13px;line-height:1.9;color:var(--muted);margin:20px 0}
 .comments-frame{display:block;width:100%;min-height:1000px;border:0;background:var(--paper)}
 @media(max-width:760px){.program-layout,.event-schedule,.contact-options{grid-template-columns:1fr}.program-photos{padding-top:0;grid-template-columns:1fr 1fr;gap:16px}.program-photos .story-photo img{height:180px;object-fit:contain}.event-schedule{gap:16px}.contact-options{gap:16px}.comments-frame{min-height:1150px}}
+
+.contact-options .contact-card-heading{display:flex;align-items:center;gap:14px}
+.contact-options .contact-card-icon{display:flex;align-items:center;justify-content:center;flex:0 0 34px;width:34px;height:34px;margin:0}
+.contact-card-icon svg{display:block;width:30px;height:30px}
+.contact-options .contact-card-heading>span:last-child{font-size:20px;margin:0}
