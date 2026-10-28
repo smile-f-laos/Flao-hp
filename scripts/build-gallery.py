@@ -8,6 +8,11 @@ escape=html.escape
 template=(root/'gallery.html').read_text(encoding='utf-8')
 years=json.loads((root/'assets/data/gallery-albums.json').read_text(encoding='utf-8'))
 albums=[json.loads((root/f'assets/data/gallery/{y}.json').read_text(encoding='utf-8')) for y in years]
+exclusions=json.loads((root/'assets/data/gallery-exclusions.json').read_text(encoding='utf-8'))
+for album in albums:
+    excluded=set(exclusions.get(str(album['year']),[]))
+    album['photos']=[photo for photo in album['photos'] if photo['source'] not in excluded]
+
 
 def page(content,title,description):
     s=re.sub(r'<main\b.*?</main>',content,template,count=1,flags=re.S)
