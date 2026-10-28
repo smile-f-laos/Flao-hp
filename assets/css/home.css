@@ -176,3 +176,6 @@ footer{flex-wrap:wrap;gap:22px}
 
 @media(max-width:760px){.hero h1{font-size:clamp(27px,8.6vw,34px)}}
 @media(max-width:480px){header nav{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;font-size:12px}header nav a{white-space:nowrap}}
+
+.hero-tagline{display:flex;align-items:center;gap:14px;margin:0 0 18px;color:var(--rust);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:clamp(22px,2vw,28px);font-weight:600;line-height:1.6;letter-spacing:.08em}
+.hero-tagline::before{content:"";display:block;flex:0 0 28px;height:1px;background:currentColor}
